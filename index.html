@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DiFifaWorldCupNews</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="ball">⚽</span>
+        <span class="site-name">DiFifa<span class="highlight">WorldCupNews</span></span>
+      </div>
+      <p class="tagline">FIFA World Cup 2026 — Analysis Reports</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="filter-bar">
+      <label for="date-filter">Filter by date:</label>
+      <select id="date-filter">
+        <option value="all">All dates</option>
+      </select>
+      <span id="report-count" class="report-count"></span>
+    </section>
+
+    <section id="cards-grid" class="cards-grid">
+      <p class="loading">Loading reports...</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>DiFifaWorldCupNews &copy; 2026</p>
+  </footer>
+
+  <script>
+    const grid = document.getElementById('cards-grid');
+    const dateFilter = document.getElementById('date-filter');
+    const reportCount = document.getElementById('report-count');
+
+    let allReports = [];
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function renderCards(reports) {
+      reportCount.textContent = reports.length + ' report' + (reports.length !== 1 ? 's' : '');
+      if (reports.length === 0) {
+        grid.innerHTML = '<p class="no-results">No reports found for this date.</p>';
+        return;
+      }
+      grid.innerHTML = reports.map(r => `
+        <a href="${r.file}" class="card">
+          <div class="card-date">${formatDate(r.date)}</div>
+          <div class="card-title">${r.title}</div>
+          <div class="card-author">by ${r.author}</div>
+          <div class="card-arrow">Read report →</div>
+        </a>
+      `).join('');
+    }
+
+    function populateDateFilter(reports) {
+      const dates = [...new Set(reports.map(r => r.date))].sort((a, b) => b.localeCompare(a));
+      dates.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d;
+        opt.textContent = formatDate(d);
+        dateFilter.appendChild(opt);
+      });
+    }
+
+    dateFilter.addEventListener('change', () => {
+      const val = dateFilter.value;
+      const filtered = val === 'all' ? allReports : allReports.filter(r => r.date === val);
+      renderCards(filtered);
+    });
+
+    fetch('data/reports.json')
+      .then(r => r.json())
+      .then(data => {
+        allReports = data.sort((a, b) => b.date.localeCompare(a.date));
+        populateDateFilter(allReports);
+        renderCards(allReports);
+      })
+      .catch(() => {
+        grid.innerHTML = '<p class="no-results">Could not load reports.</p>';
+      });
+  </script>
+</body>
+</html>
