@@ -38,6 +38,43 @@ header {
 
 .highlight { color: #f5c518; }
 
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.lang-btn {
+  background: transparent;
+  border: 1px solid #3a6a3a;
+  color: #9ecf9e;
+  padding: 0.3rem 0.7rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.lang-btn:hover { border-color: #f5c518; color: #f5c518; }
+
+.lang-btn.active {
+  background: #f5c518;
+  color: #0a1a0a;
+  border-color: #f5c518;
+}
+
+.lang-sep { color: #3a6a3a; font-size: 0.9rem; }
+
 .tagline {
   margin-top: 0.3rem;
   font-size: 0.9rem;

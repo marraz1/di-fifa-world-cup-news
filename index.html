@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,25 +10,32 @@
 
   <header>
     <div class="header-inner">
-      <div class="logo">
-        <span class="ball">⚽</span>
-        <span class="site-name">DiFifa<span class="highlight">WorldCupNews</span></span>
+      <div class="header-top">
+        <div class="logo">
+          <span class="ball">⚽</span>
+          <span class="site-name">DiFifa<span class="highlight">WorldCupNews</span></span>
+        </div>
+        <div class="lang-switcher">
+          <button id="btn-lt" class="lang-btn active" onclick="setLang('lt')">LT</button>
+          <span class="lang-sep">|</span>
+          <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
       </div>
-      <p class="tagline">FIFA World Cup 2026 — Analysis Reports</p>
+      <p class="tagline" data-lt="FIFA Pasaulio Čempionatas 2026 – Dienos Analizės Ataskaitos" data-en="FIFA World Cup 2026 – Daily Analysis Reports">FIFA Pasaulio Čempionatas 2026 – Dienos Analizės Ataskaitos</p>
     </div>
   </header>
 
   <main>
     <section class="filter-bar">
-      <label for="date-filter">Filter by date:</label>
+      <label for="date-filter" data-lt="Filtruoti pagal datą:" data-en="Filter by date:">Filtruoti pagal datą:</label>
       <select id="date-filter">
-        <option value="all">All dates</option>
+        <option value="all" data-lt="Visos datos" data-en="All dates">Visos datos</option>
       </select>
       <span id="report-count" class="report-count"></span>
     </section>
 
     <section id="cards-grid" class="cards-grid">
-      <p class="loading">Loading reports...</p>
+      <p class="loading" data-lt="Kraunama..." data-en="Loading...">Kraunama...</p>
     </section>
   </main>
 
@@ -37,45 +44,110 @@
   </footer>
 
   <script>
-    const grid = document.getElementById('cards-grid');
-    const dateFilter = document.getElementById('date-filter');
-    const reportCount = document.getElementById('report-count');
+    const i18n = {
+      lt: {
+        allDates: 'Visos datos',
+        filterLabel: 'Filtruoti pagal datą:',
+        loading: 'Kraunama...',
+        noResults: 'Šiai datai ataskaitų nerasta.',
+        loadError: 'Nepavyko įkelti ataskaitų.',
+        readReport: 'Skaityti ataskaitą →',
+        reports: ['ataskaita', 'ataskaitos', 'ataskaitų'],
+        tagline: 'FIFA Pasaulio Čempionatas 2026 – Dienos Analizės Ataskaitos',
+        by: 'Autorius:',
+      },
+      en: {
+        allDates: 'All dates',
+        filterLabel: 'Filter by date:',
+        loading: 'Loading...',
+        noResults: 'No reports found for this date.',
+        loadError: 'Could not load reports.',
+        readReport: 'Read report →',
+        reports: ['report', 'reports', 'reports'],
+        tagline: 'FIFA World Cup 2026 – Daily Analysis Reports',
+        by: 'by',
+      }
+    };
 
+    let currentLang = localStorage.getItem('lang') || 'lt';
     let allReports = [];
+
+    function pluralLT(n) {
+      if (n % 10 === 1 && n % 100 !== 11) return 0;
+      if (n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 10 || n % 100 >= 20)) return 1;
+      return 2;
+    }
+
+    function reportCountText(n) {
+      const t = i18n[currentLang];
+      if (currentLang === 'lt') return n + ' ' + t.reports[pluralLT(n)];
+      return n + ' ' + (n === 1 ? t.reports[0] : t.reports[1]);
+    }
 
     function formatDate(dateStr) {
       const d = new Date(dateStr + 'T00:00:00');
+      if (currentLang === 'lt') {
+        return d.toLocaleDateString('lt-LT', { day: 'numeric', month: 'long', year: 'numeric' });
+      }
       return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
     }
 
+    function getTitle(r) {
+      return (currentLang === 'en' && r.titleEN) ? r.titleEN : r.title;
+    }
+
     function renderCards(reports) {
-      reportCount.textContent = reports.length + ' report' + (reports.length !== 1 ? 's' : '');
+      const t = i18n[currentLang];
+      document.getElementById('report-count').textContent = reportCountText(reports.length);
       if (reports.length === 0) {
-        grid.innerHTML = '<p class="no-results">No reports found for this date.</p>';
+        document.getElementById('cards-grid').innerHTML = '<p class="no-results">' + t.noResults + '</p>';
         return;
       }
-      grid.innerHTML = reports.map(r => `
+      document.getElementById('cards-grid').innerHTML = reports.map(r => `
         <a href="${r.file}" class="card">
           <div class="card-date">${formatDate(r.date)}</div>
-          <div class="card-title">${r.title}</div>
-          <div class="card-author">by ${r.author}</div>
-          <div class="card-arrow">Read report →</div>
+          <div class="card-title">${getTitle(r)}</div>
+          <div class="card-author">${t.by} ${r.author}</div>
+          <div class="card-arrow">${t.readReport}</div>
         </a>
       `).join('');
     }
 
+    function updateStaticText() {
+      const t = i18n[currentLang];
+      document.querySelector('.tagline').textContent = t.tagline;
+      document.querySelector('label[for="date-filter"]').textContent = t.filterLabel;
+      const allOpt = document.querySelector('#date-filter option[value="all"]');
+      if (allOpt) allOpt.textContent = t.allDates;
+      document.getElementById('btn-lt').classList.toggle('active', currentLang === 'lt');
+      document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+      document.documentElement.lang = currentLang;
+    }
+
     function populateDateFilter(reports) {
+      const select = document.getElementById('date-filter');
+      select.querySelectorAll('option:not([value="all"])').forEach(o => o.remove());
       const dates = [...new Set(reports.map(r => r.date))].sort((a, b) => b.localeCompare(a));
       dates.forEach(d => {
         const opt = document.createElement('option');
         opt.value = d;
         opt.textContent = formatDate(d);
-        dateFilter.appendChild(opt);
+        select.appendChild(opt);
       });
     }
 
-    dateFilter.addEventListener('change', () => {
-      const val = dateFilter.value;
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('lang', lang);
+      updateStaticText();
+      populateDateFilter(allReports);
+      const val = document.getElementById('date-filter').value;
+      const filtered = val === 'all' ? allReports : allReports.filter(r => r.date === val);
+      renderCards(filtered);
+    }
+
+    document.getElementById('date-filter').addEventListener('change', function() {
+      const val = this.value;
       const filtered = val === 'all' ? allReports : allReports.filter(r => r.date === val);
       renderCards(filtered);
     });
@@ -84,12 +156,16 @@
       .then(r => r.json())
       .then(data => {
         allReports = data.sort((a, b) => b.date.localeCompare(a.date));
+        updateStaticText();
         populateDateFilter(allReports);
         renderCards(allReports);
       })
       .catch(() => {
-        grid.innerHTML = '<p class="no-results">Could not load reports.</p>';
+        document.getElementById('cards-grid').innerHTML =
+          '<p class="no-results">' + i18n[currentLang].loadError + '</p>';
       });
+
+    updateStaticText();
   </script>
 </body>
 </html>
