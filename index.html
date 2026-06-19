@@ -1,171 +1,322 @@
 <!DOCTYPE html>
 <html lang="lt">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DiFifaWorldCupNews</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DiFifaWorldCupNews</title>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
-  <header>
-    <div class="header-inner">
-      <div class="header-top">
+    <header>
+        <button class="hamburger" id="hamburger" aria-label="Atidaryti navigaciją">&#9776;</button>
         <div class="logo">
-          <span class="ball">⚽</span>
-          <span class="site-name">DiFifa<span class="highlight">WorldCupNews</span></span>
+            <span class="ball">⚽</span>
+            <span class="site-name">DiFifa<span class="highlight">WorldCupNews</span></span>
         </div>
         <div class="lang-switcher">
-          <button id="btn-lt" class="lang-btn active" onclick="setLang('lt')">LT</button>
-          <span class="lang-sep">|</span>
-          <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
+            <button id="btn-lt" class="lang-btn active" onclick="setLang('lt')">LT</button>
+            <span class="lang-sep">|</span>
+            <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
         </div>
-      </div>
-      <p class="tagline" data-lt="FIFA Pasaulio Čempionatas 2026 – Dienos Analizės Ataskaitos" data-en="FIFA World Cup 2026 – Daily Analysis Reports">FIFA Pasaulio Čempionatas 2026 – Dienos Analizės Ataskaitos</p>
+    </header>
+
+    <div class="app-shell">
+
+        <nav class="sidenav" id="sidenav">
+
+            <button class="nav-btn" id="nav-home" onclick="showView('home')">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label" data-i18n="navHome">Pagrindinis</span>
+      </button>
+
+            <div class="sidenav-divider"></div>
+
+            <div class="sidenav-section-label" data-lt="NAUJIENOS" data-en="NEWS">NAUJIENOS</div>
+            <ul id="nav-naujienos" class="nav-reports-list"></ul>
+
+            <div class="sidenav-divider"></div>
+
+            <div class="sidenav-section-label" data-lt="PRAĖJUSIOS RUNGTYNĖS" data-en="RESULTS">PRAĖJUSIOS RUNGTYNĖS</div>
+            <ul id="nav-rezultatai" class="nav-reports-list"></ul>
+
+            <div class="sidenav-divider"></div>
+
+            <div class="sidenav-section-label" data-lt="ATEINANČIOS RUNGTYNĖS" data-en="FIXTURES">ATEINANČIOS RUNGTYNĖS</div>
+            <ul id="nav-rungtynes" class="nav-reports-list"></ul>
+
+            <div class="sidenav-divider"></div>
+
+            <div class="sidenav-section-label" data-lt="MEDIA" data-en="MEDIA">MEDIA</div>
+            <ul id="nav-media" class="nav-reports-list"></ul>
+
+        </nav>
+
+        <div class="sidenav-overlay" id="sidenav-overlay"></div>
+
+        <div class="content-area" id="content-area">
+
+            <!-- ── Home / Dashboard view ── -->
+            <div id="view-home" class="view active">
+                <div class="home-inner">
+                    <div id="dashboard-grid" class="dashboard-grid">
+                        <p class="loading">Kraunama...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Report view (shared iframe for all types) ── -->
+            <div id="view-report" class="view">
+                <iframe id="report-frame" src="" frameborder="0" title="Ataskaita"></iframe>
+            </div>
+
+        </div>
     </div>
-  </header>
 
-  <main>
-    <section class="filter-bar">
-      <label for="date-filter" data-lt="Filtruoti pagal datą:" data-en="Filter by date:">Filtruoti pagal datą:</label>
-      <select id="date-filter">
-        <option value="all" data-lt="Visos datos" data-en="All dates">Visos datos</option>
-      </select>
-      <span id="report-count" class="report-count"></span>
-    </section>
+    <script>
+        const TYPES = [{
+            type: 'naujienos',
+            navId: 'nav-naujienos',
+            icon: '📰',
+            labelLT: 'Naujienos',
+            labelEN: 'News'
+        }, {
+            type: 'rezultatai',
+            navId: 'nav-rezultatai',
+            icon: '⚽',
+            labelLT: 'Praėjusios Rungtynės',
+            labelEN: 'Results'
+        }, {
+            type: 'rungtynes',
+            navId: 'nav-rungtynes',
+            icon: '📅',
+            labelLT: 'Ateinančios Rungtynės',
+            labelEN: 'Fixtures'
+        }, {
+            type: 'media',
+            navId: 'nav-media',
+            icon: '📸',
+            labelLT: 'Media',
+            labelEN: 'Media'
+        }, ];
 
-    <section id="cards-grid" class="cards-grid">
-      <p class="loading" data-lt="Kraunama..." data-en="Loading...">Kraunama...</p>
-    </section>
-  </main>
+        const i18n = {
+            lt: {
+                loading: 'Kraunama...',
+                noReport: 'Dar nėra įrašų.',
+                loadError: 'Nepavyko įkelti ataskaitų.',
+                openBtn: 'Atidaryti →',
+                navHome: 'Pagrindinis',
+                by: 'Autorius:',
+            },
+            en: {
+                loading: 'Loading...',
+                noReport: 'No entries yet.',
+                loadError: 'Could not load reports.',
+                openBtn: 'Open →',
+                navHome: 'Home',
+                by: 'by',
+            }
+        };
 
-  <footer>
-    <p>DiFifaWorldCupNews &copy; 2026</p>
-  </footer>
+        let currentLang = localStorage.getItem('lang') || 'lt';
+        let allReports = [];
 
-  <script>
-    const i18n = {
-      lt: {
-        allDates: 'Visos datos',
-        filterLabel: 'Filtruoti pagal datą:',
-        loading: 'Kraunama...',
-        noResults: 'Šiai datai ataskaitų nerasta.',
-        loadError: 'Nepavyko įkelti ataskaitų.',
-        readReport: 'Skaityti ataskaitą →',
-        reports: ['ataskaita', 'ataskaitos', 'ataskaitų'],
-        tagline: 'FIFA Pasaulio Čempionatas 2026 – Dienos Analizės Ataskaitos',
-        by: 'Autorius:',
-      },
-      en: {
-        allDates: 'All dates',
-        filterLabel: 'Filter by date:',
-        loading: 'Loading...',
-        noResults: 'No reports found for this date.',
-        loadError: 'Could not load reports.',
-        readReport: 'Read report →',
-        reports: ['report', 'reports', 'reports'],
-        tagline: 'FIFA World Cup 2026 – Daily Analysis Reports',
-        by: 'by',
-      }
-    };
+        /* ── helpers ── */
 
-    let currentLang = localStorage.getItem('lang') || 'lt';
-    let allReports = [];
+        function formatDate(dateStr) {
+            const d = new Date(dateStr + 'T00:00:00');
+            return currentLang === 'lt' ?
+                d.toLocaleDateString('lt-LT', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }) :
+                d.toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+        }
 
-    function pluralLT(n) {
-      if (n % 10 === 1 && n % 100 !== 11) return 0;
-      if (n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 10 || n % 100 >= 20)) return 1;
-      return 2;
-    }
+        function formatDateShort(dateStr) {
+            const d = new Date(dateStr + 'T00:00:00');
+            return currentLang === 'lt' ?
+                d.toLocaleDateString('lt-LT', {
+                    day: 'numeric',
+                    month: 'short'
+                }) :
+                d.toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'short'
+                });
+        }
 
-    function reportCountText(n) {
-      const t = i18n[currentLang];
-      if (currentLang === 'lt') return n + ' ' + t.reports[pluralLT(n)];
-      return n + ' ' + (n === 1 ? t.reports[0] : t.reports[1]);
-    }
+        function getTitle(r) {
+            return (currentLang === 'en' && r.titleEN) ? r.titleEN : r.title;
+        }
 
-    function formatDate(dateStr) {
-      const d = new Date(dateStr + 'T00:00:00');
-      if (currentLang === 'lt') {
-        return d.toLocaleDateString('lt-LT', { day: 'numeric', month: 'long', year: 'numeric' });
-      }
-      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-    }
+        function safeJson(r) {
+            return JSON.stringify(r).replace(/</g, '\\u003c').replace(/'/g, '\\u0027');
+        }
 
-    function getTitle(r) {
-      return (currentLang === 'en' && r.titleEN) ? r.titleEN : r.title;
-    }
+        function reportNavId(r) {
+            return 'nav-r-' + r.file.replace(/[^a-z0-9]/gi, '-');
+        }
 
-    function renderCards(reports) {
-      const t = i18n[currentLang];
-      document.getElementById('report-count').textContent = reportCountText(reports.length);
-      if (reports.length === 0) {
-        document.getElementById('cards-grid').innerHTML = '<p class="no-results">' + t.noResults + '</p>';
-        return;
-      }
-      document.getElementById('cards-grid').innerHTML = reports.map(r => `
-        <a href="${r.file}" class="card">
-          <div class="card-date">${formatDate(r.date)}</div>
-          <div class="card-title">${getTitle(r)}</div>
-          <div class="card-author">${t.by} ${r.author}</div>
-          <div class="card-arrow">${t.readReport}</div>
-        </a>
-      `).join('');
-    }
+        /* ── view management ── */
 
-    function updateStaticText() {
-      const t = i18n[currentLang];
-      document.querySelector('.tagline').textContent = t.tagline;
-      document.querySelector('label[for="date-filter"]').textContent = t.filterLabel;
-      const allOpt = document.querySelector('#date-filter option[value="all"]');
-      if (allOpt) allOpt.textContent = t.allDates;
-      document.getElementById('btn-lt').classList.toggle('active', currentLang === 'lt');
-      document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
-      document.documentElement.lang = currentLang;
-    }
+        function showView(name) {
+            document.body.classList.remove('sidenav-open');
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + name).classList.add('active');
+            document.getElementById('nav-home').classList.toggle('active', name === 'home');
+        }
 
-    function populateDateFilter(reports) {
-      const select = document.getElementById('date-filter');
-      select.querySelectorAll('option:not([value="all"])').forEach(o => o.remove());
-      const dates = [...new Set(reports.map(r => r.date))].sort((a, b) => b.localeCompare(a));
-      dates.forEach(d => {
-        const opt = document.createElement('option');
-        opt.value = d;
-        opt.textContent = formatDate(d);
-        select.appendChild(opt);
-      });
-    }
+        /* ── open a report in the iframe ── */
 
-    function setLang(lang) {
-      currentLang = lang;
-      localStorage.setItem('lang', lang);
-      updateStaticText();
-      populateDateFilter(allReports);
-      const val = document.getElementById('date-filter').value;
-      const filtered = val === 'all' ? allReports : allReports.filter(r => r.date === val);
-      renderCards(filtered);
-    }
+        function openReport(r) {
+            const frame = document.getElementById('report-frame');
+            frame.src = r.file;
+            frame.onload = function() {
+                try {
+                    const doc = frame.contentDocument;
+                    const hdr = doc.querySelector('.header');
+                    const backBar = doc.querySelector('.back-bar');
+                    if (hdr) hdr.style.display = 'none';
+                    if (backBar) backBar.style.display = 'none';
+                } catch (e) {}
+            };
+            showView('report');
 
-    document.getElementById('date-filter').addEventListener('change', function() {
-      const val = this.value;
-      const filtered = val === 'all' ? allReports : allReports.filter(r => r.date === val);
-      renderCards(filtered);
-    });
+            document.querySelectorAll('.nav-report-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.getElementById(reportNavId(r));
+            if (btn) btn.classList.add('active');
+        }
 
-    fetch('data/reports.json')
-      .then(r => r.json())
-      .then(data => {
-        allReports = data.sort((a, b) => b.date.localeCompare(a.date));
+        /* ── populate all 5 sidenav sections ── */
+
+        function populateAllNavSections(reports) {
+            TYPES.forEach(({
+                type,
+                navId
+            }) => {
+                const ul = document.getElementById(navId);
+                ul.innerHTML = '';
+                reports.filter(r => r.type === type).forEach(r => {
+                    ul.appendChild(makeNavItem(r));
+                });
+            });
+        }
+
+        function makeNavItem(r) {
+            const li = document.createElement('li');
+            li.innerHTML =
+                `<button class="nav-report-btn" id="${reportNavId(r)}"
+            onclick='openReport(${safeJson(r)})'>
+          <span class="nav-report-date">${formatDateShort(r.date)}</span>
+          <span class="nav-report-title">${getTitle(r)}</span>
+        </button>`;
+            return li;
+        }
+
+        /* ── dashboard tiles ── */
+
+        function renderDashboard(reports) {
+            const grid = document.getElementById('dashboard-grid');
+            const t = i18n[currentLang];
+
+            if (reports.length === 0) {
+                grid.innerHTML = '<p class="loading">' + t.noReport + '</p>';
+                return;
+            }
+
+            grid.innerHTML = TYPES.map(({
+                type,
+                icon,
+                labelLT,
+                labelEN
+            }) => {
+                const label = currentLang === 'en' ? labelEN : labelLT;
+                const entries = reports.filter(r => r.type === type);
+                const latest = entries[0]; // already sorted newest-first
+
+                if (!latest) {
+                    return `<div class="dashboard-tile" style="cursor:default;opacity:0.4;">
+            <div class="dashboard-tile-icon">${icon}</div>
+            <div class="dashboard-tile-type">${label}</div>
+            <div class="dashboard-tile-title">${t.noReport}</div>
+          </div>`;
+                }
+
+                return `<div class="dashboard-tile" tabindex="0" role="button"
+            onclick='openReport(${safeJson(latest)})'
+            onkeydown="if(event.key==='Enter'||event.key===' ')openReport(${safeJson(latest)})">
+          <div class="dashboard-tile-icon">${icon}</div>
+          <div class="dashboard-tile-type">${label}</div>
+          <div class="dashboard-tile-date">${formatDate(latest.date)}</div>
+          <div class="dashboard-tile-title">${getTitle(latest)}</div>
+          <div class="dashboard-tile-arrow">${t.openBtn}</div>
+        </div>`;
+            }).join('');
+        }
+
+        /* ── i18n ── */
+
+        function updateStaticText() {
+            const t = i18n[currentLang];
+            document.getElementById('btn-lt').classList.toggle('active', currentLang === 'lt');
+            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+            document.documentElement.lang = currentLang;
+
+            document.getElementById('nav-home').querySelector('.nav-label').textContent = t.navHome;
+
+            document.querySelectorAll('.sidenav-section-label').forEach(el => {
+                el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.lt;
+            });
+
+            if (allReports.length > 0) {
+                populateAllNavSections(allReports);
+                renderDashboard(allReports);
+            }
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            updateStaticText();
+        }
+
+        /* ── events ── */
+
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.body.classList.toggle('sidenav-open');
+        });
+
+        document.getElementById('sidenav-overlay').addEventListener('click', function() {
+            document.body.classList.remove('sidenav-open');
+        });
+
+        /* ── bootstrap ── */
+
+        fetch('data/reports.json')
+            .then(r => r.json())
+            .then(data => {
+                allReports = data.sort((a, b) => b.date.localeCompare(a.date));
+                updateStaticText();
+                populateAllNavSections(allReports);
+                renderDashboard(allReports);
+            })
+            .catch(() => {
+                document.getElementById('dashboard-grid').innerHTML =
+                    '<p class="loading">' + i18n[currentLang].loadError + '</p>';
+            });
+
         updateStaticText();
-        populateDateFilter(allReports);
-        renderCards(allReports);
-      })
-      .catch(() => {
-        document.getElementById('cards-grid').innerHTML =
-          '<p class="no-results">' + i18n[currentLang].loadError + '</p>';
-      });
-
-    updateStaticText();
-  </script>
+        document.getElementById('nav-home').classList.add('active');
+    </script>
 </body>
+
 </html>

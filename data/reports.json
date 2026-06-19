@@ -1,9 +1,34 @@
 [
   {
     "date": "2026-06-19",
-    "title": "Dienos Ataskaita – 8-a turnyro diena",
-    "titleEN": "Daily Report – Tournament Day 8",
+    "type": "naujienos",
+    "title": "Naujienos Trumpai",
+    "titleEN": "Brief News",
     "author": "FIFA analitikas",
-    "file": "reports/2026-06-19-dienos-ataskaita.html"
+    "file": "reports/naujienos_2026-06-19.html"
+  },
+  {
+    "date": "2026-06-19",
+    "type": "rezultatai",
+    "title": "Vakarykščiai Rezultatai",
+    "titleEN": "Yesterday's Results",
+    "author": "FIFA analitikas",
+    "file": "reports/rezultatai_2026-06-19.html"
+  },
+  {
+    "date": "2026-06-19",
+    "type": "rungtynes",
+    "title": "Ateinančios Varybos",
+    "titleEN": "Upcoming Fixtures",
+    "author": "FIFA analitikas",
+    "file": "reports/rungtynes_2026-06-19.html"
+  },
+  {
+    "date": "2026-06-19",
+    "type": "media",
+    "title": "Dienos Akimirkos",
+    "titleEN": "Daily Moments",
+    "author": "FIFA analitikas",
+    "file": "reports/media_2026-06-19.html"
   }
 ]

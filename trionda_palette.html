@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>FIFA World Cup 2026 – Trionda Spalvų Paletė</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #fff;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .header p {
+    color: #888;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .palette {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .swatch {
+    width: 130px;
+    text-align: center;
+  }
+  .color-block {
+    width: 130px;
+    height: 180px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .color-block:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  }
+  .swatch-name {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #fff;
+  }
+  .swatch-hex {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    color: #ccc;
+    font-family: monospace;
+  }
+  .swatch-rgb {
+    font-size: 10px;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  .swatch-role {
+    font-size: 10px;
+    color: #555;
+    font-style: italic;
+  }
+  .css-block {
+    background: #111;
+    border-radius: 12px;
+    padding: 20px 28px;
+    max-width: 820px;
+    margin: 0 auto 30px;
+    border: 1px solid #222;
+  }
+  .css-block h3 {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .css-block pre {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #C9A84C;
+  }
+  .combos {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .combos h3 {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .combo-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .combo {
+    border-radius: 10px;
+    padding: 16px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 160px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p>Adidas Trionda · FIFA World Cup 2026</p>
+  <h1>Oficiali spalvų paletė</h1>
+</div>
+
+<div class="palette">
+  <div class="swatch">
+    <div class="color-block" style="background:#FFFFFF;"></div>
+    <div class="swatch-name">Trionda White</div>
+    <div class="swatch-hex">#FFFFFF</div>
+    <div class="swatch-rgb">RGB 255, 255, 255</div>
+    <div class="swatch-role">Pagrindas / Fonas</div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#D92B2B;"></div>
+    <div class="swatch-name">Canada Red</div>
+    <div class="swatch-hex">#D92B2B</div>
+    <div class="swatch-rgb">RGB 217, 43, 43</div>
+    <div class="swatch-role">Akcentas / CTA mygtukai</div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#1A3A8F;"></div>
+    <div class="swatch-name">USA Blue</div>
+    <div class="swatch-hex">#1A3A8F</div>
+    <div class="swatch-rgb">RGB 26, 58, 143</div>
+    <div class="swatch-role">Navigacija / Header</div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#006847;"></div>
+    <div class="swatch-name">Mexico Green</div>
+    <div class="swatch-hex">#006847</div>
+    <div class="swatch-rgb">RGB 0, 104, 71</div>
+    <div class="swatch-role">Antrinė / Badges (šviesiam fone)</div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#C9A84C;"></div>
+    <div class="swatch-name">Trophy Gold</div>
+    <div class="swatch-hex">#C9A84C</div>
+    <div class="swatch-rgb">RGB 201, 168, 76</div>
+    <div class="swatch-role">Premium / Tamsiam fone</div>
+  </div>
+  <div class="swatch">
+    <div class="color-block" style="background:#0D0D0D; border:1px solid #333;"></div>
+    <div class="swatch-name">Pitch Black</div>
+    <div class="swatch-hex">#0D0D0D</div>
+    <div class="swatch-rgb">RGB 13, 13, 13</div>
+    <div class="swatch-role">Fonas / Tekstas</div>
+  </div>
+</div>
+
+<div class="css-block">
+  <h3>CSS kintamieji – nukopijuok į savo projektą</h3>
+  <pre>:root {
+  --color-white:  #FFFFFF;
+  --color-red:    #D92B2B;  /* Canada – CTA, akcentai */
+  --color-blue:   #1A3A8F;  /* USA – header, navigacija */
+  --color-green:  #006847;  /* Mexico – antrinė spalva (šviesiam fone) */
+  --color-gold:   #C9A84C;  /* Trophy – tamsiam fone, premium elementai */
+  --color-black:  #0D0D0D;  /* Fonas, tekstas */
+}</pre>
+</div>
+
+<div class="combos">
+  <h3>Rekomenduojami deriniai</h3>
+  <div class="combo-row">
+    <div class="combo" style="background:#1A3A8F; color:#FFFFFF;">Header / Nav<br><small style="opacity:0.7">#1A3A8F ant #FFF</small></div>
+    <div class="combo" style="background:#D92B2B; color:#FFFFFF;">CTA mygtukas<br><small style="opacity:0.7">#D92B2B ant #FFF</small></div>
+    <div class="combo" style="background:#C9A84C; color:#0D0D0D;">Trofėjus / Premium<br><small style="opacity:0.5">#C9A84C ant #0D0D0D</small></div>
+    <div class="combo" style="background:#0D0D0D; color:#C9A84C;">Dark mode akcentas<br><small style="opacity:0.7">#C9A84C ant #0D0D0D</small></div>
+    <div class="combo" style="background:#006847; color:#FFFFFF;">Antriniai badge'ai<br><small style="opacity:0.7">#006847 ant #FFF</small></div>
+  </div>
+</div>
+
+</body>
+</html>

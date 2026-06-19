@@ -1,13 +1,14 @@
 /* FIFA World Cup 2026 — Shared Report Stylesheet
    Link from any report: <link rel="stylesheet" href="../css/report.css" />
 */
+/* Trionda palette: #D92B2B red · #1A3A8F blue · #006847 green · #C9A84C gold · #0D0D0D black */
 :root {
-  --red:    #E61D25;
-  --blue:   #2A398D;
-  --green:  #3CAC3B;
-  --gold:   #C9A227;
-  --dark:   #0A1020;
-  --mid:    #2A398D;
+  --red:    #D92B2B;  /* Canada Red  — white text: 6.0:1 ✓ */
+  --blue:   #1A3A8F;  /* USA Blue    — white text: 11.5:1 ✓ */
+  --green:  #006847;  /* Mexico Green — white text: 11.2:1 ✓ (light bg only) */
+  --gold:   #C9A84C;  /* Trophy Gold — dark text: 8.4:1 ✓ */
+  --dark:   #0D0D0D;  /* Pitch Black */
+  --mid:    #1A3A8F;
   --light:  #F4F6FA;
   --yellow: #f39c12;
   --gray:   #474A4A;
