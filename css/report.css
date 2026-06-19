@@ -1,0 +1,227 @@
+/* FIFA World Cup 2026 — Shared Report Stylesheet
+   Link from any report: <link rel="stylesheet" href="../css/report.css" />
+*/
+:root {
+  --red:    #E61D25;
+  --blue:   #2A398D;
+  --green:  #3CAC3B;
+  --gold:   #C9A227;
+  --dark:   #0A1020;
+  --mid:    #2A398D;
+  --light:  #F4F6FA;
+  --yellow: #f39c12;
+  --gray:   #474A4A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--light);
+  color: #222;
+  line-height: 1.5;
+}
+
+/* ── Site header (shared with home page look) ── */
+.header {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--mid) 100%);
+  color: white;
+  padding: 32px 40px 24px;
+  border-bottom: 4px solid var(--red);
+}
+.header h1 { font-size: 2rem; font-weight: 800; letter-spacing: 1px; }
+.header .subtitle { color: #8BA0D4; font-size: 1.1rem; margin-top: 4px; }
+.header .meta { margin-top: 16px; display: flex; gap: 32px; flex-wrap: wrap; }
+.meta-item { font-size: 0.9rem; opacity: 0.85; }
+.meta-item strong { color: #8BA0D4; }
+
+/* ── Back bar ── */
+.back-bar {
+  background: var(--dark);
+  padding: 10px 40px;
+  border-bottom: 1px solid var(--mid);
+}
+.back-bar a {
+  color: #8BA0D4;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.back-bar a:hover { color: var(--red); text-decoration: underline; }
+
+/* ── Main container ── */
+main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+/* ── Section titles ── */
+.section-title {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 1.4rem; font-weight: 700;
+  color: white;
+  background: var(--mid);
+  padding: 12px 20px;
+  border-radius: 8px 8px 0 0;
+  border-left: 5px solid var(--red);
+  margin-top: 36px;
+}
+.section-title .icon { font-size: 1.5rem; }
+
+/* ── Content cards ── */
+.card {
+  background: white;
+  border-radius: 0 0 8px 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 8px;
+}
+
+/* ── Match results grid ── */
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media(max-width:700px){ .match-grid { grid-template-columns: 1fr; } }
+
+.match-card {
+  background: var(--light);
+  border-radius: 8px;
+  padding: 16px;
+  border-left: 4px solid var(--blue);
+}
+.match-card.highlight { border-left-color: var(--red); }
+
+.match-header {
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 700; font-size: 1rem; margin-bottom: 8px;
+}
+.score {
+  background: var(--dark); color: #8BA0D4;
+  padding: 4px 14px; border-radius: 20px;
+  font-size: 1.2rem; font-weight: 800;
+}
+.scorers { font-size: 0.82rem; color: #555; margin-top: 4px; }
+.group-tag {
+  display: inline-block; background: var(--mid); color: white;
+  padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;
+  margin-bottom: 6px;
+}
+.note {
+  background: #fff0f0; border-left: 4px solid var(--red);
+  padding: 10px 14px; border-radius: 4px;
+  font-size: 0.88rem; margin-top: 14px;
+}
+
+/* ── Tables ── */
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+thead tr { background: var(--dark); color: white; }
+thead th { padding: 10px 8px; text-align: center; }
+thead th:first-child { text-align: left; padding-left: 12px; }
+tbody tr:nth-child(even) { background: #f7fafc; }
+tbody tr:hover { background: #eaf0fb; }
+tbody td { padding: 9px 8px; text-align: center; border-bottom: 1px solid #e0e6ef; }
+tbody td:first-child { text-align: left; padding-left: 12px; font-weight: 600; }
+.pts { font-weight: 800; color: var(--dark); }
+
+/* ── Qualification probability ── */
+.prob-high { color: var(--green); font-weight: 700; }
+.prob-mid  { color: #e67e22;      font-weight: 700; }
+.prob-low  { color: var(--red);   font-weight: 700; }
+
+/* ── Groups grid ── */
+.groups-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media(max-width:800px){ .groups-grid { grid-template-columns: 1fr; } }
+.group-block { background: white; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.07); overflow: hidden; }
+.group-header {
+  background: var(--mid); color: white;
+  padding: 8px 14px; font-weight: 700; font-size: 0.95rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.group-header .badge {
+  background: var(--red); color: white;
+  padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;
+}
+
+/* ── Schedule ── */
+.schedule-table { width: 100%; border-collapse: collapse; }
+.schedule-table th { background: var(--dark); color: #8BA0D4; padding: 10px 12px; text-align: left; }
+.schedule-table td { padding: 10px 12px; border-bottom: 1px solid #dde; }
+.schedule-table tr:nth-child(even) td { background: #f7fafc; }
+.time-badge {
+  background: var(--mid); color: white;
+  padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 0.9rem;
+}
+.match-name { font-weight: 600; font-size: 1rem; }
+
+/* ── Top scorers ── */
+.scorers-list { display: flex; flex-direction: column; gap: 10px; }
+.scorer-row {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--light); border-radius: 8px; padding: 12px 16px;
+}
+.scorer-rank {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1rem; flex-shrink: 0;
+}
+.rank-1     { background: #ffd700; color: #222; }
+.rank-2     { background: #c0c0c0; color: #222; }
+.rank-3     { background: #cd7f32; color: white; }
+.rank-other { background: var(--mid); color: white; font-size: 0.85rem; }
+.scorer-name  { font-weight: 700; font-size: 0.98rem; flex: 1; }
+.scorer-team  { font-size: 0.82rem; color: #666; }
+.scorer-goals {
+  background: var(--dark); color: #8BA0D4;
+  padding: 4px 12px; border-radius: 14px; font-weight: 800;
+}
+
+/* ── Discipline ── */
+.discipline-table td { vertical-align: middle; }
+.red-card    { background: var(--red);    color: white; padding: 2px 10px; border-radius: 4px; font-weight: 700; }
+.yellow-card { background: var(--yellow); color: white; padding: 2px 10px; border-radius: 4px; font-weight: 700; }
+
+/* ── Analysis blocks ── */
+.analysis-block { margin-bottom: 18px; }
+.analysis-block h3 { font-size: 1rem; color: var(--mid); margin-bottom: 6px; padding-bottom: 4px; border-bottom: 2px solid var(--red); }
+.analysis-block p  { font-size: 0.9rem; color: #333; }
+
+/* ── Prediction cards ── */
+.prediction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media(max-width:700px){ .prediction-grid { grid-template-columns: 1fr; } }
+.prediction-card {
+  background: var(--light); border-radius: 8px; padding: 14px 16px;
+  border-top: 3px solid var(--blue);
+}
+.prediction-card .teams  { font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+.prediction-card .pred   { font-size: 0.82rem; color: #444; }
+.prediction-card .result {
+  display: inline-block; margin-top: 8px;
+  background: var(--green); color: white;
+  padding: 3px 10px; border-radius: 10px; font-size: 0.82rem; font-weight: 700;
+}
+
+/* ── Stats summary ── */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+.stat-card {
+  background: var(--light); border-radius: 8px; padding: 16px;
+  text-align: center; border-bottom: 3px solid var(--red);
+}
+.stat-card .val { font-size: 2rem; font-weight: 800; color: var(--dark); }
+.stat-card .lbl { font-size: 0.8rem; color: #666; margin-top: 4px; }
+
+/* ── Qualified teams ── */
+.qualified-list { display: flex; flex-wrap: wrap; gap: 12px; }
+.qualified-item {
+  display: flex; align-items: center; gap: 8px;
+  background: #e8f5e9; border: 2px solid var(--green);
+  border-radius: 8px; padding: 10px 16px; font-weight: 600;
+}
+.qualified-item .checkmark { color: var(--green); font-size: 1.2rem; }
+
+/* ── Alerts ── */
+.note    { background: #fff0f0; border-left: 4px solid var(--red);    padding: 10px 14px; border-radius: 4px; font-size: 0.88rem; margin-top: 14px; }
+.warning { background: #fff3cd; border-left: 4px solid var(--yellow); padding: 10px 14px; border-radius: 4px; font-size: 0.85rem; margin-top: 10px; }
+.danger  { background: #fdecea; border-left: 4px solid var(--red);    padding: 10px 14px; border-radius: 4px; font-size: 0.85rem; margin-top: 10px; }
+
+/* ── Footer ── */
+footer {
+  text-align: center; padding: 24px;
+  color: #888; font-size: 0.82rem;
+  border-top: 2px solid #dde; margin-top: 40px;
+}
+footer a { color: var(--blue); }

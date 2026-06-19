@@ -2,7 +2,7 @@
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: #0a1a0a;
+  background: #0a1020;
   color: #e8e8e8;
   min-height: 100vh;
   display: flex;
@@ -11,14 +11,22 @@ body {
 
 /* ── Header ── */
 header {
-  background: linear-gradient(135deg, #0d2b0d 0%, #1a4a1a 60%, #0d2b0d 100%);
-  border-bottom: 3px solid #c9a000;
+  background: linear-gradient(135deg, #0a1020 0%, #2A398D 100%);
+  border-bottom: 3px solid #E61D25;
   padding: 1.5rem 2rem;
 }
 
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
 }
 
 .logo {
@@ -36,16 +44,16 @@ header {
   letter-spacing: -0.5px;
 }
 
-.highlight { color: #f5c518; }
+.highlight { color: #E61D25; }
 
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+.tagline {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #8BA0D4;
+  letter-spacing: 0.5px;
 }
 
+/* ── Language switcher ── */
 .lang-switcher {
   display: flex;
   align-items: center;
@@ -54,8 +62,8 @@ header {
 
 .lang-btn {
   background: transparent;
-  border: 1px solid #3a6a3a;
-  color: #9ecf9e;
+  border: 1px solid #2A398D;
+  color: #8BA0D4;
   padding: 0.3rem 0.7rem;
   border-radius: 5px;
   font-size: 0.85rem;
@@ -65,22 +73,15 @@ header {
   transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 
-.lang-btn:hover { border-color: #f5c518; color: #f5c518; }
+.lang-btn:hover { border-color: #E61D25; color: #E61D25; }
 
 .lang-btn.active {
-  background: #f5c518;
-  color: #0a1a0a;
-  border-color: #f5c518;
+  background: #E61D25;
+  color: #ffffff;
+  border-color: #E61D25;
 }
 
-.lang-sep { color: #3a6a3a; font-size: 0.9rem; }
-
-.tagline {
-  margin-top: 0.3rem;
-  font-size: 0.9rem;
-  color: #9ecf9e;
-  letter-spacing: 0.5px;
-}
+.lang-sep { color: #2A398D; font-size: 0.9rem; }
 
 /* ── Main ── */
 main {
@@ -102,13 +103,13 @@ main {
 
 .filter-bar label {
   font-size: 0.95rem;
-  color: #9ecf9e;
+  color: #8BA0D4;
   font-weight: 600;
 }
 
 .filter-bar select {
-  background: #132913;
-  border: 1px solid #2e5e2e;
+  background: #111829;
+  border: 1px solid #2A398D;
   color: #e8e8e8;
   padding: 0.45rem 1rem;
   border-radius: 6px;
@@ -120,13 +121,13 @@ main {
 
 .filter-bar select:hover,
 .filter-bar select:focus {
-  border-color: #f5c518;
+  border-color: #E61D25;
 }
 
 .report-count {
   margin-left: auto;
   font-size: 0.85rem;
-  color: #6a9a6a;
+  color: #5A6EA0;
 }
 
 /* ── Cards grid ── */
@@ -139,8 +140,8 @@ main {
 .card {
   display: block;
   text-decoration: none;
-  background: #132913;
-  border: 1px solid #1f4a1f;
+  background: #101B35;
+  border: 1px solid #1E2D5A;
   border-radius: 10px;
   padding: 1.4rem 1.6rem;
   transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
@@ -148,13 +149,13 @@ main {
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: #f5c518;
-  box-shadow: 0 6px 24px rgba(245, 197, 24, 0.15);
+  border-color: #E61D25;
+  box-shadow: 0 6px 24px rgba(230, 29, 37, 0.2);
 }
 
 .card-date {
   font-size: 0.78rem;
-  color: #f5c518;
+  color: #3CAC3B;
   font-weight: 700;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -171,13 +172,13 @@ main {
 
 .card-author {
   font-size: 0.85rem;
-  color: #7ab07a;
+  color: #7A8FC4;
   margin-bottom: 1rem;
 }
 
 .card-arrow {
   font-size: 0.85rem;
-  color: #f5c518;
+  color: #E61D25;
   font-weight: 600;
 }
 
@@ -185,7 +186,7 @@ main {
 .loading, .no-results {
   grid-column: 1 / -1;
   text-align: center;
-  color: #6a9a6a;
+  color: #5A6EA0;
   padding: 3rem 0;
   font-size: 1rem;
 }
@@ -195,8 +196,8 @@ footer {
   text-align: center;
   padding: 1.2rem;
   font-size: 0.8rem;
-  color: #4a7a4a;
-  border-top: 1px solid #1a3a1a;
+  color: #3A4A8A;
+  border-top: 1px solid #151E40;
 }
 
 /* ── Responsive ── */
