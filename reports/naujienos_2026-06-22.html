@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📰 FIFA Pasaulio Taurė 2026 — Naujienos 2026-06-22</title>
+<style>
+  :root { --dark: #0d1b2a; --gold: #c9a227; --mid: #1e3a5f; --light: #f0f4f8; --red: #c0392b; --blue: #2980b9; --green: #27ae60; --orange: #e67e22; --purple: #8e44ad; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--light); font-family: 'Segoe UI', Arial, sans-serif; }
+  .header { background: linear-gradient(135deg, var(--mid), var(--dark)); padding: 24px 20px; text-align: center; border-bottom: 3px solid var(--gold); }
+  .header h1 { color: var(--gold); font-size: 1.6rem; margin-bottom: 6px; }
+  .header .subtitle { color: #a0b0c0; font-size: 0.9rem; }
+  .container { max-width: 960px; margin: 0 auto; padding: 20px 16px; }
+  .section-title { color: var(--gold); font-size: 1.2rem; font-weight: bold; margin: 32px 0 16px; border-bottom: 2px solid var(--gold); padding-bottom: 8px; }
+  .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width: 650px){ .news-grid { grid-template-columns: 1fr; } }
+  .news-card { background: var(--mid); border-radius: 10px; padding: 16px; border-left: 5px solid; }
+  .news-card.drama { border-color: var(--red); } .news-card.star { border-color: var(--gold); }
+  .news-card.upset { border-color: var(--orange); } .news-card.human { border-color: var(--blue); }
+  .news-card.funny { border-color: var(--purple); } .news-card.key { border-color: var(--green); }
+  .news-emoji { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+  .news-headline { font-weight: bold; font-size: 0.98rem; color: var(--light); margin-bottom: 6px; line-height: 1.3; }
+  .news-body { font-size: 0.83rem; color: #a0b8c8; line-height: 1.5; }
+  .groups-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width: 700px){ .groups-grid { grid-template-columns: 1fr; } }
+  .group-table { background: var(--mid); border-radius: 10px; overflow: hidden; }
+  .group-table-header { background: var(--gold); color: var(--dark); font-weight: bold; font-size: 0.85rem; padding: 8px 12px; display: flex; justify-content: space-between; }
+  .group-table-header .cols { display: flex; gap: 14px; font-size: 0.75rem; }
+  .group-row { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.07); display: grid; grid-template-columns: 1fr 22px 28px 40px; align-items: center; gap: 6px; }
+  .group-row:last-child { border-bottom: none; }
+  .group-row.qualified { background: rgba(39,174,96,0.12); }
+  .group-row.eliminated { background: rgba(192,57,43,0.1); opacity: 0.7; }
+  .team-name-cell { font-size: 0.82rem; color: var(--light); font-weight: 500; }
+  .pts-cell { font-size: 0.82rem; font-weight: bold; color: var(--gold); text-align: center; }
+  .gd-cell { font-size: 0.75rem; color: #a0b0c0; text-align: center; }
+  .prob-mini-outer { height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+  .prob-mini-inner { height: 100%; border-radius: 3px; }
+  .prob-mini-inner.high { background: var(--green); } .prob-mini-inner.mid { background: var(--orange); }
+  .prob-mini-inner.low { background: var(--red); } .prob-mini-inner.qual { background: var(--blue); }
+  .status-badge { font-size: 0.62rem; padding: 1px 5px; border-radius: 8px; margin-left: 4px; font-weight: bold; }
+  .status-badge.q { background: var(--green); color: white; } .status-badge.x { background: var(--red); color: white; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width: 650px){ .stats-grid { grid-template-columns: 1fr; } }
+  .stat-block { background: var(--mid); border-radius: 10px; padding: 16px; }
+  .stat-block h3 { color: var(--gold); font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(201,162,39,0.3); }
+  .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { font-size: 0.8rem; color: #a0b0c0; } .stat-val { font-size: 0.88rem; font-weight: bold; color: var(--light); }
+  .red-card-item { padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.8rem; }
+  .red-card-item:last-child { border-bottom: none; }
+  .red-card-player { font-weight: bold; color: var(--light); } .red-card-details { color: #a0b0c0; font-size: 0.75rem; margin-top: 2px; }
+  .scorer-item { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .scorer-item:last-child { border-bottom: none; }
+  .scorer-name { font-size: 0.82rem; color: var(--light); } .scorer-goals { font-size: 0.88rem; font-weight: bold; color: var(--gold); }
+  .controversy-item { padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.8rem; }
+  .controversy-item:last-child { border-bottom: none; }
+  .controversy-title { font-weight: bold; color: var(--orange); } .controversy-desc { color: #a0b0c0; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📰 FIFA Pasaulio Taurė 2026 — Dienos Naujienos</h1>
+  <div class="subtitle">2026 birželio 22 d. (pirmadienis) · Apibendrinimas · Lietuva (EEST)</div>
+</div>
+<div class="container">
+
+  <div class="section-title">📢 A. Naujienos Trumpai</div>
+  <div class="news-grid">
+    <div class="news-card drama">
+      <span class="news-emoji">🔥</span>
+      <div class="news-headline">Undav atėjo iš atsarginių ir išgelbėjo Vokietiją paskutinę minutę!</div>
+      <div class="news-body">Deniz Undav įbėgęs į aikštę pelnė du įvarčius — 68' ir 90+4' — apvertė 0:1 atsilikimą prieš Dramblio Kaulo Kraštą. Vokietija pirmą kartą nuo 2014 m. pasiekė aštuntfinalį. Treneris Nagelsmann: „Laimėjimo valia ir komandos dvasia."</div>
+    </div>
+    <div class="news-card star">
+      <span class="news-emoji">⭐</span>
+      <div class="news-headline">Lamine Yamal pelnė pirmąjį karjeros Pasaulio Taurės įvartį!</div>
+      <div class="news-body">17-metis ispanas, turintis 43,5 mln. Instagram sekėjų, po nesėkmingo atidarymo (0:0 vs Žaliasis Kyšulys) puikiai reagavo: pirmasis įvartis Ispanijos pergale 4:0 prieš Saudo Arabiją. Yamal tampa šio PT veidu.</div>
+    </div>
+    <div class="news-card upset">
+      <span class="news-emoji">😮</span>
+      <div class="news-headline">Kiurasao — mažiausia šalis PT! — pirmasis taškas istorijoje</div>
+      <div class="news-body">Tik 160 tūkst. gyventojų turinti Karibų sala atlaikė 28 Ekvadoro šūvius vartininkui Eloy Room surinkus 15 gynimų — rekordas nuo 1966 m.! Džiaugsmingas šventes stebėjo Nyderlandų karalius.</div>
+    </div>
+    <div class="news-card human">
+      <span class="news-emoji">😢</span>
+      <div class="news-headline">Egiptas — 90 mln. žmonių svajonė — pirmoji pergalė Pasaulio Taurėje!</div>
+      <div class="news-body">Egiptas praleido 1:0, bet Mohamed Salah vedė komandą sugrįžti: 1:1, 2:1, 3:1. Tai istorinė pirmoji Egipto pergalė Pasaulio Taurėje. Salah įmušė ir perdavė. Vankuverio stadionas skendo džiaugsme.</div>
+    </div>
+    <div class="news-card star">
+      <span class="news-emoji">🌟</span>
+      <div class="news-headline">Japonija sužaidė 1000-ąjį Pasaulio Taurės mačą istorijoje!</div>
+      <div class="news-body">Istorinėse rungtynėse Monterrėjuje Japonija sutriuškino Tunisą 4:0. Daichi Kamada atidaro ketvirtą minutę, Ayase Ueda dublis, Junya Ito. Tunisas eliminuotas. Japonija lygiuojasi su Nyderlandais F grupės viršuje.</div>
+    </div>
+    <div class="news-card funny">
+      <span class="news-emoji">😂</span>
+      <div class="news-headline">Vozinha — interneto sensacija — Žaliojo Kyšulio vartininko herojus!</div>
+      <div class="news-body">Žaliojo Kyšulio vartininkas Vozinha džiūgauja po 2:2 lygiųjų su Urugvaju, jo emocijos po gynimų virsto interneto memais. Mažoji sala toliau stebina — jau 2 taškai H grupėje.</div>
+    </div>
+    <div class="news-card key">
+      <span class="news-emoji">⚠️</span>
+      <div class="news-headline">Belgija su 10 žaidėjų 67' — ir vis tiek atsilaikė prieš Iraną!</div>
+      <div class="news-body">Nathan Ngoy gavo tiesioginę raudoną kortelę 67' po grubaus stambaliuko prieš Taremi. Belgija 23 minutes gynėsi 10-yje, bet išsaugojo 0:0. G grupė atvira: Egiptas 4 taškai, visi kiti dar turi galimybių.</div>
+    </div>
+    <div class="news-card drama">
+      <span class="news-emoji">🔥</span>
+      <div class="news-headline">Nyderlandai sutriuškino Švediją 5:1 — rekordas lūžo po 68 metų!</div>
+      <div class="news-body">Paskutinį kartą Švedija praleido 5 PT mačo įvarčius buvo 1958 m. finale prieš Braziliją! Cody Gakpo dublis antroje pusėje. Nyderlandai — patys pavojingiausi šiame turnyre.</div>
+    </div>
+  </div>
+
+  <div class="section-title">📊 B. Grupių Lentelės (visos 12 grupių)</div>
+  <div class="groups-grid">
+    <div class="group-table">
+      <div class="group-table-header"><span>🅰️ GRUPĖ A</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row qualified"><div class="team-name-cell">🇲🇽 Meksika <span class="status-badge q">✓</span></div><div class="pts-cell">6</div><div class="gd-cell">+3</div><div><div class="prob-mini-outer"><div class="prob-mini-inner qual" style="width:99%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇰🇷 P. Korėja</div><div class="pts-cell">3</div><div class="gd-cell">+1</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:55%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇨🇿 Čekija</div><div class="pts-cell">1</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:30%"></div></div></div></div>
+      <div class="group-row eliminated"><div class="team-name-cell">🇿🇦 P. Afrika <span class="status-badge x">✗</span></div><div class="pts-cell">0</div><div class="gd-cell">-2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:5%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🅱️ GRUPĖ B</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🇨🇦 Kanada</div><div class="pts-cell">3</div><div class="gd-cell">+6</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:80%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇨🇭 Šveicarija</div><div class="pts-cell">3</div><div class="gd-cell">+1</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:60%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇧🇦 Bosnija</div><div class="pts-cell">1</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:30%"></div></div></div></div>
+      <div class="group-row eliminated"><div class="team-name-cell">🇶🇦 Kataras <span class="status-badge x">✗</span></div><div class="pts-cell">0</div><div class="gd-cell">-6</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:0%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇨 GRUPĖ C</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🇧🇷 Brazilija</div><div class="pts-cell">4</div><div class="gd-cell">+3</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:88%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇲🇦 Marokas</div><div class="pts-cell">4</div><div class="gd-cell">+1</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:82%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Škotija</div><div class="pts-cell">3</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:48%"></div></div></div></div>
+      <div class="group-row eliminated"><div class="team-name-cell">🇭🇹 Haitis <span class="status-badge x">✗</span></div><div class="pts-cell">0</div><div class="gd-cell">-4</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:0%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇩 GRUPĖ D</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row qualified"><div class="team-name-cell">🇺🇸 JAV <span class="status-badge q">✓</span></div><div class="pts-cell">6</div><div class="gd-cell">+5</div><div><div class="prob-mini-outer"><div class="prob-mini-inner qual" style="width:99%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇵🇾 Paragvajus</div><div class="pts-cell">3</div><div class="gd-cell">-2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:60%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇦🇺 Australija</div><div class="pts-cell">3</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:55%"></div></div></div></div>
+      <div class="group-row eliminated"><div class="team-name-cell">🇹🇷 Turkija <span class="status-badge x">✗</span></div><div class="pts-cell">0</div><div class="gd-cell">-3</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:0%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇪 GRUPĖ E</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row qualified"><div class="team-name-cell">🇩🇪 Vokietija <span class="status-badge q">✓</span></div><div class="pts-cell">6</div><div class="gd-cell">+8</div><div><div class="prob-mini-outer"><div class="prob-mini-inner qual" style="width:99%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇪🇨 Ekvadoras</div><div class="pts-cell">4</div><div class="gd-cell">+2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:78%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇨🇼 Kiurasao</div><div class="pts-cell">1</div><div class="gd-cell">-6</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:15%"></div></div></div></div>
+      <div class="group-row eliminated"><div class="team-name-cell">🇨🇮 DKK <span class="status-badge x">✗</span></div><div class="pts-cell">0</div><div class="gd-cell">-4</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:5%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇫 GRUPĖ F</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🇳🇱 Nyderlandai</div><div class="pts-cell">4</div><div class="gd-cell">+6</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:82%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇯🇵 Japonija</div><div class="pts-cell">4</div><div class="gd-cell">+4</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:78%"></div></div></div></div>
+      <div class="group-row eliminated"><div class="team-name-cell">🇸🇪 Švedija <span class="status-badge x">✗</span></div><div class="pts-cell">0</div><div class="gd-cell">-6</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:5%"></div></div></div></div>
+      <div class="group-row eliminated"><div class="team-name-cell">🇹🇳 Tunisas <span class="status-badge x">✗</span></div><div class="pts-cell">0</div><div class="gd-cell">-9</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:0%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇬 GRUPĖ G</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🇪🇬 Egiptas</div><div class="pts-cell">4</div><div class="gd-cell">+2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:75%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇧🇪 Belgija</div><div class="pts-cell">2</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:48%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇮🇷 Iranas</div><div class="pts-cell">2</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:42%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇳🇿 Naujoji Zelandija</div><div class="pts-cell">1</div><div class="gd-cell">-2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:20%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇭 GRUPĖ H</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🇪🇸 Ispanija</div><div class="pts-cell">4</div><div class="gd-cell">+4</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:85%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇺🇾 Urugvajus</div><div class="pts-cell">4</div><div class="gd-cell">+2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:75%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇨🇻 Žaliasis Kyšulys</div><div class="pts-cell">2</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:28%"></div></div></div></div>
+      <div class="group-row eliminated"><div class="team-name-cell">🇸🇦 Saudo Arabija <span class="status-badge x">✗</span></div><div class="pts-cell">0</div><div class="gd-cell">-6</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:0%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇮 GRUPĖ I</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🇫🇷 Prancūzija</div><div class="pts-cell">3</div><div class="gd-cell">+2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:85%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇳🇴 Norvegija</div><div class="pts-cell">3</div><div class="gd-cell">+2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:65%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇸🇳 Senegolas</div><div class="pts-cell">0</div><div class="gd-cell">-2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:30%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇮🇶 Irakas</div><div class="pts-cell">0</div><div class="gd-cell">-2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:20%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇯 GRUPĖ J</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🇦🇷 Argentina</div><div class="pts-cell">3</div><div class="gd-cell">+3</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:90%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇦🇹 Austrija</div><div class="pts-cell">1</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:45%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇯🇴 Jordanija</div><div class="pts-cell">1</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:35%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇩🇿 Alžyras</div><div class="pts-cell">0</div><div class="gd-cell">-3</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:15%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇰 GRUPĖ K</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🇵🇹 Portugalija</div><div class="pts-cell">3</div><div class="gd-cell">+3</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:82%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇨🇴 Kolumbija</div><div class="pts-cell">3</div><div class="gd-cell">+1</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:65%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇨🇩 Kongo DR</div><div class="pts-cell">0</div><div class="gd-cell">-2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:25%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇺🇿 Uzbekistanas</div><div class="pts-cell">0</div><div class="gd-cell">-3</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:15%"></div></div></div></div>
+    </div>
+    <div class="group-table">
+      <div class="group-table-header"><span>🇱 GRUPĖ L</span><div class="cols"><span>Tšk</span><span>ĮS-ĮG</span><span>%</span></div></div>
+      <div class="group-row"><div class="team-name-cell">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Anglija</div><div class="pts-cell">4</div><div class="gd-cell">+2</div><div><div class="prob-mini-outer"><div class="prob-mini-inner high" style="width:80%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇭🇷 Kroatija</div><div class="pts-cell">3</div><div class="gd-cell">+1</div><div><div class="prob-mini-outer"><div class="prob-mini-inner mid" style="width:60%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇬🇭 Gana</div><div class="pts-cell">1</div><div class="gd-cell">0</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:28%"></div></div></div></div>
+      <div class="group-row"><div class="team-name-cell">🇵🇦 Panama</div><div class="pts-cell">0</div><div class="gd-cell">-3</div><div><div class="prob-mini-outer"><div class="prob-mini-inner low" style="width:10%"></div></div></div></div>
+    </div>
+  </div>
+
+  <div class="section-title">📈 C. Turnyro Statistika</div>
+  <div class="stats-grid">
+    <div class="stat-block">
+      <h3>⚽ Taškai ir Rungtynės</h3>
+      <div class="stat-row"><span class="stat-label">Iš viso rungtynių</span><span class="stat-val">~46</span></div>
+      <div class="stat-row"><span class="stat-label">Iš viso įvarčių</span><span class="stat-val">~120+</span></div>
+      <div class="stat-row"><span class="stat-label">Vid. įvarčiai per mačą</span><span class="stat-val">~2.6</span></div>
+      <div class="stat-row"><span class="stat-label">Didžiausia pergalė</span><span class="stat-val">Vok. 7-1 Kiur.</span></div>
+      <div class="stat-row"><span class="stat-label">Hat-trick'ai</span><span class="stat-val">2 (Messi, David)</span></div>
+      <div class="stat-row"><span class="stat-label">Pirmoji į aštuntfinalį</span><span class="stat-val">🇲🇽 Meksika</span></div>
+      <div class="stat-row"><span class="stat-label">Patvirtintai aštuntfinaly</span><span class="stat-val">3 komandos</span></div>
+      <div class="stat-row"><span class="stat-label">Eliminuotos komandos</span><span class="stat-val">5 (HAI, TUR, TUN...)</span></div>
+      <div class="stat-row"><span class="stat-label">1000-asis PT mačas</span><span class="stat-val">JPN 4-0 TUN</span></div>
+    </div>
+    <div class="stat-block">
+      <h3>🟥 Raudonos Kortelės (visos iki šiol)</h3>
+      <div class="red-card-item">
+        <div class="red-card-player">🟥 Raúl Jiménez (Meksika)</div>
+        <div class="red-card-details">47' · Meksika vs P. Korėja · Grupė A · Birž. 18</div>
+      </div>
+      <div class="red-card-item">
+        <div class="red-card-player">🟥 Almiron (Paragvajus)</div>
+        <div class="red-card-details">VAR: burnos uždengimas švenčiant · Grupė D · Birž. 19</div>
+      </div>
+      <div class="red-card-item">
+        <div class="red-card-player">🟥 Nathan Ngoy (Belgija)</div>
+        <div class="red-card-details">67' · Belgija 0-0 Iranas · Grupė G · Birž. 21</div>
+      </div>
+      <div class="red-card-item" style="color:#a0b0c0; font-style:italic;">
+        <div>+ ~5 kitos kortelės turnyre</div>
+        <div class="red-card-details">2026 PT jau daugiau raudonų nei per 2018+2022 kartu!</div>
+      </div>
+    </div>
+    <div class="stat-block">
+      <h3>🥇 Geriausieji Rezultatyvūs Žaidėjai</h3>
+      <div class="scorer-item"><span class="scorer-name">🇦🇷 Lionel Messi</span><span class="scorer-goals">⚽⚽⚽ 3</span></div>
+      <div class="scorer-item"><span class="scorer-name">🇨🇦 Jonathan David</span><span class="scorer-goals">⚽⚽⚽ 3</span></div>
+      <div class="scorer-item"><span class="scorer-name">🇩🇪 Deniz Undav</span><span class="scorer-goals">⚽⚽⚽ 3</span></div>
+      <div class="scorer-item"><span class="scorer-name">🇫🇷 Kylian Mbappé</span><span class="scorer-goals">⚽⚽ 2</span></div>
+      <div class="scorer-item"><span class="scorer-name">🇳🇴 Erling Haaland</span><span class="scorer-goals">⚽⚽ 2</span></div>
+      <div class="scorer-item"><span class="scorer-name">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Harry Kane</span><span class="scorer-goals">⚽⚽ 2</span></div>
+      <div class="scorer-item"><span class="scorer-name">🇧🇷 Vinicius Jr.</span><span class="scorer-goals">⚽⚽ 2</span></div>
+      <div class="scorer-item"><span class="scorer-name">🇳🇱 Cody Gakpo</span><span class="scorer-goals">⚽⚽ 2</span></div>
+    </div>
+    <div class="stat-block">
+      <h3>⚡ Konfliktai ir Kontraversijos</h3>
+      <div class="controversy-item">
+        <div class="controversy-title">🟥 VAR: Almiron (Paragvajus) — burnos uždengimas</div>
+        <div class="controversy-desc">Paragvajaus puolėjas išmestas VAR sprendimu po burnos uždengimo švenčiant. Didžiulė kontraversija — ar taisyklė taikoma per griežtai?</div>
+      </div>
+      <div class="controversy-item">
+        <div class="controversy-title">🟥 VAR: Belgija vs Iranas — Ngoy raudona</div>
+        <div class="controversy-desc">Nathan Ngoy gavo raudoną patikrinus VAR. Belgai teigė kontaktas minimalus, tačiau teisėjas laikėsi sprendimo.</div>
+      </div>
+      <div class="controversy-item">
+        <div class="controversy-title">⚠️ Tuniso trenerio atsistatydinimas</div>
+        <div class="controversy-desc">Po 1:5 pralaimėjimo Švedijai Tunisas atleido trenerį Lamouchi ir paskyrė Renard — kuris nepadėjo: 0:4 vs Japonija. Tunisas eliminuotas.</div>
+      </div>
+      <div class="controversy-item">
+        <div class="controversy-title">📊 Nauja FIFA taisyklė: H2H tiebreaker</div>
+        <div class="controversy-desc">2026 metais FIFA pirmą kartą naudoja galvos į galvą rezultatus vietoje įvarčių skirtumo kaip pirminį lygiateisybės kriterijų.</div>
+      </div>
+      <div class="controversy-item">
+        <div class="controversy-title">🔴 Rekordinis raudonų kortelių skaičius</div>
+        <div class="controversy-desc">Po ~27 rungtynių 2026 PT jau DAUGIAU raudonų kortelių negu per visą 2018 ir 2022 turnyrą kartu! Griežtesni teisėjai ar agresyvesnis žaidimas?</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

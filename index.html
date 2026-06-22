@@ -64,6 +64,10 @@
                     <div id="dashboard-grid" class="dashboard-grid">
                         <p class="loading">Kraunama...</p>
                     </div>
+                    <section id="archive-section" class="archive-section" style="display:none">
+                        <h2 class="archive-heading" id="archive-heading">Archyvas</h2>
+                        <div id="archive-groups"></div>
+                    </section>
                 </div>
             </div>
 
@@ -110,6 +114,7 @@
                 openBtn: 'Atidaryti →',
                 navHome: 'Pagrindinis',
                 by: 'Autorius:',
+                archiveHeading: 'Archyvas',
             },
             en: {
                 loading: 'Loading...',
@@ -118,6 +123,7 @@
                 openBtn: 'Open →',
                 navHome: 'Home',
                 by: 'by',
+                archiveHeading: 'Archive',
             }
         };
 
@@ -263,6 +269,56 @@
             }).join('');
         }
 
+        /* ── archive ── */
+
+        function renderArchive(reports) {
+            const section = document.getElementById('archive-section');
+            const container = document.getElementById('archive-groups');
+
+            const featured = new Set();
+            TYPES.forEach(({
+                type
+            }) => {
+                const latest = reports.find(r => r.type === type);
+                if (latest) featured.add(latest.file);
+            });
+
+            const archive = reports.filter(r => !featured.has(r.file));
+            if (archive.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            section.style.display = '';
+
+            const groups = new Map();
+            archive.forEach(r => {
+                if (!groups.has(r.date)) groups.set(r.date, []);
+                groups.get(r.date).push(r);
+            });
+
+            let first = true;
+            container.innerHTML = Array.from(groups.entries()).map(([date, reps]) => {
+                const openAttr = first ? ' open' : '';
+                first = false;
+                const rows = reps.map(r => {
+                    const typeInfo = TYPES.find(t => t.type === r.type);
+                    const icon = typeInfo ? typeInfo.icon : '📄';
+                    return `<div class="archive-row" tabindex="0" role="button"
+                        onclick='openReport(${safeJson(r)})'
+                        onkeydown="if(event.key==='Enter'||event.key===' ')openReport(${safeJson(r)})">
+                      <span class="archive-row-icon">${icon}</span>
+                      <span class="archive-row-date">${formatDateShort(r.date)}</span>
+                      <span class="archive-row-title">${getTitle(r)}</span>
+                      <span class="archive-row-arrow">${i18n[currentLang].openBtn}</span>
+                    </div>`;
+                }).join('');
+                return `<details class="archive-group"${openAttr}>
+                  <summary class="archive-group-summary">${formatDate(date)}</summary>
+                  <div class="archive-group-rows">${rows}</div>
+                </details>`;
+            }).join('');
+        }
+
         /* ── i18n ── */
 
         function updateStaticText() {
@@ -280,7 +336,10 @@
             if (allReports.length > 0) {
                 populateAllNavSections(allReports);
                 renderDashboard(allReports);
+                renderArchive(allReports);
             }
+            const ah = document.getElementById('archive-heading');
+            if (ah) ah.textContent = i18n[currentLang].archiveHeading;
         }
 
         function setLang(lang) {
@@ -301,7 +360,7 @@
 
         /* ── bootstrap ── */
 
-        fetch('data/reports.json')
+        fetch('data/reports.json?v=' + Date.now())
             .then(r => r.json())
             .then(data => {
                 allReports = data.sort((a, b) => b.date.localeCompare(a.date));
