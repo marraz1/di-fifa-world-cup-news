@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup 2026 — Šiandienės Rungtynės 2026-06-23</title>
+<style>
+  :root {
+    --dark: #0d1b2a;
+    --gold: #c9a227;
+    --mid: #1e3a5f;
+    --light: #f0f4f8;
+    --red: #c0392b;
+    --blue: #2980b9;
+    --green: #27ae60;
+    --purple: #8e44ad;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--light); font-family: 'Segoe UI', Arial, sans-serif; }
+  header {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-bottom: 3px solid var(--gold);
+    padding: 20px 28px;
+    text-align: center;
+  }
+  header h1 { font-size: 1.7em; color: var(--gold); }
+  header p { color: rgba(240,244,248,0.7); margin-top: 6px; font-size: 0.9em; }
+  .matches-container { padding: 28px; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+
+  .night-divider {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(142,68,173,0.2);
+    border: 1px solid var(--purple);
+    border-radius: 8px;
+    padding: 10px 18px;
+    color: var(--purple);
+    font-weight: bold;
+    font-size: 0.95em;
+  }
+
+  .match-card {
+    background: var(--mid);
+    border-radius: 12px;
+    border: 1px solid rgba(201,162,39,0.2);
+    overflow: hidden;
+  }
+  .match-card-header {
+    background: rgba(0,0,0,0.25);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .time-chip {
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: bold;
+    font-size: 1em;
+    padding: 4px 12px;
+    border-radius: 8px;
+  }
+  .time-chip.night { background: var(--purple); color: #fff; }
+  .group-chip {
+    background: rgba(201,162,39,0.2);
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    font-weight: bold;
+    font-size: 0.8em;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .venue-txt { font-size: 0.85em; color: rgba(240,244,248,0.7); margin-left: auto; }
+
+  .matchup-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 22px 18px;
+    background: rgba(0,0,0,0.1);
+    flex-wrap: wrap;
+  }
+  .team-block { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 120px; }
+  .team-emoji { font-size: 2.5em; }
+  .team-name { font-size: 1.1em; font-weight: bold; margin-top: 6px; text-align: center; }
+  .team-standing { font-size: 0.78em; color: rgba(240,244,248,0.65); text-align: center; margin-top: 4px; }
+  .vs-text { font-size: 1.5em; font-weight: bold; color: var(--gold); }
+
+  .prob-section {
+    padding: 14px 18px;
+    background: rgba(0,0,0,0.15);
+  }
+  .prob-section h4 { font-size: 0.85em; color: var(--gold); margin-bottom: 10px; }
+  .prob-bars { display: flex; gap: 10px; align-items: flex-end; }
+  .prob-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .prob-bar-v { border-radius: 4px 4px 0 0; min-height: 6px; }
+  .prob-label { font-size: 0.75em; color: rgba(240,244,248,0.7); }
+  .prob-pct { font-size: 0.9em; font-weight: bold; }
+  .prob-home .prob-bar-v { background: var(--blue); }
+  .prob-draw .prob-bar-v { background: var(--gold); }
+  .prob-away .prob-bar-v { background: var(--red); }
+
+  .context-note {
+    padding: 12px 18px;
+    font-size: 0.87em;
+    color: rgba(240,244,248,0.85);
+    line-height: 1.55;
+    border-top: 1px solid rgba(201,162,39,0.15);
+    background: rgba(0,0,0,0.08);
+  }
+
+  .players-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(0,0,0,0.2);
+  }
+  .players-side { background: var(--mid); padding: 14px 18px; }
+  .players-side h4 { font-size: 0.88em; color: var(--gold); margin-bottom: 10px; }
+  .player-card {
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+  .player-card:last-child { margin-bottom: 0; }
+  .player-name { font-size: 0.9em; font-weight: bold; }
+  .player-role { font-size: 0.78em; color: var(--gold); }
+  .player-why { font-size: 0.8em; color: rgba(240,244,248,0.75); margin-top: 3px; line-height: 1.4; }
+
+  .broadcast-section {
+    padding: 12px 18px;
+    border-top: 1px solid rgba(201,162,39,0.15);
+    background: rgba(0,0,0,0.1);
+  }
+  .broadcast-section h4 { font-size: 0.85em; color: var(--gold); margin-bottom: 8px; }
+  .channel-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ch-badge {
+    display: inline-block;
+    font-size: 0.8em;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  .ch-viaplay { background: #00b4d8; color: #fff; }
+  .ch-fifaplus { background: var(--gold); color: var(--dark); }
+  .ch-fox { background: #0047ba; color: #fff; }
+  .ch-fs1 { background: #d62828; color: #fff; }
+  .ch-tele { background: var(--green); color: #fff; }
+
+  @media (max-width: 600px) {
+    .players-section { grid-template-columns: 1fr; }
+    .prob-bars { flex-direction: column; flex: none; }
+    .prob-item { flex-direction: row; width: 100%; }
+    .prob-bar-v { height: 16px; width: var(--w, 50px); border-radius: 4px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🗓️ FIFA World Cup 2026 — Šiandienės Rungtynės</h1>
+  <p>2026 m. birželio 23 d. (Antradienis) | Laikai EEST (GMT+3)</p>
+</header>
+
+<div class="matches-container">
+
+  <!-- Match 1: Portugal vs Uzbekistan 16:00 EEST -->
+  <div class="match-card">
+    <div class="match-card-header">
+      <span class="time-chip">🕓 16:00 EEST</span>
+      <span class="group-chip">K GRUPĖ</span>
+      <span class="venue-txt">📍 NRG Stadium, Hiustonas</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <div class="team-emoji">🇵🇹</div>
+        <div class="team-name">Portugalija</div>
+        <div class="team-standing">1 M · 1 Tšk · 0 GD</div>
+      </div>
+      <div class="vs-text">vs</div>
+      <div class="team-block">
+        <div class="team-emoji">🇺🇿</div>
+        <div class="team-name">Uzbekistanas</div>
+        <div class="team-standing">1 M · 0 Tšk · -2 GD</div>
+      </div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Laimėjimo tikimybė</h4>
+      <div class="prob-bars">
+        <div class="prob-item prob-home">
+          <div class="prob-bar-v" style="width:100%;height:65px;"></div>
+          <div class="prob-pct" style="color:var(--blue)">65%</div>
+          <div class="prob-label">Portugalija</div>
+        </div>
+        <div class="prob-item prob-draw">
+          <div class="prob-bar-v" style="width:100%;height:20px;"></div>
+          <div class="prob-pct" style="color:var(--gold)">20%</div>
+          <div class="prob-label">Lygiosios</div>
+        </div>
+        <div class="prob-item prob-away">
+          <div class="prob-bar-v" style="width:100%;height:15px;"></div>
+          <div class="prob-pct" style="color:var(--red)">15%</div>
+          <div class="prob-label">Uzbekistanas</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      🔑 Portugalija privalo laimėti – pirmose rungtynėse tik lygiosios. Uzbekistanas debiutuoja WC ir nori sukrėsti. Ronaldo sako: „Padarysime ką reikia."
+    </div>
+    <div class="players-section">
+      <div class="players-side">
+        <h4>⭐ Žiūrėti: Portugalija</h4>
+        <div class="player-card">
+          <div class="player-name">Cristiano Ronaldo</div>
+          <div class="player-role">Puolėjas · #7</div>
+          <div class="player-why">Trokšta WC galo. Vis dar pavojingas didelėse rungtynėse, ypač baudų plote.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Bruno Fernandes</div>
+          <div class="player-role">Kūrybinis puolėjas · #8</div>
+          <div class="player-why">Portugalijos žaidimo smegenys. Nustato tempą ir kuria galimybes.</div>
+        </div>
+      </div>
+      <div class="players-side">
+        <h4>⭐ Žiūrėti: Uzbekistanas</h4>
+        <div class="player-card">
+          <div class="player-name">Eldor Shomurodov</div>
+          <div class="player-role">Puolėjas · Kapteinas</div>
+          <div class="player-why">Pavojingiausias UZB žaidėjas. Žaidžia „Roma". Gali staiga nuspausti.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Jaloliddin Masharipov</div>
+          <div class="player-role">Kairysis sparninis</div>
+          <div class="player-why">Greitas ir neprognozuojamas. Gali sukurti problemų POR gynybai.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Per ką žiūrėti (Lietuva)</h4>
+      <div class="channel-badges">
+        <span class="ch-badge ch-viaplay">Viaplay LT</span>
+        <span class="ch-badge ch-fifaplus">FIFA+ (nemokamai)</span>
+        <span class="ch-badge ch-fox">FOX (JAV)</span>
+        <span class="ch-badge ch-tele">Telemundo (JAV/ES)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Match 2: England vs Ghana 19:00 EEST -->
+  <div class="match-card">
+    <div class="match-card-header">
+      <span class="time-chip">🕖 19:00 EEST</span>
+      <span class="group-chip">L GRUPĖ</span>
+      <span class="venue-txt">📍 Gillette Stadium, Foxborough (Bostonas)</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <div class="team-emoji">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+        <div class="team-name">Anglija</div>
+        <div class="team-standing">1 M · 3 Tšk · +2 GD</div>
+      </div>
+      <div class="vs-text">vs</div>
+      <div class="team-block">
+        <div class="team-emoji">🇬🇭</div>
+        <div class="team-name">Gana</div>
+        <div class="team-standing">1 M · 3 Tšk · +1 GD</div>
+      </div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Laimėjimo tikimybė</h4>
+      <div class="prob-bars">
+        <div class="prob-item prob-home">
+          <div class="prob-bar-v" style="width:100%;height:55px;"></div>
+          <div class="prob-pct" style="color:var(--blue)">55%</div>
+          <div class="prob-label">Anglija</div>
+        </div>
+        <div class="prob-item prob-draw">
+          <div class="prob-bar-v" style="width:100%;height:25px;"></div>
+          <div class="prob-pct" style="color:var(--gold)">25%</div>
+          <div class="prob-label">Lygiosios</div>
+        </div>
+        <div class="prob-item prob-away">
+          <div class="prob-bar-v" style="width:100%;height:20px;"></div>
+          <div class="prob-pct" style="color:var(--red)">20%</div>
+          <div class="prob-label">Gana</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      🔑 Anglija pirmauja L grupėje tačiau tik dėl geresnio GD. Gana taip pat laimi pirmąją rungtynę. Pergalės čia bus lemiamos – galimas L grupės nugalėtojas. Anglijos fanai tikisi finalo!
+    </div>
+    <div class="players-section">
+      <div class="players-side">
+        <h4>⭐ Žiūrėti: Anglija</h4>
+        <div class="player-card">
+          <div class="player-name">Jude Bellingham</div>
+          <div class="player-role">Vidurio puolėjas · #10</div>
+          <div class="player-why">Anglijos lyderis ir kūrybinis centras. Geba pelnyti bei organizuoti svarbiu momentu.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Harry Kane</div>
+          <div class="player-role">Centrinis puolėjas · #9</div>
+          <div class="player-why">Vienas pavojingiausių pasaulio puolėjų. Siekia WC įvarčių rekordo.</div>
+        </div>
+      </div>
+      <div class="players-side">
+        <h4>⭐ Žiūrėti: Gana</h4>
+        <div class="player-card">
+          <div class="player-name">Mohammed Kudus</div>
+          <div class="player-role">Kūrybinis puolėjas</div>
+          <div class="player-why">Greitas, kūrybingas. West Ham žaidėjas gali sukurti keblumus bet kuriai gynybai.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Jordan Ayew</div>
+          <div class="player-role">Puolėjas · Kapteinas</div>
+          <div class="player-why">Patyrimo ir lyderystės kombinacija. Gana debiutas WC su kapitonu priekyje.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Per ką žiūrėti (Lietuva)</h4>
+      <div class="channel-badges">
+        <span class="ch-badge ch-viaplay">Viaplay LT</span>
+        <span class="ch-badge ch-fifaplus">FIFA+ (nemokamai)</span>
+        <span class="ch-badge ch-fox">FOX (JAV)</span>
+        <span class="ch-badge ch-tele">Telemundo (JAV/ES)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Match 3: Panama vs Croatia 22:00 EEST -->
+  <div class="match-card">
+    <div class="match-card-header">
+      <span class="time-chip">🕙 22:00 EEST</span>
+      <span class="group-chip">L GRUPĖ</span>
+      <span class="venue-txt">📍 BMO Field, Torontas</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <div class="team-emoji">🇵🇦</div>
+        <div class="team-name">Panama</div>
+        <div class="team-standing">1 M · 0 Tšk · -1 GD</div>
+      </div>
+      <div class="vs-text">vs</div>
+      <div class="team-block">
+        <div class="team-emoji">🇭🇷</div>
+        <div class="team-name">Kroatija</div>
+        <div class="team-standing">1 M · 0 Tšk · -2 GD</div>
+      </div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Laimėjimo tikimybė</h4>
+      <div class="prob-bars">
+        <div class="prob-item prob-home">
+          <div class="prob-bar-v" style="width:100%;height:25px;"></div>
+          <div class="prob-pct" style="color:var(--blue)">25%</div>
+          <div class="prob-label">Panama</div>
+        </div>
+        <div class="prob-item prob-draw">
+          <div class="prob-bar-v" style="width:100%;height:30px;"></div>
+          <div class="prob-pct" style="color:var(--gold)">30%</div>
+          <div class="prob-label">Lygiosios</div>
+        </div>
+        <div class="prob-item prob-away">
+          <div class="prob-bar-v" style="width:100%;height:45px;"></div>
+          <div class="prob-pct" style="color:var(--red)">45%</div>
+          <div class="prob-label">Kroatija</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      🔑 LEMIAMOS RUNGTYNĖS! Abi komandos be taškų – pralosėjus praktiškai baigsis šansai. Kroatija yra patyrusi 2018 ir 2022 m. finalininkė, tačiau Panama yra pasiryžusi kautis savo pirmuose WC.
+    </div>
+    <div class="players-section">
+      <div class="players-side">
+        <h4>⭐ Žiūrėti: Panama</h4>
+        <div class="player-card">
+          <div class="player-name">Rolando Blackburn</div>
+          <div class="player-role">Puolėjas · Kapteinas</div>
+          <div class="player-why">Panama lyderis. Turi duoti impulsą atakoje – daug priklauso nuo jo formatos.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Anibal Godoy</div>
+          <div class="player-role">Gynybinis vidurys</div>
+          <div class="player-why">Stabilumas gynyboje ir pirmasis gynybinis gynėjas prieš pavojingą Modričių.</div>
+        </div>
+      </div>
+      <div class="players-side">
+        <h4>⭐ Žiūrėti: Kroatija</h4>
+        <div class="player-card">
+          <div class="player-name">Luka Modrić</div>
+          <div class="player-role">Vidurio lyderis · Kapteinas</div>
+          <div class="player-why">Legenda. Vienas paskutiniųjų WC. 38 metų, bet vis dar valdo žaidimą.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Ivan Perišić</div>
+          <div class="player-role">Kairysis puolėjas</div>
+          <div class="player-why">Pavojingas iš kairės, gali pelnyti svarbų įvartį. Svarbiausias momentas – dabar.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Per ką žiūrėti (Lietuva)</h4>
+      <div class="channel-badges">
+        <span class="ch-badge ch-viaplay">Viaplay LT</span>
+        <span class="ch-badge ch-fifaplus">FIFA+ (nemokamai)</span>
+        <span class="ch-badge ch-fox">FOX (JAV)</span>
+        <span class="ch-badge ch-tele">Telemundo (JAV/ES)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NIGHT DIVIDER -->
+  <div class="night-divider">
+    🌙 NAKTIES RUNGTYNĖS — po vidurnakčio EEST
+  </div>
+
+  <!-- Match 4: Colombia vs DR Congo 01:00 EEST -->
+  <div class="match-card">
+    <div class="match-card-header">
+      <span class="time-chip night">🌙 01:00 EEST</span>
+      <span class="group-chip">K GRUPĖ</span>
+      <span class="venue-txt">📍 Estadio Akron, Gvadalacharas (Meksika)</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <div class="team-emoji">🇨🇴</div>
+        <div class="team-name">Kolumbija</div>
+        <div class="team-standing">1 M · 3 Tšk · +2 GD</div>
+      </div>
+      <div class="vs-text">vs</div>
+      <div class="team-block">
+        <div class="team-emoji">🇨🇩</div>
+        <div class="team-name">KD Kongas</div>
+        <div class="team-standing">1 M · 1 Tšk · 0 GD</div>
+      </div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Laimėjimo tikimybė</h4>
+      <div class="prob-bars">
+        <div class="prob-item prob-home">
+          <div class="prob-bar-v" style="width:100%;height:55px;"></div>
+          <div class="prob-pct" style="color:var(--blue)">55%</div>
+          <div class="prob-label">Kolumbija</div>
+        </div>
+        <div class="prob-item prob-draw">
+          <div class="prob-bar-v" style="width:100%;height:28px;"></div>
+          <div class="prob-pct" style="color:var(--gold)">28%</div>
+          <div class="prob-label">Lygiosios</div>
+        </div>
+        <div class="prob-item prob-away">
+          <div class="prob-bar-v" style="width:100%;height:17px;"></div>
+          <div class="prob-pct" style="color:var(--red)">17%</div>
+          <div class="prob-label">KD Kongas</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      🔑 Kolumbija siekia antrų taškų ir galimos K grupės lyderystės. KD Kongas pirmauja Afrika – ar pakartai įspūdingą pasirodymas? Kolumbija žaidžia Meksikoje – kaip namuose, publika palaikys kolumbiečius.
+    </div>
+    <div class="players-section">
+      <div class="players-side">
+        <h4>⭐ Žiūrėti: Kolumbija</h4>
+        <div class="player-card">
+          <div class="player-name">James Rodríguez</div>
+          <div class="player-role">Kūrybinis puolėjas · #10</div>
+          <div class="player-why">2014 m. WC aukso batų laimėtojas. Nori parodyti, kad dar gyvas. Reikia to blyksnio.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Luis Díaz</div>
+          <div class="player-role">Kairysis puolėjas</div>
+          <div class="player-why">Liverpool sparninis – greitas, moka pelnyti svarbiais momentais. Pagrindinis pavojus KD Kongui.</div>
+        </div>
+      </div>
+      <div class="players-side">
+        <h4>⭐ Žiūrėti: KD Kongas</h4>
+        <div class="player-card">
+          <div class="player-name">Chancel Mbemba</div>
+          <div class="player-role">Gynybos lyderis</div>
+          <div class="player-why">Porto centro gynėjas. Kolumbijos atakos stabdymas prasideda nuo jo.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Yannick Bolasie</div>
+          <div class="player-role">Dešinysis sparninis</div>
+          <div class="player-why">Neprognozuojamas su kamuoliu. Gali sukurti problemų vienam prieš vieną gynyboje.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Per ką žiūrėti (Lietuva)</h4>
+      <div class="channel-badges">
+        <span class="ch-badge ch-viaplay">Viaplay LT</span>
+        <span class="ch-badge ch-fifaplus">FIFA+ (nemokamai)</span>
+        <span class="ch-badge ch-fs1">FS1 (JAV)</span>
+        <span class="ch-badge ch-tele">Telemundo (JAV/ES)</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

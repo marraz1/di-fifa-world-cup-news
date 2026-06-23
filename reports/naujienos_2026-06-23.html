@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup 2026 — Naujienos 2026-06-23</title>
+<style>
+  :root {
+    --dark: #0d1b2a;
+    --gold: #c9a227;
+    --mid: #1e3a5f;
+    --light: #f0f4f8;
+    --red: #c0392b;
+    --blue: #2980b9;
+    --green: #27ae60;
+    --orange: #e67e22;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--light); font-family: 'Segoe UI', Arial, sans-serif; }
+  header {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-bottom: 3px solid var(--gold);
+    padding: 20px 28px;
+    text-align: center;
+  }
+  header h1 { font-size: 1.7em; color: var(--gold); }
+  header p { color: rgba(240,244,248,0.7); margin-top: 6px; font-size: 0.9em; }
+  section { padding: 28px; max-width: 1300px; margin: 0 auto; }
+  h2 { font-size: 1.4em; color: var(--gold); border-left: 4px solid var(--gold); padding-left: 12px; margin-bottom: 20px; }
+
+  /* NEWS CARDS */
+  .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .news-card {
+    background: var(--mid);
+    border-radius: 10px;
+    padding: 16px;
+    border-left: 4px solid var(--gold);
+  }
+  .news-card.drama { border-left-color: var(--red); }
+  .news-card.upset { border-left-color: var(--orange); }
+  .news-card.star { border-left-color: var(--gold); }
+  .news-card.human { border-left-color: var(--blue); }
+  .news-card.funny { border-left-color: #8e44ad; }
+  .news-card.key { border-left-color: var(--green); }
+  .news-card h3 { font-size: 1em; font-weight: bold; margin-bottom: 8px; }
+  .news-card p { font-size: 0.88em; line-height: 1.55; color: rgba(240,244,248,0.85); }
+
+  /* GROUPS GRID */
+  .groups-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 700px) { .groups-grid { grid-template-columns: 1fr; } }
+  .group-table {
+    background: var(--mid);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(201,162,39,0.2);
+  }
+  .group-header {
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: bold;
+    padding: 8px 14px;
+    font-size: 0.95em;
+  }
+  .group-table table { width: 100%; border-collapse: collapse; }
+  .group-table th {
+    background: rgba(201,162,39,0.15);
+    color: var(--gold);
+    font-size: 0.78em;
+    padding: 6px 10px;
+    text-align: center;
+  }
+  .group-table th:first-child { text-align: left; }
+  .group-table td { padding: 7px 10px; font-size: 0.85em; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+  .group-table td:first-child { text-align: left; }
+  .group-table tr:last-child td { border-bottom: none; }
+  .prob-bar-wrap { display: flex; align-items: center; gap: 6px; justify-content: center; }
+  .prob-bar { height: 8px; border-radius: 4px; min-width: 4px; }
+  .prob-high { background: var(--green); }
+  .prob-mid { background: var(--orange); }
+  .prob-low { background: var(--red); }
+
+  /* STATS GRID */
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 700px) { .stats-grid { grid-template-columns: 1fr; } }
+  .stat-block {
+    background: var(--mid);
+    border-radius: 10px;
+    padding: 18px;
+    border: 1px solid rgba(201,162,39,0.2);
+  }
+  .stat-block h3 { font-size: 1em; color: var(--gold); margin-bottom: 12px; border-bottom: 1px solid rgba(201,162,39,0.3); padding-bottom: 8px; }
+  .stat-block ul { list-style: none; padding: 0; }
+  .stat-block li { font-size: 0.87em; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); line-height: 1.5; }
+  .stat-block li:last-child { border-bottom: none; }
+  .tag { display: inline-block; font-size: 0.72em; padding: 2px 7px; border-radius: 10px; font-weight: bold; margin-left: 4px; }
+  .tag-red { background: var(--red); color: #fff; }
+  .tag-gold { background: var(--gold); color: var(--dark); }
+  .tag-blue { background: var(--blue); color: #fff; }
+  .tag-green { background: var(--green); color: #fff; }
+  .elim { color: var(--red); font-size: 0.75em; margin-left: 4px; }
+  .qual { color: var(--green); font-size: 0.75em; margin-left: 4px; }
+  .divider { height: 1px; background: rgba(201,162,39,0.2); margin: 32px 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>⚽ FIFA World Cup 2026 — Dienos Naujienos</h1>
+  <p>2026 m. birželio 23 d. | EEST (GMT+3)</p>
+</header>
+
+<!-- SECTION A: NEWS -->
+<section>
+  <h2>📰 A. Naujienos Trumpai</h2>
+  <div class="news-grid">
+
+    <div class="news-card star">
+      <h3>🌟 MESSI ISTORINIS REKORDAS: 18 ĮVARČIŲ</h3>
+      <p>Lionelis Messi su Argentinos spalvomis įmušė 17-ąjį ir 18-ąjį WC įvarčius per pergalę prieš Austriją (2:0). Jis pralenkė Miroslav Klose (16 įvarčių) ir tapo absoliučiu visų laikų lyderiu – įskaitant ir moterų futbolą (Marta turėjo 17).</p>
+    </div>
+
+    <div class="news-card star">
+      <h3>🌟 HAALANDAS PAGALIAU ATIDARO SĄSKAITĄ</h3>
+      <p>Erlingas Haalandas 29-ąją minutę pirmą kartą karjeroje pelnė įvartį Pasaulio čempionate – prieš Senegalą. Norvegija laimėjo 3:2 ir kvalifikavosi į aštuntfinalį kartu su Prancūzija iš I grupės.</p>
+    </div>
+
+    <div class="news-card drama">
+      <h3>🔥 ŽALIASIS KYŠULYS PRIVERTĖ URUGVAJŲ PRAKAITUOTI</h3>
+      <p>Urugvajus vedė 2:1, tačiau Žaliojo Kyšulio vartininko Fernando Musleros klaida leido Hélio Varelai 62-ąją minutę įmušti lygiąją. Rezultatas 2:2 – viena dramatiškiausių šio čempionato akimirkų.</p>
+    </div>
+
+    <div class="news-card key">
+      <h3>⚠️ ISPANIJA NESILAIKO: 4:0 PRIEŠ SAUDO ARABIJĄ</h3>
+      <p>Ispanija tvirtai valdo H grupę, sutriuškindama Saudo Arabiją 4:0. „La Roja" formos apogėjuje ir yra tarp pagrindinių čempionato pretendentų į titulą.</p>
+    </div>
+
+    <div class="news-card upset">
+      <h3>😮 EGIPTAS PIRMĄ KARTĄ WC ISTORIJOJE LAIMI</h3>
+      <p>Egiptas įveikė Naująją Zelandiją 3:1, pirmą kartą istorijoje laimėdamas mačą Pasaulio čempionate. Mohammedas Salahas pelno ir organizuoja, Trézéguet ir Mostafa Zico taip pat randa tinklą.</p>
+    </div>
+
+    <div class="news-card drama">
+      <h3>🔥 2026: DAUGIAU RAUDONŲ NEI 2018+2022 KARTU</h3>
+      <p>Šiame čempionate jau rodyta 7 raudonos kortelės per vos 37 rungtynes – daugiau nei 2018 (4) ir 2022 (4) m. turnyruose kartu sudėjus! Ypač skandalingas buvo Paraguay's Almiróno pašalinimas – pirmoji naujosios taisyklės auka.</p>
+    </div>
+
+    <div class="news-card human">
+      <h3>😢 ALŽYRAS IŠ PRALAIMĖJIMO PAVIRTO Į PERGALĘ</h3>
+      <p>Alžyras 82-ąją minutę apvertė mačą prieš Jordaniją (2:1), Amine Gouiri atkovojo kamuolį prie vartininko ir išlygino H grupės situaciją dramatišku smūgiu vartų žiotyse.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION B: STANDINGS -->
+<section>
+  <h2>📊 B. Grupių Lentelės</h2>
+  <div class="groups-grid">
+
+    <!-- Group A -->
+    <div class="group-table">
+      <div class="group-header">🅰️ A GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇲🇽 Meksika <span class="qual">✔ LAIMĖTOJAI</span></td><td>2</td><td>6</td><td>+3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:95px"></div>95%</div></td></tr>
+        <tr><td>🇰🇷 Pietų Korėja</td><td>2</td><td>3</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:60px"></div>60%</div></td></tr>
+        <tr><td>🇨🇿 Čekija</td><td>2</td><td>1</td><td>-1</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:25px"></div>25%</div></td></tr>
+        <tr><td>🇿🇦 P. Afrika</td><td>2</td><td>1</td><td>-2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:20px"></div>20%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group B -->
+    <div class="group-table">
+      <div class="group-header">🅱️ B GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇨🇦 Kanada</td><td>2</td><td>4</td><td>+6</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:80px"></div>80%</div></td></tr>
+        <tr><td>🇨🇭 Šveicarija</td><td>2</td><td>4</td><td>+3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:75px"></div>75%</div></td></tr>
+        <tr><td>🇧🇦 Bosnija</td><td>2</td><td>1</td><td>-3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:20px"></div>20%</div></td></tr>
+        <tr><td>🇶🇦 Kataras <span class="elim">✖ IŠMESTAS</span></td><td>2</td><td>1</td><td>-6</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:5px"></div>5%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group C -->
+    <div class="group-table">
+      <div class="group-header">🇨 C GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇧🇷 Brazilija</td><td>2</td><td>4</td><td>+3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:80px"></div>80%</div></td></tr>
+        <tr><td>🇲🇦 Marokas</td><td>2</td><td>4</td><td>+1</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:75px"></div>75%</div></td></tr>
+        <tr><td>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Škotija</td><td>2</td><td>3</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:45px"></div>45%</div></td></tr>
+        <tr><td>🇭🇹 Haitis <span class="elim">✖ IŠMESTAS</span></td><td>2</td><td>0</td><td>-4</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:2px"></div>2%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group D -->
+    <div class="group-table">
+      <div class="group-header">🇩 D GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇺🇸 JAV <span class="qual">✔ LAIMĖTOJAI</span></td><td>2</td><td>6</td><td>+5</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:95px"></div>95%</div></td></tr>
+        <tr><td>🇦🇺 Australija</td><td>2</td><td>3</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:60px"></div>60%</div></td></tr>
+        <tr><td>🇵🇾 Paragvajus</td><td>2</td><td>3</td><td>-2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:50px"></div>50%</div></td></tr>
+        <tr><td>🇹🇷 Turkija <span class="elim">✖ IŠMESTA</span></td><td>2</td><td>0</td><td>-3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:3px"></div>3%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group E -->
+    <div class="group-table">
+      <div class="group-header">🇪 E GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇩🇪 Vokietija <span class="qual">✔ LAIMĖTOJAI</span></td><td>2</td><td>6</td><td>+7</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:95px"></div>95%</div></td></tr>
+        <tr><td>🇨🇮 Dramblio Kaulas</td><td>2</td><td>3</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:60px"></div>60%</div></td></tr>
+        <tr><td>🇪🇨 Ekvadoras</td><td>2</td><td>1</td><td>-1</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:25px"></div>25%</div></td></tr>
+        <tr><td>🇨🇼 Kiurasao</td><td>2</td><td>1</td><td>-6</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:10px"></div>10%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group F -->
+    <div class="group-table">
+      <div class="group-header">🇫 F GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇳🇱 Nyderlandai</td><td>2</td><td>4</td><td>+4</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:80px"></div>80%</div></td></tr>
+        <tr><td>🇯🇵 Japonija</td><td>2</td><td>4</td><td>+4</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:78px"></div>78%</div></td></tr>
+        <tr><td>🇸🇪 Švedija</td><td>2</td><td>3</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:42px"></div>42%</div></td></tr>
+        <tr><td>🇹🇳 Tunisas <span class="elim">✖ IŠMESTAS</span></td><td>2</td><td>0</td><td>-8</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:2px"></div>2%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group G -->
+    <div class="group-table">
+      <div class="group-header">🇬 G GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇪🇬 Egiptas</td><td>2</td><td>4</td><td>+2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:75px"></div>75%</div></td></tr>
+        <tr><td>🇮🇷 Iranas</td><td>2</td><td>2</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:50px"></div>50%</div></td></tr>
+        <tr><td>🇧🇪 Belgija</td><td>2</td><td>2</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:48px"></div>48%</div></td></tr>
+        <tr><td>🇳🇿 Naujoji Zelandija</td><td>2</td><td>1</td><td>-2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:27px"></div>27%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group H -->
+    <div class="group-table">
+      <div class="group-header">🇭 H GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇪🇸 Ispanija</td><td>2</td><td>4</td><td>+4</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:82px"></div>82%</div></td></tr>
+        <tr><td>🇺🇾 Urugvajus</td><td>2</td><td>2</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:50px"></div>50%</div></td></tr>
+        <tr><td>🇨🇻 Žaliasis Kyšulys</td><td>2</td><td>2</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:48px"></div>48%</div></td></tr>
+        <tr><td>🇸🇦 Saudo Arabija</td><td>2</td><td>1</td><td>-4</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:20px"></div>20%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group I -->
+    <div class="group-table">
+      <div class="group-header">🇮 I GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇳🇴 Norvegija <span class="qual">✔ KVALIFIKAVOSI</span></td><td>2</td><td>3</td><td>+3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:90px"></div>90%</div></td></tr>
+        <tr><td>🇫🇷 Prancūzija <span class="qual">✔ KVALIFIKAVOSI</span></td><td>2</td><td>3</td><td>+2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:88px"></div>88%</div></td></tr>
+        <tr><td>🇸🇳 Senegalas</td><td>2</td><td>0</td><td>-2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:12px"></div>12%</div></td></tr>
+        <tr><td>🇮🇶 Irakas</td><td>2</td><td>0</td><td>-3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:10px"></div>10%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group J -->
+    <div class="group-table">
+      <div class="group-header">🇯 J GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇦🇷 Argentina <span class="qual">✔ KVALIFIKAVOSI</span></td><td>1</td><td>3</td><td>+3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:92px"></div>92%</div></td></tr>
+        <tr><td>🇦🇹 Austrija</td><td>1</td><td>3</td><td>+2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:75px"></div>75%</div></td></tr>
+        <tr><td>🇯🇴 Jordanija</td><td>2</td><td>0</td><td>-2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:20px"></div>20%</div></td></tr>
+        <tr><td>🇩🇿 Alžyras</td><td>2</td><td>0</td><td>-3</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:18px"></div>18%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group K -->
+    <div class="group-table">
+      <div class="group-header">🇰 K GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇨🇴 Kolumbija</td><td>1</td><td>3</td><td>+2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:70px"></div>70%</div></td></tr>
+        <tr><td>🇨🇩 KD Kongas</td><td>1</td><td>1</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:50px"></div>50%</div></td></tr>
+        <tr><td>🇵🇹 Portugalija</td><td>1</td><td>1</td><td>0</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-mid" style="width:48px"></div>48%</div></td></tr>
+        <tr><td>🇺🇿 Uzbekistanas</td><td>1</td><td>0</td><td>-2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:32px"></div>32%</div></td></tr>
+      </table>
+    </div>
+
+    <!-- Group L -->
+    <div class="group-table">
+      <div class="group-header">🇱 L GRUPĖ</div>
+      <table>
+        <tr><th>Komanda</th><th>M</th><th>Tšk</th><th>ĮS-ĮG</th><th>Patekimo %</th></tr>
+        <tr><td>🇬🇧 Anglija</td><td>1</td><td>3</td><td>+2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:72px"></div>72%</div></td></tr>
+        <tr><td>🇬🇭 Gana</td><td>1</td><td>3</td><td>+1</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-high" style="width:68px"></div>68%</div></td></tr>
+        <tr><td>🇵🇦 Panama</td><td>1</td><td>0</td><td>-1</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:30px"></div>30%</div></td></tr>
+        <tr><td>🇭🇷 Kroatija</td><td>1</td><td>0</td><td>-2</td><td><div class="prob-bar-wrap"><div class="prob-bar prob-low" style="width:28px"></div>28%</div></td></tr>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION C: STATS -->
+<section>
+  <h2>📈 C. Turnyro Statistika</h2>
+  <div class="stats-grid">
+
+    <!-- Stat 1 -->
+    <div class="stat-block">
+      <h3>⚽ Taškai ir Rungtynės</h3>
+      <ul>
+        <li>📌 Iš viso rungtynių: 37</li>
+        <li>⚽ Iš viso įvarčių: ~93 (apytikslis iki birž. 22 d.)</li>
+        <li>📊 Vidurkis per rungtynes: ~2,5 įvarčio</li>
+        <li>🏆 Stambiausia pergalė: Vokietija 7:0</li>
+        <li>🎩 Hat-trikai: Kylian Mbappé (Prancūzija)</li>
+        <li>🔑 Pirmoji kvalifikavusios komandos: Meksika (A gr.), JAV (D gr.), Vokietija (E gr.)</li>
+        <li>📜 REKORDAS: Messi – 18 WC įvarčių (visų laikų lyderis)</li>
+      </ul>
+    </div>
+
+    <!-- Stat 2 -->
+    <div class="stat-block">
+      <h3>🟥 Raudonos Kortelės (Visos)</h3>
+      <ul>
+        <li>🔴 <b>Sphephelo Sithole</b> (P. Afrika) vs Meksika, 49', DOGSO <span class="tag tag-red">biž.11</span></li>
+        <li>🔴 <b>Themba Zwane</b> (P. Afrika) vs Meksika, 84', smurtinis elgesys <span class="tag tag-red">biž.11</span></li>
+        <li>🔴 <b>César Montes</b> (Meksika) vs P. Afrika, 90+2', DOGSO <span class="tag tag-red">biž.11</span></li>
+        <li>🔴 <b>Homam Ahmed</b> (Kataras) vs Kanada, 33', DOGSO <span class="tag tag-red">biž.18</span></li>
+        <li>🔴 <b>Assim Madibo</b> (Kataras) vs Kanada, 53', grubi pražanga <span class="tag tag-red">biž.18</span></li>
+        <li>🔴 <b>Tarik Muharemović</b> (Bosnija) vs Šveicarija, 80', DOGSO <span class="tag tag-red">biž.19</span></li>
+        <li>🔴 <b>Miguel Almirónas</b> (Paragvajus) vs Turkija, 45+3', burnos uždengimas <span class="tag tag-red">biž.19</span></li>
+        <li>🔴 <b>Nathan Ngoy</b> (Belgija) vs Iranas, 67', DOGSO <span class="tag tag-red">biž.21</span></li>
+      </ul>
+    </div>
+
+    <!-- Stat 3 -->
+    <div class="stat-block">
+      <h3>🚑 Traumos ir Pasitraukimai</h3>
+      <ul>
+        <li>⚠️ Nežinomos traumos detalės dėl riboto informacijos prieinamumo. Stebima keleto žaidėjų būklė po rungtynių birželio 22 d.</li>
+        <li>🔎 Rekomenduojama sekti oficialias komandų ataskaitas paskutiniems atnaujinimams.</li>
+      </ul>
+    </div>
+
+    <!-- Stat 4 -->
+    <div class="stat-block">
+      <h3>⚡ Konfliktai ir Kontraversijos</h3>
+      <ul>
+        <li>🆕 <b>Naujoji taisyklė</b>: Miguel Almirónas (Paragvajus) – pirmasis žaidėjas, pašalintas už burnos uždengimą konflikto metu. Kontroversiškai vertinama taisyklė.</li>
+        <li>🖥️ <b>VAR</b>: Keletas sprendimų buvo peržiūrėti. ESPN paskelbė VAR apžvalgą – ar vienas Messi įvarčių turėjo būti anuliuotas?</li>
+        <li>⛈️ <b>Oro pertrauka</b>: Prancūzija vs Irakas buvo sustabdyta ~2 val. dėl stiprios audros Atlantoje.</li>
+        <li>🌍 <b>Rekordas</b>: 2026 WC turi daugiau raudonų kortelių nei 2018 + 2022 kartu sudėjus. FIFA svarsto ar taisyklės yra per griežtos.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+</body>
+</html>
