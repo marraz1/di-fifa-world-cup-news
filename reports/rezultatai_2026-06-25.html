@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA PC 2026 — Vakarykščių Rungtynių Rezultatai 2026-06-24</title>
+<style>
+  :root {
+    --dark: #0d1b2a;
+    --gold: #c9a227;
+    --mid: #1e3a5f;
+    --light: #f0f4f8;
+    --red: #c0392b;
+    --blue: #2980b9;
+    --green: #27ae60;
+    --orange: #e67e22;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--light); font-family: 'Segoe UI', Arial, sans-serif; }
+  .page-header {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-bottom: 3px solid var(--gold);
+    padding: 24px 32px; text-align: center;
+  }
+  .page-header h1 { font-size: 1.8rem; color: var(--gold); }
+  .page-header p { color: #aac4e0; margin-top: 6px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 28px 20px; }
+  .day-summary {
+    background: var(--mid); border-left: 4px solid var(--gold);
+    padding: 12px 20px; border-radius: 6px; margin-bottom: 28px;
+    font-size: 0.9rem; color: #c0d8ee;
+  }
+  .day-summary b { color: var(--gold); }
+  .match-card {
+    background: var(--mid); border-radius: 12px;
+    border-left: 5px solid var(--blue);
+    margin-bottom: 24px; overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    transition: box-shadow 0.2s;
+  }
+  .match-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+  .match-card.historic { border-left-color: var(--gold); }
+  .match-card.drama { border-left-color: var(--red); }
+  .match-card.goal-fest { border-left-color: var(--orange); }
+  .match-header {
+    background: #152c47; padding: 10px 20px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+  }
+  .group-tag {
+    background: var(--gold); color: #000;
+    font-weight: bold; font-size: 0.75rem;
+    padding: 3px 10px; border-radius: 12px;
+  }
+  .venue-tag { color: #8ab0cc; font-size: 0.82rem; }
+  .score-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px; gap: 12px;
+  }
+  .team-side {
+    flex: 1; text-align: center;
+  }
+  .team-name-big { font-size: 1.2rem; font-weight: bold; color: var(--light); }
+  .team-flag { font-size: 2rem; display: block; margin-bottom: 6px; }
+  .scorers-list { font-size: 0.78rem; color: #8ab0cc; margin-top: 6px; line-height: 1.5; }
+  .score-center {
+    text-align: center; min-width: 100px;
+  }
+  .score-big {
+    font-size: 2.8rem; font-weight: 900;
+    color: var(--gold); line-height: 1;
+    letter-spacing: -2px;
+  }
+  .score-sep { color: #8ab0cc; font-size: 1.5rem; }
+  .match-time { color: #8ab0cc; font-size: 0.78rem; margin-top: 4px; }
+  .info-blocks {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid #1a3050;
+  }
+  .info-block {
+    padding: 14px 18px;
+    border-right: 1px solid #1a3050;
+  }
+  .info-block:last-child { border-right: none; }
+  .info-block:nth-child(3) { border-top: 1px solid #1a3050; }
+  .info-block:nth-child(4) { border-top: 1px solid #1a3050; border-right: none; }
+  .info-title {
+    font-size: 0.78rem; color: var(--gold); font-weight: bold;
+    margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .info-content { font-size: 0.83rem; color: #c0d8ee; line-height: 1.55; }
+  .player-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 0.7rem; font-weight: bold; margin-left: 4px;
+    vertical-align: middle;
+  }
+  .tag-mvp { background: rgba(201,162,39,0.3); border: 1px solid var(--gold); color: var(--gold); }
+  .tag-hat { background: rgba(39,174,96,0.3); border: 1px solid #27ae60; color: #7dce97; }
+  .tag-pen { background: rgba(41,128,185,0.3); border: 1px solid #2980b9; color: #7db8d8; }
+  .tag-og { background: rgba(230,126,34,0.3); border: 1px solid #e67e22; color: #e9a55a; }
+  .tag-inj { background: rgba(192,57,43,0.3); border: 1px solid #c0392b; color: #e88; }
+  .none-text { color: #5a7a96; font-style: italic; }
+  @media (max-width: 700px) {
+    .info-blocks { grid-template-columns: 1fr; }
+    .info-block { border-right: none !important; }
+    .info-block:nth-child(3) { border-top: 1px solid #1a3050; }
+    .score-row { flex-direction: column; }
+    .score-center { order: -1; }
+    .team-flag { font-size: 2.5rem; }
+    .score-big { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>⚽ Vakarykščių Rungtynių Rezultatai</h1>
+  <p>2026 m. birželio 24 d. (trečiadienis) · A, B, C grupių paskutinis turas</p>
+</div>
+
+<div class="container">
+
+  <div class="day-summary">
+    <b>📅 Birželio 24 d. apžvalga:</b> 6 rungtynės per dieną — A, B ir C grupių paskutiniai turai.
+    Meksika, Šveicarija ir Brazilija laimėjo savo grupes. Pietų Afrika sukėlė sensaciją, eliminuodama Pietų Korėją.
+    Kanada ir Marokas taip pat pateko į antrą turą.
+    <b>Iš viso įvarčių šiandien: 18</b>
+  </div>
+
+  <!-- ===== MATCH 1: Mexico vs Czechia ===== -->
+  <div class="match-card historic">
+    <div class="match-header">
+      <span class="group-tag">A GRUPĖ · PASKUTINIS TURAS</span>
+      <span class="venue-tag">🏟️ Estadio Azteca · Meksiko miestas, Meksika</span>
+    </div>
+    <div class="score-row">
+      <div class="team-side">
+        <span class="team-flag">🇲🇽</span>
+        <div class="team-name-big">Meksika</div>
+        <div class="scorers-list">
+          ⚽ Chavez<br>
+          ⚽ Quiñones<br>
+          ⚽ Fidalgo
+        </div>
+      </div>
+      <div class="score-center">
+        <div class="score-big">3<span class="score-sep"> – </span>0</div>
+        <div class="match-time">Pilnas laikas</div>
+      </div>
+      <div class="team-side">
+        <span class="team-flag">🇨🇿</span>
+        <div class="team-name-big">Čekija</div>
+        <div class="scorers-list">&nbsp;</div>
+      </div>
+    </div>
+    <div class="info-blocks">
+      <div class="info-block">
+        <div class="info-title">🟥 Raudonos kortelės</div>
+        <div class="info-content"><span class="none-text">Nė vienos</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">🚑 Traumos</div>
+        <div class="info-content"><span class="none-text">Nėra pranešimų</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">⭐ Top žaidėjai</div>
+        <div class="info-content">
+          Quiñones <span class="player-tag tag-mvp">MVP</span> — dinamiškas žaidimas ir tikslus smūgis.<br>
+          Fidalgo — apvainikavo rezultatą trečiu įvarčiu.<br>
+          Chavez — atidarė rezultatą ir vadovavo atakoms.
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">📋 Aktuali info</div>
+        <div class="info-content">Meksika laimėjo A grupę su tobuliausiu 9/9 taškų rezultatu — tai pirmoji ekipa patekusi į antrą turą šiame čempionate. Čekija eliminuota iš turnyro. Tifarmos banga Aztecoje buvo pakili ir emocinga.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MATCH 2: South Africa vs South Korea ===== -->
+  <div class="match-card drama">
+    <div class="match-header">
+      <span class="group-tag">A GRUPĖ · PASKUTINIS TURAS</span>
+      <span class="venue-tag">🏟️ SoFi Stadium · Los Andželas, Kalifornija, JAV</span>
+    </div>
+    <div class="score-row">
+      <div class="team-side">
+        <span class="team-flag">🇿🇦</span>
+        <div class="team-name-big">Pietų Afrika</div>
+        <div class="scorers-list">⚽ Maseko</div>
+      </div>
+      <div class="score-center">
+        <div class="score-big">1<span class="score-sep"> – </span>0</div>
+        <div class="match-time">Pilnas laikas</div>
+      </div>
+      <div class="team-side">
+        <span class="team-flag">🇰🇷</span>
+        <div class="team-name-big">Pietų Korėja</div>
+        <div class="scorers-list">&nbsp;</div>
+      </div>
+    </div>
+    <div class="info-blocks">
+      <div class="info-block">
+        <div class="info-title">🟥 Raudonos kortelės</div>
+        <div class="info-content"><span class="none-text">Nė vienos</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">🚑 Traumos</div>
+        <div class="info-content"><span class="none-text">Nėra pranešimų</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">⭐ Top žaidėjai</div>
+        <div class="info-content">
+          Maseko <span class="player-tag tag-mvp">MVP</span> — lemiamo įvarčio autorius, vedęs Pietų Afriką į 2-ą turą.<br>
+          Pietų Afrikos vartininkas — puikus žaidimas, sulaikė visus Korėjos bandymus.<br>
+          Kim Seung-Gyu (Korėja) — vartininkas stengėsi, bet galiausiai neišlaikė.
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">📋 Aktuali info</div>
+        <div class="info-content">SENSACIJA! Pietų Afrika eliminavo Pietų Korėją ir užsitikrina antrą vietą A grupėje su 4 taškais. Pietų Korėja, laimėjusi pirmas rungtynes, pralaimi abiem paskutinėmis ir lieka be antrojo turo. Bafana Bafana sirgaliai šventė istorinę pergalę!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MATCH 3: Switzerland vs Canada ===== -->
+  <div class="match-card">
+    <div class="match-header">
+      <span class="group-tag">B GRUPĖ · PASKUTINIS TURAS</span>
+      <span class="venue-tag">🏟️ BC Place · Vankuveris, Kanada</span>
+    </div>
+    <div class="score-row">
+      <div class="team-side">
+        <span class="team-flag">🇨🇭</span>
+        <div class="team-name-big">Šveicarija</div>
+        <div class="scorers-list">
+          ⚽ Vargas 46'<br>
+          ⚽ Manzambi 57'
+        </div>
+      </div>
+      <div class="score-center">
+        <div class="score-big">2<span class="score-sep"> – </span>1</div>
+        <div class="match-time">Pilnas laikas</div>
+      </div>
+      <div class="team-side">
+        <span class="team-flag">🇨🇦</span>
+        <div class="team-name-big">Kanada</div>
+        <div class="scorers-list">⚽ Promise David</div>
+      </div>
+    </div>
+    <div class="info-blocks">
+      <div class="info-block">
+        <div class="info-title">🟥 Raudonos kortelės</div>
+        <div class="info-content"><span class="none-text">Nė vienos</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">🚑 Traumos</div>
+        <div class="info-content">Ismaël Koné (Kanada) — traumuotas anksčiau su Kataru, šiose rungtynėse nedalyvavo <span class="player-tag tag-inj">TRAUM</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">⭐ Top žaidėjai</div>
+        <div class="info-content">
+          Johan Manzambi 🇨🇭 <span class="player-tag tag-mvp">MVP</span> — jaunas talentaas, antras įvartis per turnyrą.<br>
+          Rubén Vargas 🇨🇭 — puikus sugrįžimas po pertraukos, atidarė rezultatą.<br>
+          Promise David 🇨🇦 — greitai įmušė ateinant iš suolo, pasirodė puikiai.
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">📋 Aktuali info</div>
+        <div class="info-content">Šveicarija laimi B grupę su 7 taškais, o Kanada lieka antra su 4 taškais — abi komandos žengia į antrą turą. Bosnija su 4 taškais gali patekti kaip viena iš geriausių trečių komandų. Kanados sirgaliai tęsė šventę namie nepaisant pralaimėjimo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MATCH 4: Bosnia vs Qatar ===== -->
+  <div class="match-card goal-fest">
+    <div class="match-header">
+      <span class="group-tag">B GRUPĖ · PASKUTINIS TURAS</span>
+      <span class="venue-tag">🏟️ AT&T Stadium · Arlingtona, Teksasas, JAV</span>
+    </div>
+    <div class="score-row">
+      <div class="team-side">
+        <span class="team-flag">🇧🇦</span>
+        <div class="team-name-big">Bosnija ir H.</div>
+        <div class="scorers-list">
+          ⚽ Alajbegović 29'<br>
+          ⚽ Al-Brake (savai.) <br>
+          ⚽ Mahmić
+        </div>
+      </div>
+      <div class="score-center">
+        <div class="score-big">3<span class="score-sep"> – </span>1</div>
+        <div class="match-time">Pilnas laikas</div>
+      </div>
+      <div class="team-side">
+        <span class="team-flag">🇶🇦</span>
+        <div class="team-name-big">Kataras</div>
+        <div class="scorers-list">⚽ Al-Haydos</div>
+      </div>
+    </div>
+    <div class="info-blocks">
+      <div class="info-block">
+        <div class="info-title">🟥 Raudonos kortelės</div>
+        <div class="info-content"><span class="none-text">Nė vienos šiose rungtynėse</span><br><small style="color:#6a8aaa">(Kataro Homam Ahmed ir Madibo — ankstesnėse)</small></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">🚑 Traumos</div>
+        <div class="info-content"><span class="none-text">Nėra pranešimų</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">⭐ Top žaidėjai</div>
+        <div class="info-content">
+          Alajbegović 🇧🇦 <span class="player-tag tag-mvp">MVP</span> — atidarė rezultatą ir vedė komandą iš priekio.<br>
+          Ermin Mahmić 🇧🇦 — apvainikavo pergalę trečiu įvarčiu.<br>
+          Al-Haydos 🇶🇦 — vienintelis Kataro šviesos taškas šiose rungtynėse.
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">📋 Aktuali info</div>
+        <div class="info-content">Bosnija finišavo trečia B grupėje ir pretenduoja patekti į 2-ą turą kaip viena iš geriausių trečių ekipų. Kataras eliminuotas. Savaiminis įvartis iš Al-Brake ir vėliau Al-Haydos įvartis sukūrė dramatišką rungtynes, tačiau Bosnija išlaikė pranašumą.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MATCH 5: Brazil vs Scotland ===== -->
+  <div class="match-card historic">
+    <div class="match-header">
+      <span class="group-tag">C GRUPĖ · PASKUTINIS TURAS</span>
+      <span class="venue-tag">🏟️ Gillette Stadium · Bostone, Masačusetse, JAV</span>
+    </div>
+    <div class="score-row">
+      <div class="team-side">
+        <span class="team-flag">🇧🇷</span>
+        <div class="team-name-big">Brazilija</div>
+        <div class="scorers-list">
+          ⚽ Vinícius Jr<br>
+          ⚽ Vinícius Jr<br>
+          ⚽ Rodrygo
+        </div>
+      </div>
+      <div class="score-center">
+        <div class="score-big">3<span class="score-sep"> – </span>0</div>
+        <div class="match-time">Pilnas laikas</div>
+      </div>
+      <div class="team-side">
+        <span class="team-flag">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+        <div class="team-name-big">Škotija</div>
+        <div class="scorers-list">&nbsp;</div>
+      </div>
+    </div>
+    <div class="info-blocks">
+      <div class="info-block">
+        <div class="info-title">🟥 Raudonos kortelės</div>
+        <div class="info-content"><span class="none-text">Nė vienos</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">🚑 Traumos</div>
+        <div class="info-content"><span class="none-text">Nėra pranešimų</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">⭐ Top žaidėjai</div>
+        <div class="info-content">
+          Vinícius Júnior 🇧🇷 <span class="player-tag tag-mvp">MVP</span> — puikus dublis, patvirtino savo formą turnyre.<br>
+          Rodrygo 🇧🇷 — trečias įvartis užantspaudavo pergalę.<br>
+          Brazilijos gynybinė linija — nulinė vartų sąskaita prieš Škotiją.
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">📋 Aktuali info</div>
+        <div class="info-content">Brazilija laimi C grupę ir žengia į antrą turą kaip viena iš favoritų. Vinícius pelnė jau 4 įvarčius šiame turnyre. Škotija lieka trečioje vietoje su 3 taškais — jų keliavimas į antrą turą kaip geriausios 3-ios komandos priklauso nuo kitų grupių rezultatų.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MATCH 6: Morocco vs Haiti ===== -->
+  <div class="match-card goal-fest">
+    <div class="match-header">
+      <span class="group-tag">C GRUPĖ · PASKUTINIS TURAS</span>
+      <span class="venue-tag">🏟️ MetLife Stadium · E. Rutherfordas, Naujasis Džersis, JAV</span>
+    </div>
+    <div class="score-row">
+      <div class="team-side">
+        <span class="team-flag">🇲🇦</span>
+        <div class="team-name-big">Marokas</div>
+        <div class="scorers-list">
+          ⚽ ×4
+        </div>
+      </div>
+      <div class="score-center">
+        <div class="score-big">4<span class="score-sep"> – </span>2</div>
+        <div class="match-time">Pilnas laikas</div>
+      </div>
+      <div class="team-side">
+        <span class="team-flag">🇭🇹</span>
+        <div class="team-name-big">Haitis</div>
+        <div class="scorers-list">⚽ ×2</div>
+      </div>
+    </div>
+    <div class="info-blocks">
+      <div class="info-block">
+        <div class="info-title">🟥 Raudonos kortelės</div>
+        <div class="info-content"><span class="none-text">Nė vienos</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">🚑 Traumos</div>
+        <div class="info-content"><span class="none-text">Nėra pranešimų</span></div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">⭐ Top žaidėjai</div>
+        <div class="info-content">
+          Marokas <span class="player-tag tag-mvp">MVP</span> — kolektyvinė galia ir efektyvus žaidimas.<br>
+          Haičio vartininkas — sulaikė daug bandymų, bet nesustabdė 4-ių.<br>
+          Haičio puolimas — kovojo iki galo ir įmušė 2 įvarčius.
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-title">📋 Aktuali info</div>
+        <div class="info-content">Marokas finišuoja antras C grupėje su 7 taškais, lygiuojantis su Brazilija. 4:2 skirtumas leis Marokui pasirodyti kaip stipriai komandai antrojo turo etape. Haitis baigė turnyrą be taško — jaunajai rinktinei tai neįkainojama patirtis.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="text-align:center; padding: 24px; color: #5a7a96; font-size: 0.8rem; border-top: 1px solid #1e3a5f;">
+  FIFA Pasaulio Čempionatas 2026 · Rezultatai 2026-06-24 · Šaltiniai: ESPN, Yahoo Sports, NBC Sports, CBS Sports
+</div>
+
+</body>
+</html>

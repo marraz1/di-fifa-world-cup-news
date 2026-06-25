@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA PC 2026 — Šiandienės Rungtynės 2026-06-25</title>
+<style>
+  :root {
+    --dark: #0d1b2a;
+    --gold: #c9a227;
+    --mid: #1e3a5f;
+    --light: #f0f4f8;
+    --red: #c0392b;
+    --blue: #2980b9;
+    --green: #27ae60;
+    --orange: #e67e22;
+    --purple: #8e44ad;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--light); font-family: 'Segoe UI', Arial, sans-serif; }
+  .page-header {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-bottom: 3px solid var(--gold);
+    padding: 24px 32px; text-align: center;
+  }
+  .page-header h1 { font-size: 1.8rem; color: var(--gold); }
+  .page-header p { color: #aac4e0; margin-top: 6px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 28px 20px; }
+  .day-intro {
+    background: var(--mid); border-left: 4px solid var(--gold);
+    padding: 14px 20px; border-radius: 6px; margin-bottom: 28px;
+    font-size: 0.9rem; color: #c0d8ee;
+  }
+  .day-intro b { color: var(--gold); }
+
+  /* Night matches divider */
+  .night-divider {
+    background: linear-gradient(135deg, #2a0a4a, #1a0535);
+    border: 2px solid var(--purple);
+    border-radius: 10px; padding: 14px 24px;
+    text-align: center; margin: 32px 0 20px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .night-tag {
+    background: var(--purple); color: #fff; font-weight: bold;
+    font-size: 0.85rem; padding: 6px 16px; border-radius: 20px;
+  }
+  .night-text { color: #c0a0e0; font-size: 0.9rem; }
+
+  /* Match card */
+  .match-card {
+    background: var(--mid); border-radius: 14px;
+    margin-bottom: 28px; overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    border: 1px solid #2a4a6f;
+    transition: box-shadow 0.2s;
+  }
+  .match-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  .match-card.night { border-color: var(--purple); }
+
+  .match-top {
+    background: #152c47; padding: 12px 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+  }
+  .time-chip {
+    background: var(--gold); color: #000; font-weight: bold;
+    padding: 5px 14px; border-radius: 20px; font-size: 0.9rem;
+  }
+  .time-chip.night { background: var(--purple); color: #fff; }
+  .group-venue { color: #8ab0cc; font-size: 0.82rem; }
+
+  .matchup-row {
+    display: flex; align-items: stretch; justify-content: space-between;
+    padding: 22px 24px; gap: 16px;
+  }
+  .team-block { flex: 1; text-align: center; }
+  .team-emoji { font-size: 2.4rem; display: block; margin-bottom: 6px; }
+  .team-title { font-size: 1.15rem; font-weight: bold; }
+  .team-standing { font-size: 0.75rem; color: #8ab0cc; margin-top: 5px; line-height: 1.4; }
+  .vs-block {
+    display: flex; align-items: center; justify-content: center;
+    min-width: 60px; font-size: 1.3rem; color: #5a7a96; font-weight: bold;
+  }
+
+  .probs-section {
+    padding: 14px 24px;
+    border-top: 1px solid #1a3050;
+    background: #0f2035;
+  }
+  .probs-title { font-size: 0.78rem; color: #8ab0cc; margin-bottom: 10px; font-weight: bold; text-transform: uppercase; }
+  .prob-bars { display: flex; gap: 12px; }
+  .prob-item { flex: 1; }
+  .prob-label { font-size: 0.73rem; color: #8ab0cc; margin-bottom: 4px; }
+  .prob-bar { height: 8px; border-radius: 4px; background: #1a3050; overflow: hidden; }
+  .prob-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+  .home-fill { background: var(--blue); }
+  .draw-fill { background: var(--gold); }
+  .away-fill { background: var(--green); }
+  .prob-pct { font-size: 0.78rem; color: var(--light); font-weight: bold; margin-top: 3px; }
+
+  .context-note {
+    padding: 12px 24px 14px;
+    border-top: 1px solid #1a3050;
+    font-size: 0.85rem; color: #c0d8ee; line-height: 1.5;
+    font-style: italic;
+  }
+
+  .players-section {
+    border-top: 1px solid #1a3050;
+    padding: 14px 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .players-team-title {
+    font-size: 0.78rem; color: var(--gold); font-weight: bold;
+    text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;
+  }
+  .player-card {
+    background: #0f2035; border-radius: 8px; padding: 10px 12px;
+    border-left: 3px solid var(--blue); margin-bottom: 6px;
+    font-size: 0.82rem;
+  }
+  .player-card:last-child { margin-bottom: 0; }
+  .player-name { font-weight: bold; color: var(--light); }
+  .player-role { font-size: 0.73rem; color: #8ab0cc; margin: 2px 0; }
+  .player-why { color: #c0d8ee; font-size: 0.78rem; }
+
+  .broadcast-section {
+    border-top: 1px solid #1a3050;
+    padding: 12px 24px 14px;
+    background: #0a1825;
+  }
+  .broadcast-title { font-size: 0.78rem; color: #8ab0cc; font-weight: bold; text-transform: uppercase; margin-bottom: 8px; }
+  .channel-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ch-badge {
+    padding: 4px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: bold;
+  }
+  .ch-lt { background: rgba(201,162,39,0.2); border: 1px solid var(--gold); color: var(--gold); }
+  .ch-stream { background: rgba(41,128,185,0.2); border: 1px solid var(--blue); color: #7db8d8; }
+  .ch-tv { background: rgba(39,174,96,0.2); border: 1px solid var(--green); color: #7dce97; }
+
+  @media (max-width: 700px) {
+    .matchup-row { flex-direction: column; text-align: center; }
+    .vs-block { padding: 8px 0; }
+    .prob-bars { flex-direction: column; }
+    .players-section { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>🔮 Šiandienės Rungtynės</h1>
+  <p>2026 m. birželio 25 d. (ketvirtadienis) · D, E, F grupių paskutiniai turai · Lietuvos laikas (EEST)</p>
+</div>
+
+<div class="container">
+
+  <div class="day-intro">
+    <b>📅 Birželio 25 d. — didžioji D, E ir F grupių finalinė diena!</b>
+    Šiandien trijų grupių paskutiniai turai — iš viso 6 rungtynės.
+    Vokietija ir JAV jau užsitikrino pirmą vietą. F grupėje intriga iki paskutinės minutės — Nyderlandai ir Japonija lygioje kovoje.
+    Dauguma rungtynių žaidžiamos vėlai vakare ir naktį pagal Lietuvos laiką. <b>⚠️ Laikrodis EEST (GMT+3)</b>
+  </div>
+
+  <!-- =============================== -->
+  <!-- TIME SLOT 23:00 EEST — GROUP E  -->
+  <!-- =============================== -->
+
+  <!-- MATCH 1: Ecuador vs Germany -->
+  <div class="match-card">
+    <div class="match-top">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="time-chip">23:00 EEST</span>
+        <span class="group-venue">E grupė · Paskutinis turas · AT&T Stadium, Arlingtona, TX</span>
+      </div>
+      <span style="color:#5a7a96; font-size:0.75rem;">Lygiagretūs su Kiurasao vs DK</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <span class="team-emoji">🇪🇨</span>
+        <div class="team-title">Ekvadoras</div>
+        <div class="team-standing">E grupė · 3 vieta<br>1 t. | ĮS-ĮG: −1<br>2 rungtynės</div>
+      </div>
+      <div class="vs-block">VS</div>
+      <div class="team-block">
+        <span class="team-emoji">🇩🇪</span>
+        <div class="team-title">Vokietija</div>
+        <div class="team-standing">E grupė · 1 vieta 🏆<br>6 t. | ĮS-ĮG: +7<br>Jau kvalifikuota</div>
+      </div>
+    </div>
+    <div class="probs-section">
+      <div class="probs-title">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-item">
+          <div class="prob-label">🇪🇨 Ekvadoras</div>
+          <div class="prob-bar"><div class="prob-fill home-fill" style="width:15%"></div></div>
+          <div class="prob-pct">15%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">Lygiosios</div>
+          <div class="prob-bar"><div class="prob-fill draw-fill" style="width:22%"></div></div>
+          <div class="prob-pct">22%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">🇩🇪 Vokietija</div>
+          <div class="prob-bar"><div class="prob-fill away-fill" style="width:63%"></div></div>
+          <div class="prob-pct">63%</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      Vokietija jau laimėjo grupę ir kvalifikavosi — jiems gali rotacijos metas, tačiau jie siekia ir trečio tiesaus pobūvio. Ekvadoras privalo laimėti, kad galėtų kovoti dėl trečios vietos šansų. Be didelės sensacijos, Die Mannschaft laikys rezultatą.
+    </div>
+    <div class="players-section">
+      <div>
+        <div class="players-team-title">🇪🇨 Ekvadoras</div>
+        <div class="player-card">
+          <div class="player-name">Moisés Caicedo</div>
+          <div class="player-role">Centrinė pusiaugelė · Chelsea</div>
+          <div class="player-why">Ekvadoro variklis vidurio linijoje — jo energija lemia tempo kontrolę. Gali būti traumingas Vokietijai per pertraukimus.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Enner Valencia</div>
+          <div class="player-role">Puolimas · kapitonas</div>
+          <div class="player-why">Patyręs lyderis ir pagrindinis Ekvadoro šaulys. Jo paskutinis šansas blizgėti šiame turnyre.</div>
+        </div>
+      </div>
+      <div>
+        <div class="players-team-title">🇩🇪 Vokietija</div>
+        <div class="player-card">
+          <div class="player-name">Jamal Musiala</div>
+          <div class="player-role">Atakuojančioji pusiaugelė · Bayern München</div>
+          <div class="player-why">Nepaprasto talento žaidėjas — 21-as, bet žaidžia kaip 30-metis veteranas. Jo kūryba ir greitumas kelia grėsmę bet kuriai gynybai.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Florian Wirtz</div>
+          <div class="player-role">Atakuojančioji pusiaugelė · Bayer Leverkusen</div>
+          <div class="player-why">Vokietijos kūrybinė jėga — gebėjimas rasti erdvę ir pelnyti įvarčius per kampus ypatingas.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <div class="broadcast-title">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">🇱🇹 Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-stream">🌐 FIFA+</span>
+        <span class="ch-badge ch-tv">📺 FOX Sports (JAV)</span>
+        <span class="ch-badge ch-tv">📺 BBC / ITV (JK)</span>
+        <span class="ch-badge ch-tv">📺 ARD / ZDF (DE)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCH 2: Curacao vs Ivory Coast -->
+  <div class="match-card">
+    <div class="match-top">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="time-chip">23:00 EEST</span>
+        <span class="group-venue">E grupė · Paskutinis turas · MetLife Stadium, E. Rutherfordas, NJ</span>
+      </div>
+      <span style="color:#5a7a96; font-size:0.75rem;">Lygiagretūs su Ekvadoras vs DE</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <span class="team-emoji">🇨🇼</span>
+        <div class="team-title">Kiurasao</div>
+        <div class="team-standing">E grupė · 4 vieta<br>1 t. | ĮS-ĮG: −6<br>2 rungtynės</div>
+      </div>
+      <div class="vs-block">VS</div>
+      <div class="team-block">
+        <span class="team-emoji">🇨🇮</span>
+        <div class="team-title">Dramblio Kaulas</div>
+        <div class="team-standing">E grupė · 2 vieta<br>3 t. | ĮS-ĮG: 0<br>Kovoja dėl patekimo</div>
+      </div>
+    </div>
+    <div class="probs-section">
+      <div class="probs-title">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-item">
+          <div class="prob-label">🇨🇼 Kiurasao</div>
+          <div class="prob-bar"><div class="prob-fill home-fill" style="width:12%"></div></div>
+          <div class="prob-pct">12%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">Lygiosios</div>
+          <div class="prob-bar"><div class="prob-fill draw-fill" style="width:20%"></div></div>
+          <div class="prob-pct">20%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">🇨🇮 Dramblio Kaulas</div>
+          <div class="prob-bar"><div class="prob-fill away-fill" style="width:68%"></div></div>
+          <div class="prob-pct">68%</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      Dramblio Kaului reikia laimėti, kad garantuotų antrą vietą grupėje ir vietą antrame ture. Kiurasao — šio čempionato Pelenė, tačiau jiems tai istorinė patirtis. 78-metis treneris Dick Advocaat bando sukurti istorinę sensaciją.
+    </div>
+    <div class="players-section">
+      <div>
+        <div class="players-team-title">🇨🇼 Kiurasao</div>
+        <div class="player-card">
+          <div class="player-name">Leandro Bacuna</div>
+          <div class="player-role">Pusiaugelė · kapitonas</div>
+          <div class="player-why">Kiurasao lyderis ir pagrindinis iniciatyvos šaltinis. Jo vadovavimas bus lemiamas norint sukurti sensaciją prieš DK.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Cuco Martina</div>
+          <div class="player-role">Gynybinė pusiaugelė</div>
+          <div class="player-why">Patyręs Europos lygose žaidęs profesionalas, atnešantis stabilumą Kiurasao vidurio linijai.</div>
+        </div>
+      </div>
+      <div>
+        <div class="players-team-title">🇨🇮 Dramblio Kaulas</div>
+        <div class="player-card">
+          <div class="player-name">Sébastien Haller</div>
+          <div class="player-role">Puolimas · Borussia Dortmund</div>
+          <div class="player-why">Grįžęs iš sunkios ligos 2022-aisiais, dabar žaidžia su nenusakoma aistra. Jo fizinė galia ir tikslumas — pavojingi.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Franck Kessié</div>
+          <div class="player-role">Centrinė pusiaugelė · Al-Ahli</div>
+          <div class="player-why">Dramblio Kaulų „Prezidentas" vidurio linijoje — variklis ir lyderis. Kontroliuos žaidimą prieš Kiurasao.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <div class="broadcast-title">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">🇱🇹 Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-stream">🌐 FIFA+</span>
+        <span class="ch-badge ch-tv">📺 FOX Sports (JAV)</span>
+        <span class="ch-badge ch-tv">📺 beIN Sports</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- NAKTIES RUNGTYNĖS — 02:00 EEST  -->
+  <!-- =============================== -->
+
+  <div class="night-divider">
+    <span class="night-tag">🌙 NAKTIES RUNGTYNĖS</span>
+    <span class="night-text">Toliau einančios rungtynės prasideda po vidurnakčio Lietuvos laiku</span>
+  </div>
+
+  <!-- MATCH 3: Japan vs Sweden -->
+  <div class="match-card night">
+    <div class="match-top">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="time-chip night">02:00 EEST ⭐</span>
+        <span class="group-venue">F grupė · Paskutinis turas · Levi's Stadium, Santa Clara, CA</span>
+      </div>
+      <span style="color:#a080c0; font-size:0.75rem;">Lygiagretūs su Tunisas vs NL</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <span class="team-emoji">🇯🇵</span>
+        <div class="team-title">Japonija</div>
+        <div class="team-standing">F grupė · lygiuoja 1-2<br>4 t. | ĮS-ĮG: +4<br>Kovoja dėl pirmutinės vietos</div>
+      </div>
+      <div class="vs-block">VS</div>
+      <div class="team-block">
+        <span class="team-emoji">🇸🇪</span>
+        <div class="team-title">Švedija</div>
+        <div class="team-standing">F grupė · 3 vieta<br>3 t. | ĮS-ĮG: 0<br>Remiasi Tuniso stebuklu</div>
+      </div>
+    </div>
+    <div class="probs-section">
+      <div class="probs-title">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-item">
+          <div class="prob-label">🇯🇵 Japonija</div>
+          <div class="prob-bar"><div class="prob-fill home-fill" style="width:44%"></div></div>
+          <div class="prob-pct">44%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">Lygiosios</div>
+          <div class="prob-bar"><div class="prob-fill draw-fill" style="width:24%"></div></div>
+          <div class="prob-pct">24%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">🇸🇪 Švedija</div>
+          <div class="prob-bar"><div class="prob-fill away-fill" style="width:32%"></div></div>
+          <div class="prob-pct">32%</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      Japonija žengia į pirmą vietą nugalėjusi Švediją, arba tikisi Nyderlandų pralaimėjimo. Švedija turi laimėti ir tikėtis stebuklo iš kitos rungtynes — sudėtinga, bet ne neįmanoma. F grupė yra labiausiai neaiški šio turo grupė!
+    </div>
+    <div class="players-section">
+      <div>
+        <div class="players-team-title">🇯🇵 Japonija</div>
+        <div class="player-card">
+          <div class="player-name">Takefusa Kubo</div>
+          <div class="player-role">Puolimas · Real Sociedad</div>
+          <div class="player-why">Japonijos kūrybinis talentingas žaidėjas — jo greitis ir technika gali nustebinti Švedijos gynybą. Vienas iš geriausių Azijos žaidėjų šiuo metu.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Wataru Endo</div>
+          <div class="player-role">Gynybinė pusiaugelė · Liverpool</div>
+          <div class="player-why">Japonijos tvirtovė viduryje — jo interceptacijos ir žaidimo paskirstymas yra fundamentas. Premier lygos patirtis neįkainojama.</div>
+        </div>
+      </div>
+      <div>
+        <div class="players-team-title">🇸🇪 Švedija</div>
+        <div class="player-card">
+          <div class="player-name">Alexander Isak</div>
+          <div class="player-role">Puolimas · Newcastle United</div>
+          <div class="player-why">Puikus Premier lygos sezonas — Isakas yra pagrindinis ginklas Švedijai. Gali nuspręsti rungtynių baigtį vienu momentu.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Dejan Kulusevski</div>
+          <div class="player-role">Atakuojančioji pusiaugelė · Tottenham</div>
+          <div class="player-why">Energingas ir neperspėjamas žaidėjas. Savo kūryba ir greičiu gali sukurti problemų bet kuriai gynybai.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <div class="broadcast-title">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">🇱🇹 Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-stream">🌐 FIFA+</span>
+        <span class="ch-badge ch-tv">📺 FOX Sports (JAV)</span>
+        <span class="ch-badge ch-tv">📺 NHK (JP)</span>
+        <span class="ch-badge ch-tv">📺 SVT (SE)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCH 4: Tunisia vs Netherlands -->
+  <div class="match-card night">
+    <div class="match-top">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="time-chip night">02:00 EEST 🌙</span>
+        <span class="group-venue">F grupė · Paskutinis turas · Rose Bowl, Pasadena, CA</span>
+      </div>
+      <span style="color:#a080c0; font-size:0.75rem;">Lygiagretūs su Japonija vs SE</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <span class="team-emoji">🇹🇳</span>
+        <div class="team-title">Tunisas</div>
+        <div class="team-standing">F grupė · 4 vieta ❌<br>0 t. | ĮS-ĮG: −8<br>Eliminuotas</div>
+      </div>
+      <div class="vs-block">VS</div>
+      <div class="team-block">
+        <span class="team-emoji">🇳🇱</span>
+        <div class="team-title">Nyderlandai</div>
+        <div class="team-standing">F grupė · lygiuoja 1-2<br>4 t. | ĮS-ĮG: +4<br>Siekia 1-os vietos</div>
+      </div>
+    </div>
+    <div class="probs-section">
+      <div class="probs-title">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-item">
+          <div class="prob-label">🇹🇳 Tunisas</div>
+          <div class="prob-bar"><div class="prob-fill home-fill" style="width:8%"></div></div>
+          <div class="prob-pct">8%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">Lygiosios</div>
+          <div class="prob-bar"><div class="prob-fill draw-fill" style="width:16%"></div></div>
+          <div class="prob-pct">16%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">🇳🇱 Nyderlandai</div>
+          <div class="prob-bar"><div class="prob-fill away-fill" style="width:76%"></div></div>
+          <div class="prob-pct">76%</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      Nyderlandai nori laimėti ir tapti pirmais grupėje. Tunisas — jau eliminuotas, o naujas treneris Renard debiutuoja. Oranžinė mašina turėtų be problemų laimėti, tačiau Tuniso sirgaliai nori matyti kovą iki galo.
+    </div>
+    <div class="players-section">
+      <div>
+        <div class="players-team-title">🇹🇳 Tunisas</div>
+        <div class="player-card">
+          <div class="player-name">Wahbi Khazri</div>
+          <div class="player-role">Puolimas · kapitonas</div>
+          <div class="player-why">Patyręs lyderis bando atsisveikinti su čempionatu su kilnia pergale. Gali būti paskutinės pasaulio čempionato rungtynės jo karjeroje.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Aissa Laïdouni</div>
+          <div class="player-role">Pusiaugelė · Ferencváros</div>
+          <div class="player-why">Tuniso techninis žaidėjas viduryje — jo kontrolė ir organizavimas bus svarbus prieš stiprius olandus.</div>
+        </div>
+      </div>
+      <div>
+        <div class="players-team-title">🇳🇱 Nyderlandai</div>
+        <div class="player-card">
+          <div class="player-name">Cody Gakpo</div>
+          <div class="player-role">Puolimas / sparninis · Liverpool</div>
+          <div class="player-why">Puikus Liverpool sezonas - Gakpo žaidžia su aukštu pasitikėjimu. Jo greitis kairiajame sparne bus lemiantis prieš Tuniso gynybą.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Memphis Depay</div>
+          <div class="player-role">Puolimas · Atlético Madrid</div>
+          <div class="player-why">Nyderlandų lyderis ir inspiratorius — patyręs čempionatų lygio žaidėjas, norintis blizgėti namų kontinente.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <div class="broadcast-title">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">🇱🇹 Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-stream">🌐 FIFA+</span>
+        <span class="ch-badge ch-tv">📺 FOX Sports (JAV)</span>
+        <span class="ch-badge ch-tv">📺 NPO (NL)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- NAKTIES RUNGTYNĖS — 05:00 EEST  -->
+  <!-- =============================== -->
+
+  <div class="night-divider" style="border-color:#c0392b; background: linear-gradient(135deg, #2a0a0a, #350505);">
+    <span class="night-tag" style="background:#c0392b;">🔴 LABAI VĖLYVOS RUNGTYNĖS — 05:00 EEST</span>
+    <span class="night-text" style="color:#e0b0b0;">Ryte 5 val. — tik tikriems aistruoliams!</span>
+  </div>
+
+  <!-- MATCH 5: Turkey vs USA -->
+  <div class="match-card night" style="border-color:#c0392b;">
+    <div class="match-top">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="time-chip" style="background:#c0392b; color:#fff;">05:00 EEST 🔴</span>
+        <span class="group-venue">D grupė · Paskutinis turas · AT&T Stadium, Arlingtona, TX</span>
+      </div>
+      <span style="color:#e08080; font-size:0.75rem;">Lygiagretūs su Paragvajus vs AU</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <span class="team-emoji">🇹🇷</span>
+        <div class="team-title">Turkija</div>
+        <div class="team-standing">D grupė · 4 vieta ❌<br>0 t. | ĮS-ĮG: −3<br>Eliminuota</div>
+      </div>
+      <div class="vs-block">VS</div>
+      <div class="team-block">
+        <span class="team-emoji">🇺🇸</span>
+        <div class="team-title">JAV</div>
+        <div class="team-standing">D grupė · 1 vieta 🏆<br>6 t. | ĮS-ĮG: +5<br>Jau kvalifikuota</div>
+      </div>
+    </div>
+    <div class="probs-section">
+      <div class="probs-title">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-item">
+          <div class="prob-label">🇹🇷 Turkija</div>
+          <div class="prob-bar"><div class="prob-fill home-fill" style="width:18%"></div></div>
+          <div class="prob-pct">18%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">Lygiosios</div>
+          <div class="prob-bar"><div class="prob-fill draw-fill" style="width:25%"></div></div>
+          <div class="prob-pct">25%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">🇺🇸 JAV</div>
+          <div class="prob-bar"><div class="prob-fill away-fill" style="width:57%"></div></div>
+          <div class="prob-pct">57%</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      JAV jau kvalifikavosi — Pulisic dalyvavimas abejotinas dėl traumos, todėl treneris Pochettino gali rotacijos tikslais pailsėti pagrindinius žaidėjus. Turkija eliminuota, bet gali kovoti dėl garbės. Stipriai Turkijos atakai gali būti sudaryta galimybė žaisti prieš atsarginę JAV sudėtį.
+    </div>
+    <div class="players-section">
+      <div>
+        <div class="players-team-title">🇹🇷 Turkija</div>
+        <div class="player-card">
+          <div class="player-name">Hakan Çalhanoğlu</div>
+          <div class="player-role">Centrinė pusiaugelė · Inter Milan</div>
+          <div class="player-why">Turkijos žaidimo smegenys — jo standartinės padėtys ir strateginė vizija yra labai pavojingos bet kuriam varžovui. Jei kas gali sujudinti JAV, tai jis.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Arda Güler</div>
+          <div class="player-role">Atakuojančioji pusiaugelė · Real Madrid</div>
+          <div class="player-why">Jaunas genijus iš Real Madrid — jo kūryba ir laisvė žaisti daro jį labai pavojingą. Gali sukurti sensaciją prieš atsarginę JAV sudėtį.</div>
+        </div>
+      </div>
+      <div>
+        <div class="players-team-title">🇺🇸 JAV</div>
+        <div class="player-card">
+          <div class="player-name">Christian Pulisic</div>
+          <div class="player-role">Sparninis / puolimas · AC Milan</div>
+          <div class="player-why">JAV kapitonas ir pagrindinis ginklas — jo dalyvavimas abejotinas, bet jei žais, bus lemiamas. „Kapitalinis žaidėjas" namų turnyre.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Gio Reyna</div>
+          <div class="player-role">Atakuojančioji pusiaugelė · Nottingham Forest</div>
+          <div class="player-why">Atlikęs fantastiška pasaulio taurę — jo įvartis prieš Panamą buvo vienas geriausių turnyre. Gali gauti daugiau laiko šiose rungtynėse.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <div class="broadcast-title">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">🇱🇹 Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-stream">🌐 FIFA+</span>
+        <span class="ch-badge ch-tv">📺 FOX Sports (JAV)</span>
+        <span class="ch-badge ch-tv">📺 Telemundo (ES)</span>
+        <span class="ch-badge ch-tv">📺 TRT (TR)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCH 6: Paraguay vs Australia -->
+  <div class="match-card night" style="border-color:#c0392b;">
+    <div class="match-top">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="time-chip" style="background:#c0392b; color:#fff;">05:00 EEST 🔴</span>
+        <span class="group-venue">D grupė · Paskutinis turas · Arrowhead Stadium, Kanzas Sitis, MO</span>
+      </div>
+      <span style="color:#e08080; font-size:0.75rem;">Lygiagretūs su Turkija vs JAV</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <span class="team-emoji">🇵🇾</span>
+        <div class="team-title">Paragvajus</div>
+        <div class="team-standing">D grupė · 3 vieta<br>3 t. | ĮS-ĮG: −2<br>Kovoja dėl 2-os vietos</div>
+      </div>
+      <div class="vs-block">VS</div>
+      <div class="team-block">
+        <span class="team-emoji">🇦🇺</span>
+        <div class="team-title">Australija</div>
+        <div class="team-standing">D grupė · 2 vieta<br>3 t. | ĮS-ĮG: 0<br>Kovoja dėl 2-os vietos</div>
+      </div>
+    </div>
+    <div class="probs-section">
+      <div class="probs-title">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-item">
+          <div class="prob-label">🇵🇾 Paragvajus</div>
+          <div class="prob-bar"><div class="prob-fill home-fill" style="width:35%"></div></div>
+          <div class="prob-pct">35%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">Lygiosios</div>
+          <div class="prob-bar"><div class="prob-fill draw-fill" style="width:28%"></div></div>
+          <div class="prob-pct">28%</div>
+        </div>
+        <div class="prob-item">
+          <div class="prob-label">🇦🇺 Australija</div>
+          <div class="prob-bar"><div class="prob-fill away-fill" style="width:37%"></div></div>
+          <div class="prob-pct">37%</div>
+        </div>
+      </div>
+    </div>
+    <div class="context-note">
+      LEMIAMOS rungtynės! Paragvajus ir Australija kovoja dėl antros vietos D grupėje — abi komandos turi 3 taškus. Lyginė vaidina turą. Australija turi geresnį gūdį (0 palyginti su Paragvajaus -2), todėl net lygiosios jiems naudingesnės. Tikimasi aistringos ir intensyvios kovos!
+    </div>
+    <div class="players-section">
+      <div>
+        <div class="players-team-title">🇵🇾 Paragvajus</div>
+        <div class="player-card">
+          <div class="player-name">Julio Enciso</div>
+          <div class="player-role">Puolimas · Brighton &amp; Hove Albion</div>
+          <div class="player-why">Jaunas ir sprogstamas talentas — jo greitis ir tikslumas gali nustebinti Australiją. Paragvajaus puolimo ateitis ir dabartis kartu.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Ángel Romero</div>
+          <div class="player-role">Puolimas · Corinthians</div>
+          <div class="player-why">Patyręs centro puolėjas — savo artimų atstumo žaidimu gali nuspręsti rungtynių baigtį. Pilnas ryžto šiose lemiamose rungtynėse.</div>
+        </div>
+      </div>
+      <div>
+        <div class="players-team-title">🇦🇺 Australija</div>
+        <div class="player-card">
+          <div class="player-name">Mat Ryan</div>
+          <div class="player-role">Vartininkas · Real Sociedad</div>
+          <div class="player-why">Australijos tvirtovė vartininkų pozicijoje — jo patirtis Europoje ir puikūs sugebėjimai yra pats svarbiausias Socceroos elementas.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Ajdin Hrustić</div>
+          <div class="player-role">Atakuojančioji pusiaugelė · Genoa</div>
+          <div class="player-why">Australijos kūrybinis žaidimas yra jo rankose — jo standartinės padėtys ir tikslumas gali sukurti lemiamus momentus.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <div class="broadcast-title">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">🇱🇹 Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-stream">🌐 FIFA+</span>
+        <span class="ch-badge ch-tv">📺 FOX Sports (JAV)</span>
+        <span class="ch-badge ch-tv">📺 Optus Sport (AU)</span>
+        <span class="ch-badge ch-tv">📺 Tigo Sports</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="text-align:center; padding: 24px; color: #5a7a96; font-size: 0.8rem; border-top: 1px solid #1e3a5f;">
+  FIFA Pasaulio Čempionatas 2026 · Šiandienės rungtynės 2026-06-25 · Visi laikai EEST (GMT+3) · Šaltiniai: FIFA.com, ESPN, Yahoo Sports, CBS Sports
+</div>
+
+</body>
+</html>
