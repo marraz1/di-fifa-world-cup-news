@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📅 Šiandienos Rungtynės — 2026-06-26</title>
+<style>
+  :root { --dark: #0d1b2a; --gold: #c9a227; --mid: #1e3a5f; --light: #f0f4f8; --red: #c0392b; --blue: #2980b9; --green: #27ae60; --purple: #7d3c98; --orange: #e67e22; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--dark); color: var(--light); font-family: 'Segoe UI', system-ui, sans-serif; }
+  header { background: linear-gradient(135deg, var(--mid), var(--dark)); border-bottom: 3px solid var(--gold); padding: 24px 20px; text-align: center; }
+  header h1 { font-size: 1.8rem; color: var(--gold); font-weight: 800; }
+  header p { color: #aac4e0; margin-top: 6px; }
+  .summary-bar { background: var(--mid); padding: 12px 20px; text-align: center; color: #aac4e0; font-size: 0.9rem; border-bottom: 1px solid #2c5282; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; display: grid; gap: 24px; }
+  .night-divider { background: linear-gradient(90deg, transparent, var(--purple), transparent); padding: 10px 20px; text-align: center; border-radius: 8px; }
+  .night-divider span { background: var(--purple); color: white; padding: 5px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+  .match-card { background: #132536; border-radius: 12px; overflow: hidden; border: 1px solid #2c5282; box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+  .match-card.night { border-color: var(--purple); }
+  .match-header { background: var(--mid); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .time-chip { background: var(--gold); color: var(--dark); padding: 5px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: 800; }
+  .time-chip.night { background: var(--purple); color: white; }
+  .group-chip { background: var(--mid); border: 1px solid var(--gold); color: var(--gold); padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+  .venue-text { color: #aac4e0; font-size: 0.82rem; }
+  .matchup-row { padding: 20px; display: grid; grid-template-columns: 1fr 60px 1fr; gap: 10px; align-items: start; }
+  .team-block { text-align: center; }
+  .team-flag-name { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+  .team-standing { font-size: 0.78rem; color: #aac4e0; }
+  .vs-box { display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 900; color: #5a7a9a; padding-top: 6px; }
+  .prob-section { padding: 12px 20px; border-top: 1px solid #2c5282; }
+  .prob-section h4 { color: var(--gold); font-size: 0.78rem; margin-bottom: 10px; text-transform: uppercase; }
+  .prob-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .prob-item { flex: 1; min-width: 100px; }
+  .prob-label { font-size: 0.75rem; color: #aac4e0; margin-bottom: 4px; }
+  .prob-bar-wrap { background: #0d1b2a; border-radius: 4px; height: 20px; overflow: hidden; }
+  .prob-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; color: white; }
+  .prob-home { background: var(--blue); }
+  .prob-draw { background: var(--gold); }
+  .prob-away { background: var(--red); }
+  .context-note { padding: 10px 20px; background: #0f2030; font-size: 0.85rem; color: #aac4e0; border-top: 1px solid #2c5282; font-style: italic; }
+  .players-section { padding: 14px 20px; border-top: 1px solid #2c5282; }
+  .players-section h4 { color: var(--gold); font-size: 0.78rem; margin-bottom: 12px; text-transform: uppercase; }
+  .players-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .player-card { background: #0d1b2a; border-radius: 8px; padding: 10px; }
+  .player-name { font-weight: 700; font-size: 0.9rem; }
+  .player-role { color: var(--gold); font-size: 0.75rem; margin: 3px 0; }
+  .player-why { color: #aac4e0; font-size: 0.78rem; line-height: 1.4; }
+  .broadcast-section { padding: 12px 20px; border-top: 1px solid #2c5282; }
+  .broadcast-section h4 { color: var(--gold); font-size: 0.78rem; margin-bottom: 8px; text-transform: uppercase; }
+  .broadcast-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+  .badge-lt { background: #1a5276; color: white; }
+  .badge-stream { background: #145a32; color: white; }
+  .badge-intl { background: #4a235a; color: white; }
+  @media (max-width: 640px) { .players-grid { grid-template-columns: 1fr; } .matchup-row { grid-template-columns: 1fr 40px 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>📅 FIFA Pasaulio Čempionatas 2026 — Šiandienos Rungtynės</h1>
+  <p>Birželio 26 d. (penktadienis) · 6 rungtynės · G, H, I grupės (3 turas)</p>
+</header>
+<div class="summary-bar">🕙 Visi laikai EEST (GMT+3) · 22:00 = vakaro rungtynės · 03:00–06:00 = nakties rungtynės (birž. 27)</div>
+
+<div class="container">
+
+  <!-- GROUP I 22:00 -->
+  <div class="match-card">
+    <div class="match-header">
+      <span class="time-chip">⏰ 22:00 EEST</span>
+      <span class="group-chip">I GRUPĖ</span>
+      <span class="venue-text">🏟️ Gillette Stadium, Foxborough, MA</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block"><div class="team-flag-name">🇳🇴 NORVEGIJA</div><div class="team-standing">6 tšk | 5:3 ĮS-ĮG</div></div>
+      <div class="vs-box">vs</div>
+      <div class="team-block"><div class="team-flag-name">🇫🇷 PRANCŪZIJA</div><div class="team-standing">6 tšk | 6:2 ĮS-ĮG</div></div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <div class="prob-item"><div class="prob-label">🇳🇴 Norvegija</div><div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:32%">32%</div></div></div>
+        <div class="prob-item"><div class="prob-label">Lygiosios</div><div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:27%;background:var(--gold);color:#000">27%</div></div></div>
+        <div class="prob-item"><div class="prob-label">🇫🇷 Prancūzija</div><div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:41%">41%</div></div></div>
+      </div>
+    </div>
+    <div class="context-note">🔥 DIDŽIAUSIOS DIENOS RUNGTYNĖS! Abu po 6 taškus — grupės nugalėtojas bus nustatytas šiandien. Haaland vs Mbappé — šio čempionato dvikovos viršūnė!</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card"><div class="player-name">🇳🇴 Erling Haaland</div><div class="player-role">Puolėjas — Norvegija</div><div class="player-why">Auksinių batų pretendentas, jau pelno kelis čempionato įvarčius. Skandinavų viltis prieš Prancūziją.</div></div>
+        <div class="player-card"><div class="player-name">🇳🇴 Martin Ødegaard</div><div class="player-role">Vidurio žaidėjas — Norvegija</div><div class="player-why">Arsenalo kapitonas, kūrybinis stuburinis žaidėjas. Nuo jo priklauso visas Norvegijos žaidimas.</div></div>
+        <div class="player-card"><div class="player-name">🇫🇷 Kylian Mbappé</div><div class="player-role">Puolėjas — Prancūzija</div><div class="player-why">Prancūzijos rekordinis bombardierius (58 gol.), auksinių batų lenktynėse. Šis mačas — jo didžioji galimybė.</div></div>
+        <div class="player-card"><div class="player-name">🇫🇷 Antoine Griezmann</div><div class="player-role">Puolantis vidurio žaidėjas — Prancūzija</div><div class="player-why">Asistų meistras, kuriančioji jėga. Atveria vietos Mbappé ir turi įtaką visiems prancūzų atakų epizodams.</div></div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Transliacija</h4>
+      <div class="broadcast-badges">
+        <span class="badge badge-lt">🇱🇹 Viaplay (LT)</span>
+        <span class="badge badge-stream">🌐 FIFA+ (nemokama)</span>
+        <span class="badge badge-intl">📺 FOX / Telemundo (JAV)</span>
+        <span class="badge badge-intl">📺 TF1 (FR)</span>
+        <span class="badge badge-intl">📺 TV 2 (NO)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="match-card">
+    <div class="match-header">
+      <span class="time-chip">⏰ 22:00 EEST</span>
+      <span class="group-chip">I GRUPĖ</span>
+      <span class="venue-text">🏟️ Levi's Stadium, Santa Clara, CA</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block"><div class="team-flag-name">🇸🇳 SENEGALAS</div><div class="team-standing">3 tšk | 3:7 ĮS-ĮG</div></div>
+      <div class="vs-box">vs</div>
+      <div class="team-block"><div class="team-flag-name">🇮🇶 IRAKAS</div><div class="team-standing">0 tšk | 1:7 ĮS-ĮG</div></div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <div class="prob-item"><div class="prob-label">🇸🇳 Senegalas</div><div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:60%">60%</div></div></div>
+        <div class="prob-item"><div class="prob-label">Lygiosios</div><div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:22%;background:var(--gold);color:#000">22%</div></div></div>
+        <div class="prob-item"><div class="prob-label">🇮🇶 Irakas</div><div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:18%">18%</div></div></div>
+      </div>
+    </div>
+    <div class="context-note">Senegalas nori trečios vietos ir eiti toliau kaip vienas geriausių trečiųjų. Irakas jau eliminuotas, tačiau nori baigti garbingai.</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card"><div class="player-name">🇸🇳 Sadio Mané</div><div class="player-role">Puolėjas — Senegalas</div><div class="player-why">Patyręs lyderis, gebantis nuspręsti rungtynes vienu epizodu. Jam reikia įvarčio šiandien.</div></div>
+        <div class="player-card"><div class="player-name">🇸🇳 Idrissa Gueye</div><div class="player-role">Defenz. vidurio žaid. — Senegalas</div><div class="player-why">Fizinis kovingumo centras, saugo gynybą ir valdo vidurio liniją.</div></div>
+        <div class="player-card"><div class="player-name">🇮🇶 Mohanad Ali</div><div class="player-role">Puolėjas — Irakas</div><div class="player-why">Vienas iš nedaugelio Irako žaidėjų su tikra pavojaus grėsme. Nori palikti įspūdį.</div></div>
+        <div class="player-card"><div class="player-name">🇮🇶 Aymen Hussein</div><div class="player-role">Puolėjas — Irakas</div><div class="player-why">Irako pagrindinis puolėjas, nori užbaigti čempionatą su įvarčiu.</div></div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Transliacija</h4>
+      <div class="broadcast-badges">
+        <span class="badge badge-lt">🇱🇹 Viaplay (LT)</span>
+        <span class="badge badge-stream">🌐 FIFA+ (nemokama)</span>
+        <span class="badge badge-intl">📺 FS1 / Universo (JAV)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="night-divider"><span>🌙 NAKTIES RUNGTYNĖS — nuo 03:00 EEST (birž. 27 d.)</span></div>
+
+  <!-- GROUP H 03:00 -->
+  <div class="match-card night">
+    <div class="match-header">
+      <span class="time-chip night">🌙 03:00 EEST (birž. 27)</span>
+      <span class="group-chip">H GRUPĖ</span>
+      <span class="venue-text">🏟️ State Farm Stadium, Glendale, AZ</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block"><div class="team-flag-name">🇨🇻 ŽALIASIS KYŠULYS</div><div class="team-standing">2 tšk | 2:3 ĮS-ĮG</div></div>
+      <div class="vs-box">vs</div>
+      <div class="team-block"><div class="team-flag-name">🇸🇦 SAUDO ARABIJA</div><div class="team-standing">0 tšk | 1:5 ĮS-ĮG</div></div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <div class="prob-item"><div class="prob-label">🇨🇻 Žaliasis Kyšulys</div><div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:52%">52%</div></div></div>
+        <div class="prob-item"><div class="prob-label">Lygiosios</div><div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:26%;background:var(--gold);color:#000">26%</div></div></div>
+        <div class="prob-item"><div class="prob-label">🇸🇦 Saudo Arabija</div><div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:22%">22%</div></div></div>
+      </div>
+    </div>
+    <div class="context-note">Žaliasis Kyšulys nori išlaikyti šansus patekti toliau. Saudo Arabija eliminuota, bet gali sukelti netikėtumų — kaip 2022 m. prieš Argentiną.</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card"><div class="player-name">🇨🇻 Ryan Mendes</div><div class="player-role">Puolantis vidurio žaid. — Žaliasis Kyšulys</div><div class="player-why">Pagrindinis kūrėjas, greitas ir techniškas. Gali nuspręsti rungtynes dribliavimo epizodais.</div></div>
+        <div class="player-card"><div class="player-name">🇨🇻 Garry Rodrigues</div><div class="player-role">Puolėjas — Žaliasis Kyšulys</div><div class="player-why">Pavojingas sparno žaidėjas su drąsiais šūviais. Nori parodyti save pasaulinei auditorijai.</div></div>
+        <div class="player-card"><div class="player-name">🇸🇦 Salem Al-Dawsari</div><div class="player-role">Puolantis vidurio žaid. — Saudo Arabija</div><div class="player-why">2022 m. herojus prieš Argentiną. Gali nustebinti su greičiu ir tiksliu šūviu.</div></div>
+        <div class="player-card"><div class="player-name">🇸🇦 Mohammed Al-Qasim</div><div class="player-role">Vartininkas — Saudo Arabija</div><div class="player-why">Gali išlaikyti komandą kovoje su gerais gelbėjimais. Paskutinė Saudo Arabijos gynybos siena.</div></div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Transliacija</h4>
+      <div class="broadcast-badges">
+        <span class="badge badge-lt">🇱🇹 Viaplay (LT)</span>
+        <span class="badge badge-stream">🌐 FIFA+ (nemokama)</span>
+        <span class="badge badge-intl">📺 FS1 / Universo (JAV)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="match-card night">
+    <div class="match-header">
+      <span class="time-chip night">🌙 03:00 EEST (birž. 27)</span>
+      <span class="group-chip">H GRUPĖ</span>
+      <span class="venue-text">🏟️ MetLife Stadium, Naujasis Džersis</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block"><div class="team-flag-name">🇺🇾 URUGVAJUS</div><div class="team-standing">2 tšk | 2:2 ĮS-ĮG</div></div>
+      <div class="vs-box">vs</div>
+      <div class="team-block"><div class="team-flag-name">🇪🇸 ISPANIJA</div><div class="team-standing">5 tšk | 5:2 ĮS-ĮG</div></div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <div class="prob-item"><div class="prob-label">🇺🇾 Urugvajus</div><div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:28%">28%</div></div></div>
+        <div class="prob-item"><div class="prob-label">Lygiosios</div><div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:27%;background:var(--gold);color:#000">27%</div></div></div>
+        <div class="prob-item"><div class="prob-label">🇪🇸 Ispanija</div><div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:45%">45%</div></div></div>
+      </div>
+    </div>
+    <div class="context-note">Ispanija siekia pirmos vietos. Urugvajus su Darwin Núñez priekyje kovoja dėl vietos 32-ių etape — daug kas priklauso nuo kito H grupės mačo rezultato.</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card"><div class="player-name">🇺🇾 Darwin Núñez</div><div class="player-role">Puolėjas — Urugvajus</div><div class="player-why">Liverpulio žvaigždė, sprogstamos jėgos puolėjas. Gali nustebinti Ispanijos gynybą sprintu.</div></div>
+        <div class="player-card"><div class="player-name">🇺🇾 Federico Valverde</div><div class="player-role">Vidurio žaidėjas — Urugvajus</div><div class="player-why">Realo Madrido kūrėjas. Urugvajaus šansas stovi ant jo pečių šiame svarbiame mače.</div></div>
+        <div class="player-card"><div class="player-name">🇪🇸 Pedri</div><div class="player-role">Vidurio žaidėjas — Ispanija</div><div class="player-why">Barcelonos žvaigždė, vidurio linijos maestro. Ispanijos kamuolio kontrolė priklauso nuo jo.</div></div>
+        <div class="player-card"><div class="player-name">🇪🇸 Lamine Yamal</div><div class="player-role">Puolantis žaidėjas — Ispanija</div><div class="player-why">Jaunasis genijus čempionate. Sparnas, galintis pakeisti rungtynes vienu epizodu.</div></div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Transliacija</h4>
+      <div class="broadcast-badges">
+        <span class="badge badge-lt">🇱🇹 Viaplay (LT)</span>
+        <span class="badge badge-stream">🌐 FIFA+ (nemokama)</span>
+        <span class="badge badge-intl">📺 FOX / Telemundo (JAV)</span>
+        <span class="badge badge-intl">📺 TVE (ES)</span>
+        <span class="badge badge-intl">📺 TyC Sports (UY)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUP G 06:00 -->
+  <div class="match-card night">
+    <div class="match-header">
+      <span class="time-chip night">🌙 06:00 EEST (birž. 27)</span>
+      <span class="group-chip">G GRUPĖ</span>
+      <span class="venue-text">🏟️ BC Place, Vankuveris, Kanada</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block"><div class="team-flag-name">🇳🇿 NAUJOJI ZELANDIJA</div><div class="team-standing">1 tšk | 3:5 ĮS-ĮG</div></div>
+      <div class="vs-box">vs</div>
+      <div class="team-block"><div class="team-flag-name">🇧🇪 BELGIJA</div><div class="team-standing">2 tšk | 1:1 ĮS-ĮG</div></div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <div class="prob-item"><div class="prob-label">🇳🇿 N. Zelandija</div><div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:22%">22%</div></div></div>
+        <div class="prob-item"><div class="prob-label">Lygiosios</div><div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:28%;background:var(--gold);color:#000">28%</div></div></div>
+        <div class="prob-item"><div class="prob-label">🇧🇪 Belgija</div><div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:50%">50%</div></div></div>
+      </div>
+    </div>
+    <div class="context-note">Belgija žaidžia dėl antros vietos G grupėje. Naujoji Zelandija jau praktiškai eliminuota, stengsis baigti garbingai.</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card"><div class="player-name">🇳🇿 Liberato Cacace</div><div class="player-role">Kairysis gynėjas — N. Zelandija</div><div class="player-why">Agresyvus sparnas, galintis kovoti su pasauliniais žvaigždžiais. Naujosios Zelandijos gynybos stuburinis žaidėjas.</div></div>
+        <div class="player-card"><div class="player-name">🇳🇿 Clayton Lewis</div><div class="player-role">Vidurio žaidėjas — N. Zelandija</div><div class="player-why">Žaibo žaidėjas, gali sukelti staigmenų puolimo epizodais ir spartaus žaidimo tempu.</div></div>
+        <div class="player-card"><div class="player-name">🇧🇪 Kevin De Bruyne</div><div class="player-role">Puolantis vidurio žaid. — Belgija</div><div class="player-why">Pasaulio klasės kūrėjas — galbūt paskutinis Pasaulio čempionatas. Asistų ir įvarčių meistras.</div></div>
+        <div class="player-card"><div class="player-name">🇧🇪 Romelu Lukaku</div><div class="player-role">Puolėjas — Belgija</div><div class="player-why">Galingas puolėjas. Nori pelnyti čempionato įvarčius ir vesti komandą į aukštesnius etapus.</div></div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Transliacija</h4>
+      <div class="broadcast-badges">
+        <span class="badge badge-lt">🇱🇹 Viaplay (LT)</span>
+        <span class="badge badge-stream">🌐 FIFA+ (nemokama)</span>
+        <span class="badge badge-intl">📺 FOX / Telemundo (JAV)</span>
+        <span class="badge badge-intl">📺 VRT (BE)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="match-card night">
+    <div class="match-header">
+      <span class="time-chip night">🌙 06:00 EEST (birž. 27)</span>
+      <span class="group-chip">G GRUPĖ</span>
+      <span class="venue-text">🏟️ Lumen Field, Sietlas, WA</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block"><div class="team-flag-name">🇪🇬 EGIPTAS</div><div class="team-standing">5 tšk | 4:2 ĮS-ĮG</div></div>
+      <div class="vs-box">vs</div>
+      <div class="team-block"><div class="team-flag-name">🇮🇷 IRANAS</div><div class="team-standing">3 tšk | 4:3 ĮS-ĮG</div></div>
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <div class="prob-item"><div class="prob-label">🇪🇬 Egiptas</div><div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:42%">42%</div></div></div>
+        <div class="prob-item"><div class="prob-label">Lygiosios</div><div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:30%;background:var(--gold);color:#000">30%</div></div></div>
+        <div class="prob-item"><div class="prob-label">🇮🇷 Iranas</div><div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:28%">28%</div></div></div>
+      </div>
+    </div>
+    <div class="context-note">Egiptas nori laimėti grupę su Salah priekyje. Iranas žaidžia dėl antros vietos. Abi komandos turi daug ką prarasti — garantuotos intensyvios rungtynės.</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card"><div class="player-name">🇪🇬 Mohamed Salah</div><div class="player-role">Puolėjas — Egiptas</div><div class="player-why">Liverpulio legenda, Egipto didvyris. Šis čempionatas — jo karjeros viršūnė.</div></div>
+        <div class="player-card"><div class="player-name">🇪🇬 Omar Marmoush</div><div class="player-role">Puolėjas — Egiptas</div><div class="player-why">Čempionato atradimas — greitas ir techniškas Man City žaidėjas, pelęs įvarčių čempionate.</div></div>
+        <div class="player-card"><div class="player-name">🇮🇷 Mehdi Taremi</div><div class="player-role">Puolėjas — Iranas</div><div class="player-why">Pagrindinis Irano puolėjas, Inter Milano žaidėjas. Pavojingas standartinėse situacijose.</div></div>
+        <div class="player-card"><div class="player-name">🇮🇷 Sardar Azmoun</div><div class="player-role">Puolėjas — Iranas</div><div class="player-why">Greitis ir technika — jo ginklai. Gali pralaužti gynybą netikėtai.</div></div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Transliacija</h4>
+      <div class="broadcast-badges">
+        <span class="badge badge-lt">🇱🇹 Viaplay (LT)</span>
+        <span class="badge badge-stream">🌐 FIFA+ (nemokama)</span>
+        <span class="badge badge-intl">📺 FS1 / Universo (JAV)</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer style="text-align:center; padding:20px; color:#5a7a9a; font-size:0.8rem; border-top:1px solid #1e3a5f; margin-top:20px;">
+  FIFA Pasaulio Čempionatas 2026 · Birželio 26 d. programa · Visi laikai EEST (GMT+3)
+</footer>
+</body>
+</html>

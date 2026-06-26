@@ -1,5 +1,37 @@
 [
   {
+    "date": "2026-06-26",
+    "type": "naujienos",
+    "title": "Naujienos & Lentelės",
+    "titleEN": "News & Tables",
+    "author": "FIFA analitikas",
+    "file": "reports/naujienos_2026-06-26.html"
+  },
+  {
+    "date": "2026-06-26",
+    "type": "rezultatai",
+    "title": "Rungtynių Rezultatai",
+    "titleEN": "Match Results",
+    "author": "FIFA analitikas",
+    "file": "reports/rezultatai_2026-06-26.html"
+  },
+  {
+    "date": "2026-06-26",
+    "type": "rungtynes",
+    "title": "Šiandienos Rungtynės",
+    "titleEN": "Today's Fixtures",
+    "author": "FIFA analitikas",
+    "file": "reports/rungtynes_2026-06-26.html"
+  },
+  {
+    "date": "2026-06-26",
+    "type": "media",
+    "title": "Dienos Geriausi Momentai",
+    "titleEN": "Best Moments of the Day",
+    "author": "FIFA analitikas",
+    "file": "reports/media_2026-06-26.html"
+  },
+  {
     "date": "2026-06-25",
     "type": "naujienos",
     "title": "Dienos Naujienos",
