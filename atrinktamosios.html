@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 FIFA 2026 – Atrinktamosios / Knockout Stage</title>
+<style>
+:root {
+  --dark: #0d1b2a;
+  --gold: #c9a227;
+  --mid:  #1e3a5f;
+  --light:#f0f4f8;
+  --red:  #c0392b;
+  --blue: #2980b9;
+  --green:#27ae60;
+  --muted:#5a7a9a;
+  --card: #132536;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--dark); color:var(--light); font-family:'Segoe UI',Arial,sans-serif; line-height:1.5; }
+
+/* ── HEADER ── */
+.page-header {
+  background:linear-gradient(135deg,#0a1628 0%,var(--mid) 50%,#0a1628 100%);
+  border-bottom:3px solid var(--gold);
+  padding:1.2rem 1.2rem 1rem;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.6rem;
+}
+.page-header-left { display:flex; align-items:center; gap:.8rem; }
+.page-title { font-size:1.4rem; font-weight:800; color:var(--gold); letter-spacing:.5px; }
+.page-sub { color:#aac4e0; font-size:.82rem; margin-top:.15rem; }
+.back-link { color:var(--gold); text-decoration:none; font-size:.85rem; border:1px solid var(--gold); padding:.3rem .75rem; border-radius:20px; }
+.back-link:hover { background:var(--gold); color:var(--dark); }
+.lang-toggle { display:flex; gap:.4rem; }
+.lang-btn { background:transparent; border:1px solid var(--muted); color:var(--muted); padding:.2rem .6rem; border-radius:12px; cursor:pointer; font-size:.8rem; }
+.lang-btn.active { border-color:var(--gold); color:var(--gold); font-weight:700; }
+
+/* ── SECTION TITLES ── */
+.sec-title {
+  background:var(--mid); color:var(--gold); padding:.7rem 1.2rem;
+  font-size:1rem; font-weight:700; border-top:2px solid var(--gold); margin-top:0;
+}
+
+/* ════════════════════════════════
+   BRACKET
+   ════════════════════════════════ */
+.bracket-wrap {
+  overflow-x:auto;
+  padding:1rem;
+  background:#0a1420;
+}
+.bracket-body {
+  display:flex;
+  align-items:stretch;
+  min-height:720px;
+  gap:0;
+  min-width:900px;
+}
+
+/* Round columns */
+.b-col {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  flex:1;
+  min-width:118px;
+  max-width:148px;
+  position:relative;
+}
+
+/* Match pairs – each pair of 2 adjacent R32 matches group into one R16 slot area */
+.bm-pair {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  flex:1;
+  position:relative;
+}
+
+/* Right-side connector bracket for LEFT bracket columns */
+.b-left .bm-pair::after {
+  content:'';
+  position:absolute;
+  right:-6px; top:25%; height:50%; width:6px;
+  border-right:1.5px solid rgba(201,162,39,.45);
+  border-top:1.5px solid rgba(201,162,39,.45);
+  border-bottom:1.5px solid rgba(201,162,39,.45);
+  border-radius:0 3px 3px 0;
+}
+/* Left-side connector bracket for RIGHT bracket columns */
+.b-right .bm-pair::after {
+  content:'';
+  position:absolute;
+  left:-6px; top:25%; height:50%; width:6px;
+  border-left:1.5px solid rgba(201,162,39,.45);
+  border-top:1.5px solid rgba(201,162,39,.45);
+  border-bottom:1.5px solid rgba(201,162,39,.45);
+  border-radius:3px 0 0 3px;
+}
+
+/* Horizontal line from pair center to next column */
+.b-left .bm-pair::before {
+  content:'';
+  position:absolute;
+  right:-6px; top:50%; width:6px; height:0;
+  border-top:1.5px solid rgba(201,162,39,.3);
+}
+.b-right .bm-pair::before {
+  content:'';
+  position:absolute;
+  left:-6px; top:50%; width:6px; height:0;
+  border-top:1.5px solid rgba(201,162,39,.3);
+}
+
+/* solo match (SF) – no connector pair needed */
+.bm-solo { display:flex; flex-direction:column; justify-content:center; flex:1; }
+.bm-solo::after { /* horizontal connector to center */
+  content:''; display:block; height:1.5px; background:rgba(201,162,39,.35);
+  margin:0 -4px;
+}
+
+/* Individual match card */
+.bm {
+  background:var(--card);
+  border:1px solid #2c4a6e;
+  border-radius:5px;
+  margin:3px 4px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .2s;
+}
+.bm:hover { border-color:var(--gold); }
+.bm[data-status="finished"] { border-color:#2c5282; }
+
+.bm-slot {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:4px 7px; font-size:.73rem;
+  border-bottom:1px solid #1e3a5f;
+  min-height:26px;
+  gap:4px;
+}
+.bm-slot:last-child { border-bottom:none; }
+.bm-slot.winner { background:rgba(201,162,39,.18); color:var(--gold); font-weight:700; }
+.bm-slot.loser  { opacity:.45; }
+.bm-team { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.bm-score { color:var(--gold); font-weight:800; font-size:.78rem; min-width:14px; text-align:center; }
+
+/* TBD slot */
+.bm-tbd { color:var(--muted); font-style:italic; }
+
+/* Round label */
+.round-label {
+  text-align:center; font-size:.62rem; font-weight:700; letter-spacing:.5px;
+  color:var(--muted); text-transform:uppercase; padding:.3rem 0;
+  border-bottom:1px solid #1e3a5f; margin-bottom:.2rem;
+}
+
+/* ── CENTER block ── */
+.b-center {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:.6rem; min-width:110px; padding:.5rem;
+}
+.final-card {
+  background:linear-gradient(135deg,#1a3060,#0a1628);
+  border:2px solid var(--gold); border-radius:8px; overflow:hidden;
+  width:100%; text-align:center;
+}
+.final-card-label { background:var(--gold); color:var(--dark); font-weight:800; font-size:.7rem; padding:.2rem; }
+.final-card-slot {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:4px 8px; font-size:.73rem; border-bottom:1px solid #2c4a6e;
+}
+.final-card-slot:last-child { border-bottom:none; }
+.champ-box {
+  background:linear-gradient(135deg,#1a3060,var(--mid));
+  border:2px solid var(--gold); border-radius:8px;
+  padding:.6rem .8rem; text-align:center; width:100%;
+}
+.champ-trophy { font-size:1.6rem; }
+.champ-label { font-size:.7rem; font-weight:700; color:var(--gold); letter-spacing:.5px; margin-top:.2rem; }
+.champ-name  { font-size:.9rem; font-weight:800; color:var(--gold); margin-top:.25rem; }
+.bronze-card {
+  background:var(--card); border:1px solid #8b6914;
+  border-radius:8px; overflow:hidden; width:100%;
+}
+.bronze-label { background:#5a4010; color:#c9a227; font-size:.65rem; font-weight:700; padding:.2rem; text-align:center; }
+.bronze-slot {
+  display:flex; justify-content:space-between;
+  padding:3px 7px; font-size:.7rem; border-bottom:1px solid #2c1f00;
+}
+.bronze-slot:last-child { border-bottom:none; }
+
+/* ════════════════════════════════
+   UPCOMING MATCHES
+   ════════════════════════════════ */
+.upcoming-grid {
+  max-width:1100px; margin:0 auto; padding:1rem 1.2rem;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem;
+}
+.um-card {
+  background:var(--card); border-radius:10px; overflow:hidden; border:1px solid #2c4a6e;
+}
+.um-top {
+  background:var(--mid); padding:.5rem .8rem;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:.75rem;
+}
+.um-round { color:var(--gold); font-weight:700; }
+.um-date  { color:#aac4e0; }
+.um-teams {
+  padding:.7rem .8rem; display:grid; grid-template-columns:1fr 24px 1fr;
+  align-items:center; text-align:center; gap:6px;
+}
+.um-team { font-size:.82rem; font-weight:700; }
+.um-vs   { color:var(--muted); font-size:.8rem; font-weight:900; }
+.um-venue { padding:.3rem .8rem; font-size:.72rem; color:var(--muted); border-top:1px solid #1e3a5f; }
+.um-pred {
+  padding:.5rem .8rem; border-top:1px solid #1e3a5f;
+  display:grid; grid-template-columns:1fr auto 1fr; gap:4px; align-items:center;
+}
+.um-pred-bar {
+  height:14px; border-radius:3px; display:flex; align-items:center;
+  justify-content:center; font-size:.65rem; font-weight:700; color:#fff;
+}
+.um-pred-bar-1 { background:var(--blue); }
+.um-pred-bar-2 { background:var(--red); }
+.um-pred-vs { text-align:center; font-size:.68rem; color:var(--muted); }
+
+/* ════════════════════════════════
+   FORECASTS
+   ════════════════════════════════ */
+.forecasts-section { max-width:1100px; margin:0 auto; padding:1rem 1.2rem; }
+.fc-round-title {
+  font-size:.85rem; font-weight:700; color:var(--muted);
+  text-transform:uppercase; letter-spacing:.5px;
+  margin:.8rem 0 .5rem; border-bottom:1px solid #1e3a5f; padding-bottom:.3rem;
+}
+.fc-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:.7rem; margin-bottom:.5rem;
+}
+.fc-card {
+  background:var(--card); border-radius:8px; padding:.7rem;
+  border-left:3px solid var(--blue);
+}
+.fc-matchup {
+  display:flex; justify-content:space-between; font-size:.78rem; font-weight:700; margin-bottom:.4rem;
+}
+.fc-winner { color:var(--gold); font-size:.72rem; margin-bottom:.35rem; }
+.fc-bar-wrap { background:#0d1b2a; border-radius:4px; height:18px; display:flex; overflow:hidden; }
+.fc-bar-1 { background:var(--blue); display:flex; align-items:center; justify-content:center; font-size:.65rem; color:#fff; font-weight:700; }
+.fc-bar-2 { background:var(--red); display:flex; align-items:center; justify-content:center; font-size:.65rem; color:#fff; font-weight:700; flex:1; }
+
+/* ════════════════════════════════
+   NEWS FEED
+   ════════════════════════════════ */
+.news-feed { max-width:1100px; margin:0 auto; padding:1rem 1.2rem; display:grid; gap:.6rem; }
+.nf-card {
+  background:var(--card); border-radius:8px; padding:.7rem 1rem;
+  display:flex; align-items:center; gap:.8rem; cursor:pointer;
+  border:1px solid transparent; text-decoration:none; color:inherit;
+  transition:border-color .2s;
+}
+.nf-card:hover { border-color:var(--gold); }
+.nf-icon { font-size:1.4rem; flex-shrink:0; }
+.nf-meta { flex:1; min-width:0; }
+.nf-type { font-size:.68rem; font-weight:700; color:var(--muted); text-transform:uppercase; }
+.nf-title { font-size:.88rem; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.nf-date { font-size:.72rem; color:var(--muted); }
+.nf-arrow { color:var(--gold); font-size:.85rem; flex-shrink:0; }
+
+/* ── LOADING / EMPTY ── */
+.loading-msg { text-align:center; color:var(--muted); padding:2rem; font-size:.9rem; }
+
+/* ── FOOTER ── */
+footer {
+  background:#070f1a; border-top:2px solid var(--gold);
+  padding:.8rem; text-align:center; color:var(--muted); font-size:.72rem; margin-top:2rem;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .bracket-body { min-width:800px; }
+  .b-col { min-width:100px; }
+  .page-title { font-size:1.1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="page-header-left">
+    <span style="font-size:1.8rem">🏆</span>
+    <div>
+      <div class="page-title" id="hdr-title">Atrinktamosios</div>
+      <div class="page-sub" id="hdr-sub">FIFA Pasaulio Čempionatas 2026 · Atrankos etapas</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:.8rem;align-items:center;">
+    <a class="back-link" href="index.html" id="back-link" onclick="if(window.parent!==window){event.preventDefault();window.parent.location.href='index.html';}">← Grįžti</a>
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btn-lt" onclick="setLang('lt')">LT</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</div>
+
+<!-- BRACKET -->
+<div class="sec-title" id="sec-bracket">🏆 Atrankos Lentelė / Knockout Bracket</div>
+<div class="bracket-wrap">
+  <div class="bracket-body" id="bracket-body">
+    <div class="loading-msg">Kraunama...</div>
+  </div>
+</div>
+
+<!-- UPCOMING MATCHES -->
+<div class="sec-title" id="sec-upcoming">📅 Artėjančios Rungtynės / Upcoming Matches</div>
+<div class="upcoming-grid" id="upcoming-grid">
+  <div class="loading-msg">Kraunama...</div>
+</div>
+
+<!-- FORECASTS -->
+<div class="sec-title" id="sec-forecasts">🔮 Rezultatų Prognozės / Result Forecasts</div>
+<div class="forecasts-section" id="forecasts-section">
+  <div class="loading-msg">Kraunama...</div>
+</div>
+
+<!-- NEWS -->
+<div class="sec-title" id="sec-news">📰 Visos Naujienos / All News</div>
+<div class="news-feed" id="news-feed">
+  <div class="loading-msg">Kraunama...</div>
+</div>
+
+<footer>
+  <p>FIFA Pasaulio Čempionatas 2026™ · Atrankos etapas · <span id="footer-date"></span></p>
+</footer>
+
+<script>
+/* ── i18n ── */
+const i18n = {
+  lt: {
+    title: 'Atrinktamosios',
+    sub: 'FIFA Pasaulio Čempionatas 2026 · Atrankos etapas',
+    back: '← Grįžti',
+    secBracket: '🏆 Atrankos Lentelė',
+    secUpcoming: '📅 Artėjančios Rungtynės',
+    secForecasts: '🔮 Rezultatų Prognozės',
+    secNews: '📰 Visos Naujienos',
+    tbd: 'TBD',
+    champion: 'PASAULIO ČEMPIONAS',
+    bronzeLabel: '🥉 Bronzos Rungtynės',
+    finalLabel: '🏆 FINALAS',
+    noUpcoming: 'Artėjančių rungtynių nėra.',
+    noNews: 'Naujienų nerasta.',
+    openBtn: 'Atidaryti →',
+  },
+  en: {
+    title: 'Knockout Stage',
+    sub: 'FIFA World Cup 2026 · Knockout Stage',
+    back: '← Back',
+    secBracket: '🏆 Knockout Bracket',
+    secUpcoming: '📅 Upcoming Matches',
+    secForecasts: '🔮 Result Forecasts',
+    secNews: '📰 All News',
+    tbd: 'TBD',
+    champion: 'WORLD CHAMPION',
+    bronzeLabel: '🥉 Bronze Match',
+    finalLabel: '🏆 FINAL',
+    noUpcoming: 'No upcoming matches.',
+    noNews: 'No news found.',
+    openBtn: 'Open →',
+  }
+};
+
+let lang = localStorage.getItem('lang') || 'lt';
+let bracketData = null;
+let reportsData = [];
+
+const TYPE_ICONS = { naujienos:'📰', rezultatai:'⚽', rungtynes:'📅', media:'📸' };
+const TYPE_LT   = { naujienos:'Naujienos', rezultatai:'Rezultatai', rungtynes:'Rungtynės', media:'Media' };
+const TYPE_EN   = { naujienos:'News', rezultatai:'Results', rungtynes:'Fixtures', media:'Media' };
+
+/* ── helpers ── */
+function t(k) { return i18n[lang][k] || i18n.lt[k] || k; }
+
+function teamName(team) {
+  if (!team) return t('tbd');
+  return (lang === 'en' && team.nameEN) ? team.nameEN : team.name;
+}
+
+function teamFlag(team) { return team ? team.flag : ''; }
+
+function fmtDate(d) {
+  if (!d) return '';
+  const dt = new Date(d + 'T00:00:00');
+  return lang === 'lt'
+    ? dt.toLocaleDateString('lt-LT', {day:'numeric', month:'short', year:'numeric'})
+    : dt.toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
+}
+
+function fmtDateShort(d) {
+  if (!d) return '';
+  const dt = new Date(d + 'T00:00:00');
+  return lang === 'lt'
+    ? dt.toLocaleDateString('lt-LT', {day:'numeric', month:'short'})
+    : dt.toLocaleDateString('en-GB', {day:'numeric', month:'short'});
+}
+
+function roundLabel(id) {
+  if (!bracketData) return id;
+  const r = bracketData.rounds;
+  if (id.startsWith('R32'))    return lang === 'en' ? r.r32.labelEN : r.r32.labelLT;
+  if (id.startsWith('R16'))    return lang === 'en' ? r.r16.labelEN : r.r16.labelLT;
+  if (id.startsWith('QF'))     return lang === 'en' ? r.qf.labelEN  : r.qf.labelLT;
+  if (id.startsWith('SF'))     return lang === 'en' ? r.sf.labelEN  : r.sf.labelLT;
+  if (id === 'BRONZE')         return lang === 'en' ? r.bronze.labelEN : r.bronze.labelLT;
+  if (id === 'FINAL')          return lang === 'en' ? r.final.labelEN  : r.final.labelLT;
+  return id;
+}
+
+/* ── language switch ── */
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('lang', l);
+  applyLang();
+  if (bracketData) renderAll();
+}
+
+function applyLang() {
+  document.getElementById('btn-lt').classList.toggle('active', lang === 'lt');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+  document.getElementById('hdr-title').textContent = t('title');
+  document.getElementById('hdr-sub').textContent   = t('sub');
+  document.getElementById('back-link').textContent = t('back');
+  document.getElementById('sec-bracket').textContent  = t('secBracket');
+  document.getElementById('sec-upcoming').textContent = t('secUpcoming');
+  document.getElementById('sec-forecasts').textContent= t('secForecasts');
+  document.getElementById('sec-news').textContent     = t('secNews');
+}
+
+/* ════════════════════════════════
+   BRACKET RENDERING
+   ════════════════════════════════ */
+function matchCard(m) {
+  if (!m) {
+    return `<div class="bm"><div class="bm-slot"><span class="bm-team bm-tbd">${t('tbd')}</span></div><div class="bm-slot"><span class="bm-team bm-tbd">${t('tbd')}</span></div></div>`;
+  }
+  const t1 = m.team1, t2 = m.team2;
+  const t1Won = m.winner && t1 && m.winner === t1.name;
+  const t2Won = m.winner && t2 && m.winner === t2.name;
+  const s1 = m.score1 !== null && m.score1 !== undefined ? m.score1 : '';
+  const s2 = m.score2 !== null && m.score2 !== undefined ? m.score2 : '';
+  return `<div class="bm" data-id="${m.id}" data-status="${m.status||''}">
+    <div class="bm-slot${t1Won?' winner':t2Won?' loser':''}">
+      <span class="bm-team${!t1?' bm-tbd':''}">${t1 ? teamFlag(t1)+' '+teamName(t1) : t('tbd')}</span>
+      <span class="bm-score">${s1}</span>
+    </div>
+    <div class="bm-slot${t2Won?' winner':t1Won?' loser':''}">
+      <span class="bm-team${!t2?' bm-tbd':''}">${t2 ? teamFlag(t2)+' '+teamName(t2) : t('tbd')}</span>
+      <span class="bm-score">${s2}</span>
+    </div>
+  </div>`;
+}
+
+function pairHtml(m1, m2) {
+  return `<div class="bm-pair">${matchCard(m1)}${matchCard(m2)}</div>`;
+}
+
+function colLeft(matches, roundKey) {
+  const rl = bracketData.rounds[roundKey];
+  const label = lang === 'en' ? rl.labelEN : rl.labelLT;
+  let inner = '';
+  if (roundKey === 'r32') {
+    inner = pairHtml(matches[0], matches[1])
+          + pairHtml(matches[2], matches[3])
+          + pairHtml(matches[4], matches[5])
+          + pairHtml(matches[6], matches[7]);
+  } else if (roundKey === 'r16') {
+    inner = pairHtml(matches[0], matches[1])
+          + pairHtml(matches[2], matches[3]);
+  } else if (roundKey === 'qf') {
+    inner = pairHtml(matches[0], matches[1]);
+  } else if (roundKey === 'sf') {
+    inner = `<div class="bm-solo">${matchCard(matches[0])}</div>`;
+  }
+  return `<div class="b-col b-left"><div class="round-label">${label}</div>${inner}</div>`;
+}
+
+function colRight(matches, roundKey) {
+  const rl = bracketData.rounds[roundKey];
+  const label = lang === 'en' ? rl.labelEN : rl.labelLT;
+  let inner = '';
+  if (roundKey === 'r32') {
+    inner = pairHtml(matches[0], matches[1])
+          + pairHtml(matches[2], matches[3])
+          + pairHtml(matches[4], matches[5])
+          + pairHtml(matches[6], matches[7]);
+  } else if (roundKey === 'r16') {
+    inner = pairHtml(matches[0], matches[1])
+          + pairHtml(matches[2], matches[3]);
+  } else if (roundKey === 'qf') {
+    inner = pairHtml(matches[0], matches[1]);
+  } else if (roundKey === 'sf') {
+    inner = `<div class="bm-solo">${matchCard(matches[0])}</div>`;
+  }
+  return `<div class="b-col b-right"><div class="round-label">${label}</div>${inner}</div>`;
+}
+
+function centerHtml() {
+  const r  = bracketData.rounds;
+  const fin  = r.final.match;
+  const bro  = r.bronze.match;
+  const champ = bracketData.champion;
+  const finLabel  = lang === 'en' ? r.final.labelEN  : r.final.labelLT;
+  const broLabel  = lang === 'en' ? r.bronze.labelEN : r.bronze.labelLT;
+
+  const t1 = fin.team1, t2 = fin.team2;
+  const t1Won = fin.winner && t1 && fin.winner === t1.name;
+  const t2Won = fin.winner && t2 && fin.winner === t2.name;
+  const bt1 = bro.team1, bt2 = bro.team2;
+  const bt1Won = bro.winner && bt1 && bro.winner === bt1.name;
+  const bt2Won = bro.winner && bt2 && bro.winner === bt2.name;
+
+  return `
+    <div class="b-center">
+      <div class="final-card">
+        <div class="final-card-label">🏆 ${finLabel}</div>
+        <div class="final-card-slot${t1Won?' winner':t2Won?' loser':''}">
+          <span>${t1 ? teamFlag(t1)+' '+teamName(t1) : t('tbd')}</span>
+          <span style="color:var(--gold);font-weight:800;">${fin.score1 !== null && fin.score1 !== undefined ? fin.score1 : ''}</span>
+        </div>
+        <div class="final-card-slot${t2Won?' winner':t1Won?' loser':''}">
+          <span>${t2 ? teamFlag(t2)+' '+teamName(t2) : t('tbd')}</span>
+          <span style="color:var(--gold);font-weight:800;">${fin.score2 !== null && fin.score2 !== undefined ? fin.score2 : ''}</span>
+        </div>
+      </div>
+      <div class="champ-box">
+        <div class="champ-trophy">🏆</div>
+        <div class="champ-label">${t('champion')}</div>
+        <div class="champ-name">${champ ? champ : '?'}</div>
+      </div>
+      <div class="bronze-card">
+        <div class="bronze-label">🥉 ${broLabel}</div>
+        <div class="bronze-slot${bt1Won?' winner':bt2Won?' loser':''}">
+          <span>${bt1 ? teamFlag(bt1)+' '+teamName(bt1) : t('tbd')}</span>
+          <span>${bro.score1 !== null && bro.score1 !== undefined ? bro.score1 : ''}</span>
+        </div>
+        <div class="bronze-slot${bt2Won?' winner':bt1Won?' loser':''}">
+          <span>${bt2 ? teamFlag(bt2)+' '+teamName(bt2) : t('tbd')}</span>
+          <span>${bro.score2 !== null && bro.score2 !== undefined ? bro.score2 : ''}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderBracket() {
+  const r   = bracketData.rounds;
+  const r32 = r.r32.matches;
+  const r16 = r.r16.matches;
+  const qf  = r.qf.matches;
+  const sf  = r.sf.matches;
+
+  const leftR32  = r32.filter(m => m.bracket === 'left');
+  const rightR32 = r32.filter(m => m.bracket === 'right');
+  const leftR16  = r16.filter(m => m.bracket === 'left');
+  const rightR16 = r16.filter(m => m.bracket === 'right');
+  const leftQF   = qf.filter(m => m.bracket === 'left');
+  const rightQF  = qf.filter(m => m.bracket === 'right');
+  const leftSF   = sf.filter(m => m.bracket === 'left');
+  const rightSF  = sf.filter(m => m.bracket === 'right');
+
+  document.getElementById('bracket-body').innerHTML =
+    colLeft(leftR32, 'r32') +
+    colLeft(leftR16, 'r16') +
+    colLeft(leftQF,  'qf')  +
+    colLeft(leftSF,  'sf')  +
+    centerHtml() +
+    colRight(rightSF,  'sf')  +
+    colRight(rightQF,  'qf')  +
+    colRight(rightR16, 'r16') +
+    colRight(rightR32, 'r32');
+}
+
+/* ════════════════════════════════
+   UPCOMING MATCHES
+   ════════════════════════════════ */
+function renderUpcoming() {
+  const today = new Date().toISOString().slice(0, 10);
+  const all   = [];
+  const r = bracketData.rounds;
+
+  function addMatches(matches) {
+    matches.forEach(m => {
+      if (m && m.status === 'scheduled' && m.team1 && m.team2 && m.date >= today) {
+        all.push(m);
+      }
+    });
+  }
+
+  addMatches(r.r32.matches);
+  addMatches(r.r16.matches);
+  addMatches(r.qf.matches);
+  addMatches(r.sf.matches);
+  if (r.bronze.match && r.bronze.match.status === 'scheduled') addMatches([r.bronze.match]);
+  if (r.final.match && r.final.match.status === 'scheduled')   addMatches([r.final.match]);
+
+  all.sort((a, b) => a.date.localeCompare(b.date));
+  const next6 = all.slice(0, 6);
+
+  const grid = document.getElementById('upcoming-grid');
+  if (next6.length === 0) {
+    grid.innerHTML = `<div class="loading-msg">${t('noUpcoming')}</div>`;
+    return;
+  }
+
+  grid.innerHTML = next6.map(m => {
+    const pred = m.prediction;
+    const predHtml = pred ? `
+      <div class="um-pred">
+        <div>
+          <div class="um-pred-bar um-pred-bar-1" style="width:${pred.team1pct}%;min-width:28px">${pred.team1pct}%</div>
+        </div>
+        <div class="um-pred-vs">vs</div>
+        <div>
+          <div class="um-pred-bar um-pred-bar-2" style="width:${pred.team2pct}%;min-width:28px;margin-left:auto">${pred.team2pct}%</div>
+        </div>
+      </div>` : '';
+    return `
+      <div class="um-card">
+        <div class="um-top">
+          <span class="um-round">${roundLabel(m.id)}</span>
+          <span class="um-date">${fmtDateShort(m.date)}${m.time ? ' · '+m.time : ''}</span>
+        </div>
+        <div class="um-teams">
+          <div class="um-team">${teamFlag(m.team1)} ${teamName(m.team1)}</div>
+          <div class="um-vs">vs</div>
+          <div class="um-team">${teamFlag(m.team2)} ${teamName(m.team2)}</div>
+        </div>
+        ${m.venue ? `<div class="um-venue">📍 ${m.venue}</div>` : ''}
+        ${predHtml}
+      </div>`;
+  }).join('');
+}
+
+/* ════════════════════════════════
+   FORECASTS
+   ════════════════════════════════ */
+function renderForecasts() {
+  const sec = document.getElementById('forecasts-section');
+  const r = bracketData.rounds;
+
+  const roundGroups = [
+    { key: 'r32', label: lang === 'en' ? r.r32.labelEN : r.r32.labelLT, matches: r.r32.matches },
+    { key: 'r16', label: lang === 'en' ? r.r16.labelEN : r.r16.labelLT, matches: r.r16.matches },
+    { key: 'qf',  label: lang === 'en' ? r.qf.labelEN  : r.qf.labelLT,  matches: r.qf.matches  },
+    { key: 'sf',  label: lang === 'en' ? r.sf.labelEN  : r.sf.labelLT,  matches: r.sf.matches  },
+  ];
+
+  let html = '';
+  roundGroups.forEach(({ label, matches }) => {
+    const withPred = matches.filter(m => m && m.prediction && m.team1 && m.team2);
+    if (withPred.length === 0) return;
+    html += `<div class="fc-round-title">${label}</div><div class="fc-grid">`;
+    withPred.forEach(m => {
+      const p = m.prediction;
+      const winnerDisplay = p.winner
+        ? (lang === 'en' && m.team1 && m.team1.name === p.winner ? m.team1.nameEN :
+           lang === 'en' && m.team2 && m.team2.name === p.winner ? m.team2.nameEN : p.winner)
+        : '';
+      html += `
+        <div class="fc-card">
+          <div class="fc-matchup">
+            <span>${teamFlag(m.team1)} ${teamName(m.team1)}</span>
+            <span>${teamFlag(m.team2)} ${teamName(m.team2)}</span>
+          </div>
+          ${winnerDisplay ? `<div class="fc-winner">🏅 ${lang==='lt'?'Prognozė':'Prediction'}: <strong>${winnerDisplay}</strong></div>` : ''}
+          <div class="fc-bar-wrap">
+            <div class="fc-bar-1" style="width:${p.team1pct}%">${p.team1pct}%</div>
+            <div class="fc-bar-2" style="width:${p.team2pct}%">${p.team2pct}%</div>
+          </div>
+        </div>`;
+    });
+    html += '</div>';
+  });
+
+  sec.innerHTML = html || `<div class="loading-msg">${lang==='lt'?'Prognozių nėra.':'No forecasts yet.'}</div>`;
+}
+
+/* ════════════════════════════════
+   NEWS FEED
+   ════════════════════════════════ */
+function renderNews() {
+  const feed = document.getElementById('news-feed');
+  if (reportsData.length === 0) {
+    feed.innerHTML = `<div class="loading-msg">${t('noNews')}</div>`;
+    return;
+  }
+  feed.innerHTML = reportsData.map(r => {
+    const icon  = TYPE_ICONS[r.type] || '📄';
+    const typeL = lang === 'en' ? (TYPE_EN[r.type] || r.type) : (TYPE_LT[r.type] || r.type);
+    const title = (lang === 'en' && r.titleEN) ? r.titleEN : r.title;
+    return `
+      <a class="nf-card" href="${r.file}" target="_blank">
+        <div class="nf-icon">${icon}</div>
+        <div class="nf-meta">
+          <div class="nf-type">${typeL}</div>
+          <div class="nf-title">${title}</div>
+          <div class="nf-date">${fmtDate(r.date)}</div>
+        </div>
+        <div class="nf-arrow">${t('openBtn')}</div>
+      </a>`;
+  }).join('');
+}
+
+/* ── render all sections ── */
+function renderAll() {
+  if (bracketData) {
+    renderBracket();
+    renderUpcoming();
+    renderForecasts();
+  }
+  if (reportsData.length > 0) renderNews();
+}
+
+/* ── bootstrap ── */
+applyLang();
+document.getElementById('footer-date').textContent = new Date().toLocaleDateString(
+  lang === 'lt' ? 'lt-LT' : 'en-GB', { year:'numeric', month:'long', day:'numeric' }
+);
+
+Promise.all([
+  fetch('data/bracket.json?v=' + Date.now()).then(r => r.json()),
+  fetch('data/reports.json?v=' + Date.now()).then(r => r.json()),
+]).then(([bracket, reports]) => {
+  bracketData  = bracket;
+  reportsData  = reports.sort((a, b) => b.date.localeCompare(a.date));
+  renderAll();
+}).catch(err => {
+  console.error(err);
+  document.getElementById('bracket-body').innerHTML =
+    `<div class="loading-msg">⚠️ ${lang==='lt'?'Duomenų nepavyko įkelti.':'Could not load data.'}</div>`;
+});
+</script>
+</body>
+</html>

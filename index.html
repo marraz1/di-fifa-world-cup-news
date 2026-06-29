@@ -32,6 +32,11 @@
         <span class="nav-label" data-i18n="navHome">Pagrindinis</span>
       </button>
 
+            <button class="nav-btn" id="nav-knockout" onclick="openReport({file:'atrinktamosios.html',title:'Atrinktamosios',titleEN:'Knockout Stage'})">
+        <span class="nav-icon">🏆</span>
+        <span class="nav-label" id="nav-knockout-label">Atrinktamosios</span>
+      </button>
+
             <div class="sidenav-divider"></div>
 
             <div class="sidenav-section-label" data-lt="NAUJIENOS" data-en="NEWS">NAUJIENOS</div>
@@ -113,8 +118,11 @@
                 loadError: 'Nepavyko įkelti ataskaitų.',
                 openBtn: 'Atidaryti →',
                 navHome: 'Pagrindinis',
+                navKnockout: 'Atrinktamosios',
                 by: 'Autorius:',
                 archiveHeading: 'Archyvas',
+                knockoutLabel: 'Atrinktamosios',
+                knockoutSub: '1/16 · 1/8 · Ketv. · Pusf. · Finalas',
             },
             en: {
                 loading: 'Loading...',
@@ -122,8 +130,11 @@
                 loadError: 'Could not load reports.',
                 openBtn: 'Open →',
                 navHome: 'Home',
+                navKnockout: 'Knockout Stage',
                 by: 'by',
                 archiveHeading: 'Archive',
+                knockoutLabel: 'Knockout Stage',
+                knockoutSub: 'R32 · R16 · QF · SF · Final',
             }
         };
 
@@ -234,10 +245,14 @@
             const grid = document.getElementById('dashboard-grid');
             const t = i18n[currentLang];
 
-            if (reports.length === 0) {
-                grid.innerHTML = '<p class="loading">' + t.noReport + '</p>';
-                return;
-            }
+            const knockoutTile = `<div class="dashboard-tile" tabindex="0" role="button"
+            onclick="openReport({file:'atrinktamosios.html',title:'Atrinktamosios',titleEN:'Knockout Stage'})"
+            onkeydown="if(event.key==='Enter'||event.key===' ')openReport({file:'atrinktamosios.html',title:'Atrinktamosios',titleEN:'Knockout Stage'})">
+          <div class="dashboard-tile-icon">🏆</div>
+          <div class="dashboard-tile-type">${t.knockoutLabel}</div>
+          <div class="dashboard-tile-title">${t.knockoutSub}</div>
+          <div class="dashboard-tile-arrow">${t.openBtn}</div>
+        </div>`;
 
             grid.innerHTML = TYPES.map(({
                 type,
@@ -266,7 +281,7 @@
           <div class="dashboard-tile-title">${getTitle(latest)}</div>
           <div class="dashboard-tile-arrow">${t.openBtn}</div>
         </div>`;
-            }).join('');
+            }).join('') + knockoutTile;
         }
 
         /* ── archive ── */
@@ -328,6 +343,7 @@
             document.documentElement.lang = currentLang;
 
             document.getElementById('nav-home').querySelector('.nav-label').textContent = t.navHome;
+            document.getElementById('nav-knockout-label').textContent = t.navKnockout;
 
             document.querySelectorAll('.sidenav-section-label').forEach(el => {
                 el.textContent = currentLang === 'en' ? el.dataset.en : el.dataset.lt;

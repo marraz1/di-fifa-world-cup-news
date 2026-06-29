@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🗓️ FIFA World Cup 2026 — Šiandienos Rungtynės 2026-06-29</title>
+<style>
+  :root {
+    --dark: #0d1b2a;
+    --gold: #c9a227;
+    --mid: #1e3a5f;
+    --light: #f0f4f8;
+    --red: #c0392b;
+    --blue: #2980b9;
+    --green: #27ae60;
+    --purple: #7b2d8b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--light); font-family: 'Segoe UI', Arial, sans-serif; }
+  header {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-bottom: 3px solid var(--gold);
+    padding: 24px 32px;
+    text-align: center;
+  }
+  header h1 { font-size: 1.6rem; color: var(--gold); }
+  header .sub { color: #aac4dd; font-size: 0.9rem; margin-top: 6px; }
+  .container { max-width: 920px; margin: 32px auto; padding: 0 20px; }
+  .night-divider {
+    background: linear-gradient(135deg, var(--purple), #3a0a4a);
+    border-radius: 10px;
+    text-align: center;
+    padding: 14px 20px;
+    margin: 28px 0 24px;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #e0aaff;
+    border: 1px solid #7b2d8b;
+  }
+  .match-card {
+    background: var(--mid);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  }
+  .match-card.night { border: 2px solid var(--purple); }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: rgba(0,0,0,0.3);
+    flex-wrap: wrap;
+  }
+  .time-chip {
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 900;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 1rem;
+  }
+  .time-chip.night { background: var(--purple); color: #e0aaff; }
+  .group-chip {
+    background: var(--blue);
+    color: #fff;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+  }
+  .venue { color: #7a9cbf; font-size: 0.85rem; margin-left: auto; }
+  .matchup-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 28px 20px 12px;
+    flex-wrap: wrap;
+  }
+  .team-block { text-align: center; flex: 1; min-width: 160px; }
+  .team-flag { font-size: 3rem; }
+  .team-name { font-size: 1.3rem; font-weight: bold; margin-top: 6px; }
+  .team-standing { font-size: 0.78rem; color: #aac4dd; margin-top: 4px; }
+  .vs-box {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #556;
+    padding: 0 8px;
+  }
+  .context-note {
+    margin: 0 20px 16px;
+    background: rgba(0,0,0,0.2);
+    border-left: 3px solid var(--gold);
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #d0e4f4;
+    border-radius: 0 8px 8px 0;
+  }
+  .prob-section { padding: 0 20px 16px; }
+  .prob-section h4 { font-size: 0.82rem; color: var(--gold); margin-bottom: 10px; }
+  .prob-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .prob-label { font-size: 0.78rem; min-width: 120px; color: #aac4dd; }
+  .prob-bar-wrap { flex: 1; background: #0a1622; border-radius: 20px; overflow: hidden; height: 20px; }
+  .prob-bar { height: 100%; border-radius: 20px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 0.72rem; font-weight: bold; }
+  .prob-home { background: var(--blue); color: #fff; }
+  .prob-draw { background: #556; color: #ddd; }
+  .prob-away { background: var(--red); color: #fff; }
+  .players-section { padding: 0 20px 20px; }
+  .players-section h4 { font-size: 0.85rem; color: var(--gold); margin-bottom: 12px; }
+  .players-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width: 550px) { .players-grid { grid-template-columns: 1fr; } }
+  .player-card {
+    background: rgba(0,0,0,0.25);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .player-name { font-weight: bold; font-size: 0.9rem; margin-bottom: 4px; }
+  .player-role { font-size: 0.75rem; color: var(--gold); margin-bottom: 4px; }
+  .player-why { font-size: 0.78rem; color: #aac4dd; line-height: 1.5; }
+  .broadcast-section { padding: 0 20px 20px; }
+  .broadcast-section h4 { font-size: 0.85rem; color: var(--gold); margin-bottom: 10px; }
+  .channel-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ch-badge {
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: bold;
+  }
+  .ch-viaplay { background: #1a1a6e; color: #9999ff; border: 1px solid #3333aa; }
+  .ch-fifaplus { background: #003d7a; color: #4db8ff; border: 1px solid #0066cc; }
+  .ch-fox { background: #001f5c; color: #6699ff; border: 1px solid #003399; }
+  .ch-bbc { background: #c00; color: #fff; }
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: #556;
+    font-size: 0.8rem;
+    border-top: 1px solid #1e3a5f;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>🗓️ FIFA World Cup 2026 — Šiandienos Rungtynės</h1>
+  <div class="sub">2026 m. birželio 29 d. · 32-asis turas (Atkrintamosios) · Laikai EEST (GMT+3)</div>
+</header>
+<div class="container">
+
+  <!-- Match 1: Brazil vs Japan -->
+  <div class="match-card">
+    <div class="card-header">
+      <span class="time-chip">20:00</span>
+      <span class="group-chip">32-asis turas · C gr. vs F gr.</span>
+      <span class="venue">📍 NRG Stadium, Hjustonas, Teksasas</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <div class="team-flag">🇧🇷</div>
+        <div class="team-name">Brazilija</div>
+        <div class="team-standing">🏆 C grupė — 1 vieta</div>
+      </div>
+      <div class="vs-box">vs</div>
+      <div class="team-block">
+        <div class="team-flag">🇯🇵</div>
+        <div class="team-name">Japonija</div>
+        <div class="team-standing">🥈 F grupė — 2 vieta</div>
+      </div>
+    </div>
+    <div class="context-note">
+      🔥 Brazilija įžengė į atkrintamąsias be pralaimėjimų — Vinicius Jr. jau pelnė 4 įvarčius turnyre. Japonija atstovauja Azijos futbolo galiai — 2022 m. ji pašalino Vokietiją ir Ispaniją. Tai žavingos kultūros susidūrimas Teksaso arenoje.
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <span class="prob-label">🇧🇷 Brazilija</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:72%">72%</div></div>
+      </div>
+      <div class="prob-row">
+        <span class="prob-label">🤝 Lygiosios</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:16%">16%</div></div>
+      </div>
+      <div class="prob-row">
+        <span class="prob-label">🇯🇵 Japonija</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:12%">12%</div></div>
+      </div>
+    </div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card">
+          <div class="player-name">🇧🇷 Vinicius Jr.</div>
+          <div class="player-role">Kairiojo sparno užpuolikas · Real Madrid</div>
+          <div class="player-why">4 įvarčiai turnyre, 1 pasalas. Greičiausias žaidėjas lauke, geba keisti rungtynes akimirksniu. VAR jau keletą kartų gelbėjo nuo baudinių.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇧🇷 Rodrygo</div>
+          <div class="player-role">Puolimo poltufuolikas · Real Madrid</div>
+          <div class="player-why">Genialus techniškas žaidėjas, puikiai žaidžia prie siaurų kampų. Galimas Vinicius papildymas ar pagrindinis variantas.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇯🇵 Takefusa Kubo</div>
+          <div class="player-role">Kairysis sparnas · Real Sociedad</div>
+          <div class="player-why">Japonijos kūrybinis centras — drąsus driblingo žaidėjas, gali sukelti netikėtumų prieš bet kurį gynybą. Pats pavojingiausias japonas ofenzyvoje.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇯🇵 Ayase Ueda</div>
+          <div class="player-role">Centravardis · Feyenoord</div>
+          <div class="player-why">Japonijos pagrindinė galia atakoje. Geras antros aikštelės žaidimas ir šuoliai. Jei Japonija kurs atakų, Ueda bus pagrindinis grėsmės šaltinis.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Per ką žiūrėti</h4>
+      <div class="channel-badges">
+        <span class="ch-badge ch-viaplay">Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-fifaplus">FIFA+ (nemokamas srautas)</span>
+        <span class="ch-badge ch-fox">Fox Sports (JAV)</span>
+        <span class="ch-badge ch-bbc">BBC Sport (JK)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Match 2: Germany vs Paraguay -->
+  <div class="match-card">
+    <div class="card-header">
+      <span class="time-chip">23:30</span>
+      <span class="group-chip">32-asis turas · E gr. vs geriausias 3.</span>
+      <span class="venue">📍 Gillette Stadium, Foksboro, Masačusetsas</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <div class="team-flag">🇩🇪</div>
+        <div class="team-name">Vokietija</div>
+        <div class="team-standing">🏆 E grupė — 1 vieta</div>
+      </div>
+      <div class="vs-box">vs</div>
+      <div class="team-block">
+        <div class="team-flag">🇵🇾</div>
+        <div class="team-name">Paragvajus</div>
+        <div class="team-standing">⭐ Geriausias 3. (D gr.)</div>
+      </div>
+    </div>
+    <div class="context-note">
+      ⚠️ Paragvajaus lyderis Miguelis Almirónas atsidūrė po raudonos kortelės anksčiau turnyre (pašalintas už burnos pridengimą konfrontacijos metu — naujos taisyklės), galimas praleidimas. Vokietija veržiasi kaip pretendentė į taurę po stiprios grupių etapo rodiklio.
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <span class="prob-label">🇩🇪 Vokietija</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:68%">68%</div></div>
+      </div>
+      <div class="prob-row">
+        <span class="prob-label">🤝 Lygiosios</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:19%">19%</div></div>
+      </div>
+      <div class="prob-row">
+        <span class="prob-label">🇵🇾 Paragvajus</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:13%">13%</div></div>
+      </div>
+    </div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card">
+          <div class="player-name">🇩🇪 Floriano Virtzo</div>
+          <div class="player-role">Atakuojantis poltufuolikas · Bayer Leverkusen</div>
+          <div class="player-why">Jauniausias ir kūrybiškiausias Vokietijos žaidėjas — greiti prasilaužimai, drąsios perdavimų linijos. 2024 m. Europos čempionate žibėjo.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇩🇪 Kai Havertz</div>
+          <div class="player-role">Centravardis · Arsenal</div>
+          <div class="player-why">Universalus puolimas — gali žaisti tiek centre, tiek iš giliau. Geras galvos smūgis ir techninis meistriškumas baudos aikštelėje.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇵🇾 Junioris Alonso</div>
+          <div class="player-role">Gynybos centras · Athletic Bilbao</div>
+          <div class="player-why">Paragvajaus gynybos ramstis — agresyvus, bet disciplinuotas (skirtingai nei Almirónas). Svarbiausias žmogus stabdant Vokietijos atakas.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇵🇾 Randal Kolo Muani</div>
+          <div class="player-role">Atsarginis užpuolikas</div>
+          <div class="player-why">⚠️ Jei Almirónas praleistas — Paragvajui reikės pakaitalų atakoje. Komandos atako potencialas priklausys nuo to, kas kils paremti.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Per ką žiūrėti</h4>
+      <div class="channel-badges">
+        <span class="ch-badge ch-viaplay">Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-fifaplus">FIFA+ (nemokamas srautas)</span>
+        <span class="ch-badge ch-fox">Fox Sports (JAV)</span>
+        <span class="ch-badge ch-bbc">BBC Sport (JK)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Night divider -->
+  <div class="night-divider">🌙 NAKTIES RUNGTYNĖS — Po vidurnakčio (04:00 EEST, birž. 30)</div>
+
+  <!-- Match 3: Netherlands vs Morocco -->
+  <div class="match-card night">
+    <div class="card-header">
+      <span class="time-chip night">04:00 🌙</span>
+      <span class="group-chip">32-asis turas · F gr. vs C gr.</span>
+      <span class="venue">📍 Estadio BBVA, Montėrėjus, Meksika</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-block">
+        <div class="team-flag">🇳🇱</div>
+        <div class="team-name">Nyderlandai</div>
+        <div class="team-standing">🏆 F grupė — 1 vieta</div>
+      </div>
+      <div class="vs-box">vs</div>
+      <div class="team-block">
+        <div class="team-flag">🇲🇦</div>
+        <div class="team-name">Marokas</div>
+        <div class="team-standing">🥈 C grupė — 2 vieta</div>
+      </div>
+    </div>
+    <div class="context-note">
+      🌙 <strong>Nakties drama Meksikoje!</strong> Marokas 2022 m. pasaulio čempionate siekė pusfinalio — tai viena drąsiausių Afrikos komandų pastaraisiais metais. Nyderlandai įveikė Tunisą finaliniame grupių mače, bet pasirodymas nebuvo tobulas. Tikėtinas atakuojantis ir fizinis žaidimas.
+    </div>
+    <div class="prob-section">
+      <h4>📊 Pergalės tikimybė</h4>
+      <div class="prob-row">
+        <span class="prob-label">🇳🇱 Nyderlandai</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-home" style="width:55%">55%</div></div>
+      </div>
+      <div class="prob-row">
+        <span class="prob-label">🤝 Lygiosios</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-draw" style="width:25%">25%</div></div>
+      </div>
+      <div class="prob-row">
+        <span class="prob-label">🇲🇦 Marokas</span>
+        <div class="prob-bar-wrap"><div class="prob-bar prob-away" style="width:20%">20%</div></div>
+      </div>
+    </div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="players-grid">
+        <div class="player-card">
+          <div class="player-name">🇳🇱 Cody Gakpo</div>
+          <div class="player-role">Kairiojo sparno užpuolikas · Liverpool</div>
+          <div class="player-why">Nyderlandų puolimo lyderis — puikus techninis žaidėjas, gali žaisti kaip centrinis puolėjas. 2022 m. WC pelnė 3 įvarčius.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇳🇱 Xavi Simons</div>
+          <div class="player-role">Atakuojantis centras · PSG</div>
+          <div class="player-why">Vienas kūrybiškiausių žaidėjų šiame turnyre — greitų sprendimų priėmimas, puikūs tolimi perdavimai ir gebėjimas pralauži blokus.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇲🇦 Achrafas Hakimi</div>
+          <div class="player-role">Dešinysis gynėjas / Kapitonas · PSG</div>
+          <div class="player-why">Vienas geriausių šoninio gynėjo-puoliko žaidėjų pasaulyje. Jo prasilaužimai ir perdavimai kuria daugiausiai pavojaus Maroko atakoje.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">🇲🇦 Sofiane Boufal</div>
+          <div class="player-role">Kairiojo sparno užpuolikas</div>
+          <div class="player-why">2022 m. žvaigždė — nepaprastas driblingo žaidėjas, gebantis pereiti kelis gynėjus. Marokas priklauso nuo jo kūrybinės energijos.</div>
+        </div>
+      </div>
+    </div>
+    <div class="broadcast-section">
+      <h4>📺 Per ką žiūrėti (Naktis)</h4>
+      <div class="channel-badges">
+        <span class="ch-badge ch-viaplay">Viaplay (Lietuva)</span>
+        <span class="ch-badge ch-fifaplus">FIFA+ (nemokamas srautas)</span>
+        <span class="ch-badge ch-fox">Fox Sports (JAV)</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<footer>FIFA World Cup 2026™ · Rungtynių apžvalga · 2026-06-29 · Visi laikai EEST (GMT+3) · Šaltiniai: ESPN, Yahoo Sports, NBC Sports, FIFA.com</footer>
+</body>
+</html>

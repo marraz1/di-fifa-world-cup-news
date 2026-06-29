@@ -96,10 +96,56 @@ Read the current `data/reports.json` and prepend a new entry at the top of the a
 
 The file is sorted newest-first; prepending keeps the order correct as long as the new date is the latest.
 
+## Step 3.5 — Auto-update knockout bracket from the uploaded report
+
+After updating `reports.json`, **automatically** read both the just-created report HTML and `data/bracket.json` in parallel. Extract bracket-relevant information from the HTML without asking the user first.
+
+### How to extract results from HTML
+
+Read the full text content of the report HTML. For each match in `bracket.json` whose `status` is not `"finished"`:
+
+1. Check whether **both team names** (Lithuanian `name` field, or common shortened forms) appear in the HTML near each other.
+2. Look for a **score pattern** nearby: `X–Y`, `X:Y`, `X-Y`, `X — Y` (where X and Y are digits). Also look for phrases like "X–Y … nugalėjo" (won), "laimėjo" (won), "įveikė" (defeated).
+3. If a clear winner + score is found, that match has a confirmed result.
+
+Be flexible with name matching — e.g. "P. Afrika", "Pietų Afrika", "South Africa" all refer to the same team. Match against both `name` (Lithuanian) and `nameEN` (English) fields.
+
+### For `rezultatai` (results) or `naujienos` (news) reports
+
+1. Scan the HTML and identify all knockout matches with confirmed scores.
+2. For each confirmed match result, find it in `bracket.json` by matching team names to a bracket slot:
+   - Set `score1`, `score2` (integers), `winner` (Lithuanian `name`), `status: "finished"`
+3. Advance the winner to the next round:
+   - Find which R16/QF/SF match has `feedsFrom` containing this match's ID.
+   - Fill `team1` if this match is the lower-indexed entry in `feedsFrom`, else `team2`.
+   - If both team slots in the next-round match are now filled, set its `status` to `"scheduled"`.
+4. If finishing an SF: loser → `bronze.match` (team1 or team2 by same lower/higher index rule), winner → `final.match`.
+5. Write the updated `data/bracket.json`.
+
+### For `rungtynes` (fixtures) reports
+
+1. Scan the HTML for upcoming knockout matches: team names, date, time, venue, prediction percentages.
+2. For each match found:
+   - If `date`, `time`, or `venue` in `bracket.json` differ from what's in the report, update them.
+   - If probability bars are shown (e.g. "72%"), update `prediction.team1pct` / `prediction.team2pct` and `prediction.winner`.
+3. Write the updated `data/bracket.json` if anything changed.
+
+### For `media` reports
+
+Skip bracket update — media reports don't contain match data.
+
+### After updating (or if nothing changed)
+
+Do **not** ask the user for manual input. Simply report in Step 4 what was found and updated (or "no bracket changes detected" if nothing matched).
+
 ## Step 4 — Confirm
 
 Tell the user:
 - What file was created
 - That the new report is now the featured card for its category on the home page
 - That any previous report of the same type has automatically moved to the Archive section
-- Remind them to refresh the browser (the server is already running on port 8080)
+- Bracket update summary (one of):
+  - Which matches were marked finished, scores, and which next-round slots were filled
+  - Which upcoming match details (dates/venues/predictions) were updated
+  - "No knockout changes detected in this report" — if nothing matched
+- Remind them to hard-refresh the browser (`Ctrl+Shift+R`) — the server is already running on port 8080
