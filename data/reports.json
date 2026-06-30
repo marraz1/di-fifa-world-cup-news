@@ -8,6 +8,30 @@
     "file": "reports/naujienos_2026-06-30.html"
   },
   {
+    "date": "2026-06-30",
+    "type": "rezultatai",
+    "title": "Vakarykščiai Rezultatai",
+    "titleEN": "Yesterday's Results",
+    "author": "FIFA analitikas",
+    "file": "reports/rezultatai_2026-06-30.html"
+  },
+  {
+    "date": "2026-06-30",
+    "type": "rungtynes",
+    "title": "Šiandienos Rungtynės",
+    "titleEN": "Today's Fixtures",
+    "author": "FIFA analitikas",
+    "file": "reports/rungtynes_2026-06-30.html"
+  },
+  {
+    "date": "2026-06-30",
+    "type": "media",
+    "title": "Dienos Geriausi Momentai",
+    "titleEN": "Best Moments of the Day",
+    "author": "FIFA analitikas",
+    "file": "reports/media_2026-06-30.html"
+  },
+  {
     "date": "2026-06-29",
     "type": "naujienos",
     "title": "Naujienos",
