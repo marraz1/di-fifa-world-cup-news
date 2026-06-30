@@ -17,27 +17,27 @@
           "id": "R32-2", "bracket": "left",
           "team1": {"name": "Nyderlandai","nameEN": "Netherlands","flag": "🇳🇱", "from": "F1"},
           "team2": {"name": "Marokas",    "nameEN": "Morocco",    "flag": "🇲🇦", "from": "C2"},
-          "score1": null, "score2": null, "winner": null,
+          "score1": 1, "score2": 1, "winner": "Marokas",
           "date": "2026-06-30", "time": "04:00 EEST", "venue": "Estadio BBVA, Monterrey, Mexico",
-          "status": "scheduled",
+          "status": "finished",
           "prediction": {"winner": "Nyderlandai", "team1pct": 55, "team2pct": 45}
         },
         {
           "id": "R32-3", "bracket": "left",
           "team1": {"name": "Brazilija","nameEN": "Brazil","flag": "🇧🇷", "from": "C1"},
           "team2": {"name": "Japonija", "nameEN": "Japan", "flag": "🇯🇵", "from": "F2"},
-          "score1": null, "score2": null, "winner": null,
+          "score1": 2, "score2": 1, "winner": "Brazilija",
           "date": "2026-06-29", "time": "20:00 EEST", "venue": "NRG Stadium, Houston, TX",
-          "status": "scheduled",
+          "status": "finished",
           "prediction": {"winner": "Brazilija", "team1pct": 72, "team2pct": 28}
         },
         {
           "id": "R32-4", "bracket": "left",
           "team1": {"name": "Vokietija", "nameEN": "Germany",  "flag": "🇩🇪", "from": "E1"},
           "team2": {"name": "Paragvajus","nameEN": "Paraguay", "flag": "🇵🇾", "from": "D3"},
-          "score1": null, "score2": null, "winner": null,
+          "score1": 1, "score2": 1, "winner": "Paragvajus",
           "date": "2026-06-29", "time": "23:30 EEST", "venue": "Gillette Stadium, Foxborough, MA",
-          "status": "scheduled",
+          "status": "finished",
           "prediction": {"winner": "Vokietija", "team1pct": 68, "team2pct": 32}
         },
         {
@@ -156,14 +156,14 @@
       "matches": [
         {
           "id": "R16-1", "bracket": "left", "feedsFrom": ["R32-1", "R32-2"],
-          "team1": {"name": "Kanada","nameEN": "Canada","flag": "🇨🇦"}, "team2": null,
+          "team1": {"name": "Kanada","nameEN": "Canada","flag": "🇨🇦"}, "team2": {"name": "Marokas","nameEN": "Morocco","flag": "🇲🇦"},
           "score1": null, "score2": null, "winner": null,
           "date": "2026-07-04", "time": null, "venue": "NRG Stadium, Houston, TX", "status": "scheduled", "prediction": null
         },
         {
           "id": "R16-2", "bracket": "left", "feedsFrom": ["R32-3", "R32-4"],
-          "team1": null, "team2": null, "score1": null, "score2": null, "winner": null,
-          "date": "2026-07-04", "time": null, "venue": null, "status": "pending", "prediction": null
+          "team1": {"name": "Brazilija","nameEN": "Brazil","flag": "🇧🇷"}, "team2": {"name": "Paragvajus","nameEN": "Paraguay","flag": "🇵🇾"}, "score1": null, "score2": null, "winner": null,
+          "date": "2026-07-04", "time": null, "venue": null, "status": "scheduled", "prediction": null
         },
         {
           "id": "R16-3", "bracket": "left", "feedsFrom": ["R32-5", "R32-6"],

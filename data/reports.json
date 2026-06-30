@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-06-30",
+    "type": "naujienos",
+    "title": "Naujienos",
+    "titleEN": "Daily News",
+    "author": "FIFA analitikas",
+    "file": "reports/naujienos_2026-06-30.html"
+  },
+  {
     "date": "2026-06-29",
     "type": "naujienos",
     "title": "Naujienos",

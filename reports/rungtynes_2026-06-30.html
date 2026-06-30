@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup 2026 — Šiandienos Rungtynės 2026-06-30</title>
+<style>
+  :root {
+    --dark: #0d1b2a;
+    --gold: #c9a227;
+    --mid: #1e3a5f;
+    --light: #f0f4f8;
+    --red: #c0392b;
+    --blue: #2980b9;
+    --green: #27ae60;
+    --orange: #e67e22;
+    --purple: #8e44ad;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dark); color: var(--light); font-family: 'Segoe UI', Arial, sans-serif; }
+  header {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-bottom: 3px solid var(--gold);
+    padding: 28px 20px 20px;
+    text-align: center;
+  }
+  header h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); color: var(--gold); margin-bottom: 6px; }
+  header p { color: #9ab; font-size: 0.9rem; }
+  main { max-width: 960px; margin: 32px auto; padding: 0 16px; display: flex; flex-direction: column; gap: 28px; }
+
+  /* Night divider */
+  .night-divider {
+    background: linear-gradient(90deg, var(--purple), #6a1a9a);
+    border-radius: 10px;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(142,68,173,0.5);
+  }
+
+  .match-card {
+    background: var(--mid);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  .match-card.night { border: 1px solid var(--purple); }
+
+  .match-header {
+    background: rgba(0,0,0,0.3);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .time-chip {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--gold);
+    background: rgba(201,162,39,0.15);
+    padding: 4px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--gold);
+  }
+  .time-chip.night { background: rgba(142,68,173,0.3); color: #d090ff; border-color: var(--purple); }
+  .group-chip {
+    background: var(--gold);
+    color: #000;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+  }
+  .venue { color: #8ab0c0; font-size: 0.82rem; }
+
+  .matchup-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 24px 20px 12px;
+    flex-wrap: wrap;
+  }
+  .team-col { text-align: center; flex: 1; min-width: 130px; }
+  .team-flag-name { font-size: 1.25rem; font-weight: bold; }
+  .team-standing { font-size: 0.75rem; color: #7a9ab0; margin-top: 5px; }
+  .vs-divider { font-size: 1.8rem; color: #567; font-weight: 900; }
+
+  .prob-section { padding: 14px 20px; }
+  .prob-label { font-size: 0.78rem; color: #8ab; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .prob-bars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .prob-bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .prob-bar-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+  .prob-bar-fill { height: 100%; border-radius: 4px; }
+  .prob-val { font-size: 0.85rem; font-weight: bold; }
+  .prob-name { font-size: 0.7rem; color: #7a9ab0; }
+
+  .context-note {
+    background: rgba(0,0,0,0.2);
+    margin: 0 20px 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border-left: 3px solid var(--gold);
+    font-size: 0.88rem;
+    color: #bcd;
+    line-height: 1.55;
+  }
+
+  .watch-section { padding: 0 20px 16px; }
+  .watch-label { font-size: 0.78rem; color: #8ab; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .channel-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ch-badge {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  .ch-lt   { background: var(--blue); color: #fff; }
+  .ch-int  { background: #333; color: #ccc; border: 1px solid #555; }
+  .ch-free { background: var(--green); color: #fff; }
+
+  .players-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  @media (max-width: 480px) { .players-grid { grid-template-columns: 1fr; } }
+  .player-block { background: rgba(255,255,255,0.03); padding: 14px 16px; }
+  .player-block h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 10px; }
+  .player-card { margin-bottom: 10px; }
+  .player-name { font-size: 0.92rem; font-weight: bold; color: var(--light); }
+  .player-role { font-size: 0.72rem; color: var(--gold); margin: 2px 0; }
+  .player-why  { font-size: 0.78rem; color: #9ab0c0; line-height: 1.45; }
+
+  footer { text-align: center; padding: 24px; color: #567; font-size: 0.8rem; border-top: 1px solid #1e3a5f; margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🗓️ FIFA World Cup 2026 — Šiandienos Rungtynės</h1>
+  <p>2026 m. birželio 30 d. · Aštuntfinalis (32-jų etapas) · 3 rungtynės · Laikai EEST (GMT+3)</p>
+</header>
+
+<main>
+
+  <!-- MATCH 1: Ivory Coast vs Norway — 20:00 EEST -->
+  <div class="match-card">
+    <div class="match-header">
+      <span class="time-chip">⏰ 20:00 EEST</span>
+      <span class="group-chip">Aštuntfinalis</span>
+      <span class="venue">📍 AT&amp;T Stadium · Dalasas, Teksasas</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-col">
+        <div class="team-flag-name">🇨🇮 Dramblio Kaulo Krantas</div>
+        <div class="team-standing">E grupė • 2 vieta • 6 tšk • GS: +2</div>
+      </div>
+      <div class="vs-divider">VS</div>
+      <div class="team-col">
+        <div class="team-flag-name">🇳🇴 Norvegija</div>
+        <div class="team-standing">I grupė • 2 vieta • 6 tšk • GS: +1</div>
+      </div>
+    </div>
+
+    <div class="prob-section">
+      <div class="prob-label">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:#e67e22">35%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:35%;background:var(--orange)"></div></div>
+          <div class="prob-name">🇨🇮 DKK</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:#7a9ab0">25%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:25%;background:#567"></div></div>
+          <div class="prob-name">Lygiosios / Prat.</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:var(--blue)">40%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:40%;background:var(--blue)"></div></div>
+          <div class="prob-name">🇳🇴 Norvegija</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="context-note">
+      Norvegija turi pranašumą dėl <strong>Erlingo Haalandо</strong> (4 įvarčiai grupiniame etape), tačiau Dramblio Kaulo Krantas turės namų šalies sirgalių palaikymą ir gali sukurti netikėtumą. Abu kolektyvai pirmąkart susitinka čempionate.
+    </div>
+
+    <div class="players-grid">
+      <div class="player-block">
+        <h4>⭐ Žaidėjai stebėjimui — 🇨🇮 DKK</h4>
+        <div class="player-card">
+          <div class="player-name">Sébastien Haller</div>
+          <div class="player-role">🎯 Puolėjas (9)</div>
+          <div class="player-why">Pagrindinis DKK puolėjas, patyręs Dortmundo ir Ajakso klube. Pavojingas prie standartinių padėčių ir galvos smūgiais.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Franck Kessié</div>
+          <div class="player-role">🛡️ Vidurio gynėjas (8)</div>
+          <div class="player-why">Fiziškai stiprus centras, kuris kontroliuoja vidurio lauką ir leidžia komandai naudoti kontraatakas.</div>
+        </div>
+      </div>
+      <div class="player-block">
+        <h4>⭐ Žaidėjai stebėjimui — 🇳🇴 Norvegija</h4>
+        <div class="player-card">
+          <div class="player-name">Erling Haaland</div>
+          <div class="player-role">🎯 Puolėjas (9)</div>
+          <div class="player-why">Turnyre jau 4 įvarčiai. Neginamas Europos aukso bato lyderis, pavojingas bet kokioje situacijoje prieš vartus.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Martin Ødegaard</div>
+          <div class="player-role">🎭 Kūrybinis viduriniokas (10)</div>
+          <div class="player-why">Arsenalo kapitonas, kuris organizuoja Norvegijos atakas ir yra pagrindinis asistų bei pasiutusių smūgių autorius.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="watch-section" style="margin-top:12px">
+      <div class="watch-label">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">📡 Viaplay (LT)</span>
+        <span class="ch-badge ch-free">🌐 FIFA+ (nemokama)</span>
+        <span class="ch-badge ch-int">🦊 FOX Sports (JAV)</span>
+        <span class="ch-badge ch-int">📱 BBC iPlayer (JK)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATCH 2: France vs Sweden — 00:00 EEST (July 1) -->
+  <div class="match-card">
+    <div class="match-header">
+      <span class="time-chip">⏰ 00:00 EEST (liepos 1 d.)</span>
+      <span class="group-chip">Aštuntfinalis</span>
+      <span class="venue">📍 MetLife Stadium · East Rutherford, Naujasis Džersis</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-col">
+        <div class="team-flag-name">🇫🇷 Prancūzija</div>
+        <div class="team-standing">I grupė • 1 vieta • 9 tšk • GS: +8</div>
+      </div>
+      <div class="vs-divider">VS</div>
+      <div class="team-col">
+        <div class="team-flag-name">🇸🇪 Švedija</div>
+        <div class="team-standing">F grupė • 3 vieta • 4 tšk • GS: 0</div>
+      </div>
+    </div>
+
+    <div class="prob-section">
+      <div class="prob-label">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:var(--blue)">78%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:78%;background:var(--blue)"></div></div>
+          <div class="prob-name">🇫🇷 Prancūzija</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:#7a9ab0">12%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:12%;background:#567"></div></div>
+          <div class="prob-name">Lygiosios / Prat.</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:var(--orange)">10%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:10%;background:var(--orange)"></div></div>
+          <div class="prob-name">🇸🇪 Švedija</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="context-note">
+      Prancūzija įtikinamiausiai žaidė grupiniame etape: 3+ įvarčiai kiekviename mače, +8 GS. <strong>Mbappé</strong> (4 įvarčiai) ir <strong>Dembélé</strong> (4 įvarčiai) suformavo vieną baisiausių puolimo duetų. Švedija praėjo kaip viena geriausių 3-iųjų komandų (5:1 pralaimėjimas Nyderlandams), tačiau nugalėjo Tunisiją ir lygiojo su Japonija.
+    </div>
+
+    <div class="players-grid">
+      <div class="player-block">
+        <h4>⭐ Žaidėjai stebėjimui — 🇫🇷 Prancūzija</h4>
+        <div class="player-card">
+          <div class="player-name">Kylian Mbappé</div>
+          <div class="player-role">🎯 Puolėjas / Kapitonas (10)</div>
+          <div class="player-why">4 įvarčiai grupiniame etape. Vienas greičiausių pasaulio žaidėjų — Švedija sunkiai galės jį sustabdyti.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Ousmane Dembélé</div>
+          <div class="player-role">⚡ Kairysis sparnas (11)</div>
+          <div class="player-why">4 įvarčiai ir 1 asistas. Bayern spalvomis pelnė 25 asistus sezone — šiame čempionate dar kartą patvirtina pasaulinę klasę.</div>
+        </div>
+      </div>
+      <div class="player-block">
+        <h4>⭐ Žaidėjai stebėjimui — 🇸🇪 Švedija</h4>
+        <div class="player-card">
+          <div class="player-name">Alexander Isak</div>
+          <div class="player-role">🎯 Puolėjas (9)</div>
+          <div class="player-why">Newcastle puolėjas, vienas pavojingiausių Švedijai. Jei komanda nori padaryti netikėtumą, Isakas turi pasirodyti geriausiai.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Viktor Gyökeres</div>
+          <div class="player-role">🎭 Puolėjas (23)</div>
+          <div class="player-why">Sporting CP žaidėjas, turintis didelę fizinę jėgą. Gali pakelti Prancūzijos gynybai problemų standartinėse situacijose.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="watch-section" style="margin-top:12px">
+      <div class="watch-label">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">📡 Viaplay (LT)</span>
+        <span class="ch-badge ch-free">🌐 FIFA+ (nemokama)</span>
+        <span class="ch-badge ch-int">🦊 FOX Sports (JAV)</span>
+        <span class="ch-badge ch-int">📱 beIN Sports (INT)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Night divider -->
+  <div class="night-divider">🌙 NAKTIES RUNGTYNĖS — Toliau po vidurnakčio</div>
+
+  <!-- MATCH 3: Mexico vs Ecuador — 04:00 EEST (July 1) -->
+  <div class="match-card night">
+    <div class="match-header">
+      <span class="time-chip night">🌙 04:00 EEST (liepos 1 d.)</span>
+      <span class="group-chip">Aštuntfinalis</span>
+      <span class="venue">📍 Estadio Azteca · Meksiko miestas, Meksika</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team-col">
+        <div class="team-flag-name">🇲🇽 Meksika</div>
+        <div class="team-standing">A grupė • 1 vieta • 9 tšk • GS: +6</div>
+      </div>
+      <div class="vs-divider">VS</div>
+      <div class="team-col">
+        <div class="team-flag-name">🇪🇨 Ekvadoras</div>
+        <div class="team-standing">E grupė • 3 vieta • 4 tšk • GS: 0</div>
+      </div>
+    </div>
+
+    <div class="prob-section">
+      <div class="prob-label">📊 Pergalės tikimybės</div>
+      <div class="prob-bars">
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:var(--green)">58%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:58%;background:var(--green)"></div></div>
+          <div class="prob-name">🇲🇽 Meksika</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:#7a9ab0">22%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:22%;background:#567"></div></div>
+          <div class="prob-name">Lygiosios / Prat.</div>
+        </div>
+        <div class="prob-bar-wrap">
+          <div class="prob-val" style="color:var(--orange)">20%</div>
+          <div class="prob-bar-bg"><div class="prob-bar-fill" style="width:20%;background:var(--orange)"></div></div>
+          <div class="prob-name">🇪🇨 Ekvadoras</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="context-note">
+      Meksika žaidžia namie — Aztekų stadionas, vienas ikoniskiausių pasaulio futbolo arenų, bus su meksikiečių sirgaliais. <strong>Raúl Jiménez</strong> vedė komandą į grupiniame etape su įvarčiais. Ekvadoras per 3:0 pralaimėjimą Vokietijai pasidavė, tačiau susirinko vėliau ir praėjo kaip geriausias 3-ioji komanda E grupėje.
+    </div>
+
+    <div class="players-grid">
+      <div class="player-block">
+        <h4>⭐ Žaidėjai stebėjimui — 🇲🇽 Meksika</h4>
+        <div class="player-card">
+          <div class="player-name">Raúl Jiménez</div>
+          <div class="player-role">🎯 Pagrindinis puolėjas (9)</div>
+          <div class="player-why">Pelno įvarčius grupiniame etape ir yra Meksikos atakos širdis. Aztekų stadionas bus jo 12-as žaidėjas.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Hirving Lozano</div>
+          <div class="player-role">⚡ Dešinysis sparnas (22)</div>
+          <div class="player-why">„Chucky" — greičiausias Meksikos žaidėjas, pavojingas atvirose erdvėse. Gali nuleisti Ekvadoro gynybą.</div>
+        </div>
+      </div>
+      <div class="player-block">
+        <h4>⭐ Žaidėjai stebėjimui — 🇪🇨 Ekvadoras</h4>
+        <div class="player-card">
+          <div class="player-name">Moisés Caicedo</div>
+          <div class="player-role">🛡️ Vidurio gynėjas (25)</div>
+          <div class="player-why">Chelsea žaidėjas ir Ekvadoro laukas valdytojas. Jo efektyvumas nuspręs, ar Ekvadoras galės kontroliuoti žaidimą.</div>
+        </div>
+        <div class="player-card">
+          <div class="player-name">Enner Valencia</div>
+          <div class="player-role">🎯 Puolėjas (13)</div>
+          <div class="player-why">Patyręs kapitonas, Ekvadoro visų laikų geriausias bombos autorius. Šiame žaidime jis bus atsakingas už komandos puolimą.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="watch-section" style="margin-top:12px">
+      <div class="watch-label">📺 Per ką žiūrėti</div>
+      <div class="channel-badges">
+        <span class="ch-badge ch-lt">📡 Viaplay (LT)</span>
+        <span class="ch-badge ch-free">🌐 FIFA+ (nemokama)</span>
+        <span class="ch-badge ch-int">🦊 FOX / Telemundo (JAV)</span>
+        <span class="ch-badge ch-int">📺 TVAzteca (Meksika)</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  FIFA World Cup 2026 · Šiandienos rungtynės · 2026-06-30 · Laikai EEST (GMT+3) · 🌙 = po vidurnakčio
+</footer>
+
+</body>
+</html>
