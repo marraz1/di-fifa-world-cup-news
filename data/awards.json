@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01",
+  "updated": "2026-07-02",
   "goldenBoot": {
     "nameLT": "Auksinis Batelis",
     "nameEN": "Golden Boot",
@@ -7,10 +7,10 @@
     "noteLT": "Rikiuojama: įvarčiai → asistai",
     "noteEN": "Ranked: goals → assists",
     "candidates": [
+      { "name": "Harry Kane",      "team": "Anglija",    "teamEN": "England",   "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "goals": 7, "assists": 1 },
       { "name": "Lionel Messi",    "team": "Argentina",  "teamEN": "Argentina", "flag": "🇦🇷", "goals": 6, "assists": 3 },
       { "name": "Kylian Mbappé",   "team": "Prancūzija", "teamEN": "France",    "flag": "🇫🇷", "goals": 6, "assists": 2 },
-      { "name": "Erling Haaland",  "team": "Norvegija",  "teamEN": "Norway",    "flag": "🇳🇴", "goals": 6, "assists": 0 },
-      { "name": "Harry Kane",      "team": "Anglija",    "teamEN": "England",   "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "goals": 5, "assists": 1 },
+      { "name": "Erling Haaland",  "team": "Norvegija",  "teamEN": "Norway",    "flag": "🇳🇴", "goals": 5, "assists": 0 },
       { "name": "Vinicius Junior", "team": "Brazilija",  "teamEN": "Brazil",    "flag": "🇧🇷", "goals": 4, "assists": 2 },
       { "name": "Ismael Saibari",  "team": "Marokas",    "teamEN": "Morocco",   "flag": "🇲🇦", "goals": 3, "assists": 1 }
     ]
@@ -24,9 +24,9 @@
     "candidates": [
       { "name": "Lionel Messi",      "team": "Argentina",  "teamEN": "Argentina", "flag": "🇦🇷", "rating": 9.4, "noteLT": "Hat-trick vs Alžyras, 6 įv., 3 ast.",     "noteEN": "Hat-trick vs Algeria, 6G 3A" },
       { "name": "Kylian Mbappé",     "team": "Prancūzija", "teamEN": "France",    "flag": "🇫🇷", "rating": 9.2, "noteLT": "6 įv., rekordas atkrintamosiose",          "noteEN": "6G, all-time KO record" },
-      { "name": "Erling Haaland",    "team": "Norvegija",  "teamEN": "Norway",    "flag": "🇳🇴", "rating": 8.8, "noteLT": "6 įv., istorinė pergalė, lemiamas smūgis", "noteEN": "6G, historic win, clutch performer" },
-      { "name": "Vinicius Junior",   "team": "Brazilija",  "teamEN": "Brazil",    "flag": "🇧🇷", "rating": 8.5, "noteLT": "4 įv., 4 ast., kūrybingas puolimas",       "noteEN": "4G 4A, creative attack" },
-      { "name": "Ousmane Dembélé",   "team": "Prancūzija", "teamEN": "France",    "flag": "🇫🇷", "rating": 8.3, "noteLT": "Hat-trick vs Norvegija, 3 ast.",           "noteEN": "Hat-trick vs Norway, 3A" }
+      { "name": "Erling Haaland",    "team": "Norvegija",  "teamEN": "Norway",    "flag": "🇳🇴", "rating": 8.8, "noteLT": "5 įv., istorinė pergalė, lemiamas smūgis", "noteEN": "5G, historic win, clutch performer" },
+      { "name": "Harry Kane",        "team": "Anglija",    "teamEN": "England",   "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "rating": 8.7, "noteLT": "7 įv., Anglijos visų laikų ČP rekordas",   "noteEN": "7G, England all-time WC record" },
+      { "name": "Vinicius Junior",   "team": "Brazilija",  "teamEN": "Brazil",    "flag": "🇧🇷", "rating": 8.5, "noteLT": "4 įv., 4 ast., kūrybingas puolimas",       "noteEN": "4G 4A, creative attack" }
     ]
   },
   "goldenGlove": {
