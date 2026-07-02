@@ -268,6 +268,57 @@ body { background:var(--dark); color:var(--light); font-family:'Segoe UI',Arial,
 .nf-date { font-size:.72rem; color:var(--muted); }
 .nf-arrow { color:var(--gold); font-size:.85rem; flex-shrink:0; }
 
+/* ════════════════════════════════
+   AWARDS
+   ════════════════════════════════ */
+.awards-section {
+  max-width:1100px; margin:0 auto; padding:1rem 1.2rem;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(460px,1fr)); gap:1rem;
+}
+.award-card {
+  background:var(--card); border-radius:10px; overflow:hidden; border:1px solid #2c4a6e;
+}
+.award-card-header {
+  background:linear-gradient(135deg,#1a3060,#0a1628);
+  border-bottom:2px solid var(--gold);
+  padding:.55rem 1rem; display:flex; align-items:center; gap:.55rem;
+}
+.award-card-icon { font-size:1.35rem; flex-shrink:0; }
+.award-card-title { font-size:.92rem; font-weight:800; color:var(--gold); }
+.award-card-note  { font-size:.68rem; color:var(--muted); margin-top:.1rem; }
+.award-rows { padding:.3rem 0; }
+.award-row {
+  display:flex; align-items:center; gap:.55rem;
+  padding:.42rem 1rem; border-bottom:1px solid #1a2f48; font-size:.82rem;
+}
+.award-row:last-child { border-bottom:none; }
+.awr-rank  { width:16px; text-align:center; font-weight:800; font-size:.72rem; flex-shrink:0; color:var(--muted); }
+.awr-rank.r1 { color:#FFD700; }
+.awr-rank.r2 { color:#C0C0C0; }
+.awr-rank.r3 { color:#CD7F32; }
+.awr-flag  { font-size:.95rem; flex-shrink:0; }
+.awr-info  { flex:1; min-width:0; }
+.awr-name  { font-weight:700; color:var(--light); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.awr-team  { font-size:.7rem; color:var(--muted); }
+.awr-right { text-align:right; flex-shrink:0; }
+.awr-stat  { font-size:.9rem; font-weight:800; color:var(--gold); }
+.awr-sub   { font-size:.68rem; color:var(--muted); }
+/* Boot: inline goal bar */
+.awr-boot  { display:flex; align-items:center; gap:.4rem; }
+.awr-bar-wrap { width:60px; background:#0d1b2a; border-radius:3px; height:8px; overflow:hidden; }
+.awr-bar  { height:100%; border-radius:3px; background:var(--gold); transition:width .4s; }
+/* Ball: rating */
+.awr-rating { font-size:.95rem; font-weight:800; color:var(--gold); min-width:34px; text-align:right; }
+/* Glove: cs + saves chips */
+.awr-chips { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
+.awr-chip  { font-size:.68rem; font-weight:700; padding:1px 7px; border-radius:8px; }
+.awr-chip.cs    { background:rgba(39,174,96,.25); color:#5edb8e; }
+.awr-chip.saves { background:rgba(41,128,185,.25); color:#7ac0e8; }
+/* Young: age badge */
+.awr-age { font-size:.72rem; background:rgba(201,162,39,.2); color:var(--gold); padding:2px 8px; border-radius:10px; font-weight:700; white-space:nowrap; }
+/* note under name */
+.awr-note { font-size:.7rem; color:#6a8ca5; }
+
 /* ── LOADING / EMPTY ── */
 .loading-msg { text-align:center; color:var(--muted); padding:2rem; font-size:.9rem; }
 
@@ -319,6 +370,12 @@ footer {
   <div class="loading-msg">Kraunama...</div>
 </div>
 
+<!-- AWARDS -->
+<div class="sec-title" id="sec-awards">🏅 Apdovanojimų Pretendentai / Award Contenders</div>
+<div class="awards-section" id="awards-section">
+  <div class="loading-msg">Kraunama...</div>
+</div>
+
 <!-- FORECASTS -->
 <div class="sec-title" id="sec-forecasts">🔮 Rezultatų Prognozės / Result Forecasts</div>
 <div class="forecasts-section" id="forecasts-section">
@@ -344,6 +401,7 @@ const i18n = {
     back: '← Grįžti',
     secBracket: '🏆 Atrankos Lentelė',
     secUpcoming: '📅 Artėjančios Rungtynės',
+    secAwards: '🏅 Apdovanojimų Pretendentai',
     secForecasts: '🔮 Rezultatų Prognozės',
     secNews: '📰 Visos Naujienos',
     tbd: 'TBD',
@@ -353,6 +411,9 @@ const i18n = {
     noUpcoming: 'Artėjančių rungtynių nėra.',
     noNews: 'Naujienų nerasta.',
     openBtn: 'Atidaryti →',
+    goalsLbl: 'Įv.', assistsLbl: 'Ast.',
+    csLbl: 'Šv. tinklai', savesLbl: 'Išgelb.',
+    ageLbl: 'amžius',
   },
   en: {
     title: 'Knockout Stage',
@@ -360,6 +421,7 @@ const i18n = {
     back: '← Back',
     secBracket: '🏆 Knockout Bracket',
     secUpcoming: '📅 Upcoming Matches',
+    secAwards: '🏅 Award Contenders',
     secForecasts: '🔮 Result Forecasts',
     secNews: '📰 All News',
     tbd: 'TBD',
@@ -369,12 +431,16 @@ const i18n = {
     noUpcoming: 'No upcoming matches.',
     noNews: 'No news found.',
     openBtn: 'Open →',
+    goalsLbl: 'G', assistsLbl: 'A',
+    csLbl: 'Clean sheets', savesLbl: 'Saves',
+    ageLbl: 'age',
   }
 };
 
 let lang = localStorage.getItem('lang') || 'lt';
 let bracketData = null;
 let reportsData = [];
+let awardsData  = null;
 
 const TYPE_ICONS = { naujienos:'📰', rezultatai:'⚽', rungtynes:'📅', media:'📸' };
 const TYPE_LT   = { naujienos:'Naujienos', rezultatai:'Rezultatai', rungtynes:'Rungtynės', media:'Media' };
@@ -423,7 +489,7 @@ function setLang(l) {
   lang = l;
   localStorage.setItem('lang', l);
   applyLang();
-  if (bracketData) renderAll();
+  renderAll();
 }
 
 function applyLang() {
@@ -435,6 +501,7 @@ function applyLang() {
   document.getElementById('back-link').textContent = t('back');
   document.getElementById('sec-bracket').textContent  = t('secBracket');
   document.getElementById('sec-upcoming').textContent = t('secUpcoming');
+  document.getElementById('sec-awards').textContent   = t('secAwards');
   document.getElementById('sec-forecasts').textContent= t('secForecasts');
   document.getElementById('sec-news').textContent     = t('secNews');
 }
@@ -713,6 +780,101 @@ function renderNews() {
   }).join('');
 }
 
+/* ════════════════════════════════
+   AWARDS
+   ════════════════════════════════ */
+function renderAwards() {
+  const sec = document.getElementById('awards-section');
+  if (!awardsData) { sec.innerHTML = ''; return; }
+
+  const maxGoals = Math.max(...awardsData.goldenBoot.candidates.map(c => c.goals));
+
+  function rankClass(i) { return i === 0 ? 'r1' : i === 1 ? 'r2' : i === 2 ? 'r3' : ''; }
+  function pName(c)  { return c.name; }
+  function pTeam(c)  { return lang === 'en' ? c.teamEN : c.team; }
+  function pNote(c)  { return lang === 'en' ? c.noteEN : c.noteLT; }
+  function cardNote(a) { return lang === 'en' ? a.noteEN : a.noteLT; }
+
+  /* Golden Boot */
+  const bootRows = awardsData.goldenBoot.candidates.map((c, i) => `
+    <div class="award-row">
+      <span class="awr-rank ${rankClass(i)}">${i+1}</span>
+      <span class="awr-flag">${c.flag}</span>
+      <div class="awr-info">
+        <div class="awr-name">${pName(c)}</div>
+        <div class="awr-team">${pTeam(c)}</div>
+      </div>
+      <div class="awr-boot">
+        <div class="awr-bar-wrap"><div class="awr-bar" style="width:${Math.round(c.goals/maxGoals*100)}%"></div></div>
+        <div class="awr-right">
+          <div class="awr-stat">${c.goals} <span style="font-size:.65rem;color:var(--muted)">${t('goalsLbl')}</span></div>
+          <div class="awr-sub">${c.assists} ${t('assistsLbl')}</div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  /* Golden Ball */
+  const ballRows = awardsData.goldenBall.candidates.map((c, i) => `
+    <div class="award-row">
+      <span class="awr-rank ${rankClass(i)}">${i+1}</span>
+      <span class="awr-flag">${c.flag}</span>
+      <div class="awr-info">
+        <div class="awr-name">${pName(c)}</div>
+        <div class="awr-team">${pTeam(c)}</div>
+        <div class="awr-note">${pNote(c)}</div>
+      </div>
+      <div class="awr-rating">${c.rating.toFixed(1)}</div>
+    </div>`).join('');
+
+  /* Golden Glove */
+  const gloveRows = awardsData.goldenGlove.candidates.map((c, i) => `
+    <div class="award-row">
+      <span class="awr-rank ${rankClass(i)}">${i+1}</span>
+      <span class="awr-flag">${c.flag}</span>
+      <div class="awr-info">
+        <div class="awr-name">${pName(c)}</div>
+        <div class="awr-team">${pTeam(c)}</div>
+        <div class="awr-note">${pNote(c)}</div>
+      </div>
+      <div class="awr-chips">
+        <span class="awr-chip cs">${c.cleanSheets} ${t('csLbl')}</span>
+        <span class="awr-chip saves">${c.saves} ${t('savesLbl')}</span>
+      </div>
+    </div>`).join('');
+
+  /* Best Young */
+  const youngRows = awardsData.bestYoung.candidates.map((c, i) => `
+    <div class="award-row">
+      <span class="awr-rank ${rankClass(i)}">${i+1}</span>
+      <span class="awr-flag">${c.flag}</span>
+      <div class="awr-info">
+        <div class="awr-name">${pName(c)}</div>
+        <div class="awr-team">${pTeam(c)}</div>
+        <div class="awr-note">${pNote(c)}</div>
+      </div>
+      <span class="awr-age">${c.age} m.</span>
+    </div>`).join('');
+
+  function card(a, rows) {
+    return `<div class="award-card">
+      <div class="award-card-header">
+        <span class="award-card-icon">${a.icon}</span>
+        <div>
+          <div class="award-card-title">${lang === 'en' ? a.nameEN : a.nameLT}</div>
+          <div class="award-card-note">${cardNote(a)}</div>
+        </div>
+      </div>
+      <div class="award-rows">${rows}</div>
+    </div>`;
+  }
+
+  sec.innerHTML =
+    card(awardsData.goldenBoot,  bootRows)  +
+    card(awardsData.goldenBall,  ballRows)  +
+    card(awardsData.goldenGlove, gloveRows) +
+    card(awardsData.bestYoung,   youngRows);
+}
+
 /* ── render all sections ── */
 function renderAll() {
   if (bracketData) {
@@ -720,6 +882,7 @@ function renderAll() {
     renderUpcoming();
     renderForecasts();
   }
+  renderAwards();
   if (reportsData.length > 0) renderNews();
 }
 
@@ -729,12 +892,15 @@ document.getElementById('footer-date').textContent = new Date().toLocaleDateStri
   lang === 'lt' ? 'lt-LT' : 'en-GB', { year:'numeric', month:'long', day:'numeric' }
 );
 
+const ts = Date.now();
 Promise.all([
-  fetch('data/bracket.json?v=' + Date.now()).then(r => r.json()),
-  fetch('data/reports.json?v=' + Date.now()).then(r => r.json()),
-]).then(([bracket, reports]) => {
-  bracketData  = bracket;
-  reportsData  = reports.sort((a, b) => b.date.localeCompare(a.date));
+  fetch('data/bracket.json?v=' + ts).then(r => r.json()),
+  fetch('data/reports.json?v=' + ts).then(r => r.json()),
+  fetch('data/awards.json?v='  + ts).then(r => r.json()),
+]).then(([bracket, reports, awards]) => {
+  bracketData = bracket;
+  reportsData = reports.sort((a, b) => b.date.localeCompare(a.date));
+  awardsData  = awards;
   renderAll();
 }).catch(err => {
   console.error(err);
