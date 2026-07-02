@@ -3,16 +3,16 @@
   "goldenBoot": {
     "nameLT": "Auksinis Batelis",
     "nameEN": "Golden Boot",
-    "icon": "🥇",
+    "icon": "⚽",
     "noteLT": "Rikiuojama: įvarčiai → asistai",
     "noteEN": "Ranked: goals → assists",
     "candidates": [
-      { "name": "Harry Kane",      "team": "Anglija",    "teamEN": "England",   "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "goals": 7, "assists": 1 },
-      { "name": "Lionel Messi",    "team": "Argentina",  "teamEN": "Argentina", "flag": "🇦🇷", "goals": 6, "assists": 3 },
-      { "name": "Kylian Mbappé",   "team": "Prancūzija", "teamEN": "France",    "flag": "🇫🇷", "goals": 6, "assists": 2 },
-      { "name": "Erling Haaland",  "team": "Norvegija",  "teamEN": "Norway",    "flag": "🇳🇴", "goals": 5, "assists": 0 },
-      { "name": "Vinicius Junior", "team": "Brazilija",  "teamEN": "Brazil",    "flag": "🇧🇷", "goals": 4, "assists": 2 },
-      { "name": "Ismael Saibari",  "team": "Marokas",    "teamEN": "Morocco",   "flag": "🇲🇦", "goals": 3, "assists": 1 }
+      { "name": "Kylian Mbappé",   "team": "Prancūzija", "teamEN": "France",       "flag": "🇫🇷", "goals": 6, "assists": 2 },
+      { "name": "Lionel Messi",    "team": "Argentina",  "teamEN": "Argentina",    "flag": "🇦🇷", "goals": 6, "assists": 3 },
+      { "name": "Erling Haaland",  "team": "Norvegija",  "teamEN": "Norway",       "flag": "🇳🇴", "goals": 5, "assists": 0 },
+      { "name": "Harry Kane",      "team": "Anglija",    "teamEN": "England",      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "goals": 5, "assists": 1 },
+      { "name": "Ousmane Dembélé", "team": "Prancūzija", "teamEN": "France",       "flag": "🇫🇷", "goals": 4, "assists": 1 },
+      { "name": "Vinicius Junior", "team": "Brazilija",  "teamEN": "Brazil",       "flag": "🇧🇷", "goals": 4, "assists": 2 }
     ]
   },
   "goldenBall": {
@@ -22,11 +22,10 @@
     "noteLT": "Ekspertų reitingas (10 balų)",
     "noteEN": "Expert rating (10-point scale)",
     "candidates": [
-      { "name": "Lionel Messi",      "team": "Argentina",  "teamEN": "Argentina", "flag": "🇦🇷", "rating": 9.4, "noteLT": "Hat-trick vs Alžyras, 6 įv., 3 ast.",     "noteEN": "Hat-trick vs Algeria, 6G 3A" },
-      { "name": "Kylian Mbappé",     "team": "Prancūzija", "teamEN": "France",    "flag": "🇫🇷", "rating": 9.2, "noteLT": "6 įv., rekordas atkrintamosiose",          "noteEN": "6G, all-time KO record" },
-      { "name": "Erling Haaland",    "team": "Norvegija",  "teamEN": "Norway",    "flag": "🇳🇴", "rating": 8.8, "noteLT": "5 įv., istorinė pergalė, lemiamas smūgis", "noteEN": "5G, historic win, clutch performer" },
-      { "name": "Harry Kane",        "team": "Anglija",    "teamEN": "England",   "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "rating": 8.7, "noteLT": "7 įv., Anglijos visų laikų ČP rekordas",   "noteEN": "7G, England all-time WC record" },
-      { "name": "Vinicius Junior",   "team": "Brazilija",  "teamEN": "Brazil",    "flag": "🇧🇷", "rating": 8.5, "noteLT": "4 įv., 4 ast., kūrybingas puolimas",       "noteEN": "4G 4A, creative attack" }
+      { "name": "Kylian Mbappé",   "team": "Prancūzija", "teamEN": "France",    "flag": "🇫🇷", "rating": 9.3, "noteLT": "Favoritas, 6 įv., rekordas atkrintamosiose",          "noteEN": "Favourite, 6G, all-time KO record" },
+      { "name": "Lionel Messi",    "team": "Argentina",  "teamEN": "Argentina", "flag": "🇦🇷", "rating": 9.1, "noteLT": "2× laimėtojas, hat-trick vs Alžyras, 6 įv. 3 ast.", "noteEN": "2× winner, hat-trick vs Algeria, 6G 3A" },
+      { "name": "Lamine Yamal",    "team": "Ispanija",   "teamEN": "Spain",     "flag": "🇪🇸", "rating": 8.7, "noteLT": "Iškyla, jauniausias startinis žaidėjas turnyre",       "noteEN": "Rising star, youngest starter in tournament" },
+      { "name": "Jude Bellingham", "team": "Anglija",    "teamEN": "England",   "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "rating": 8.4, "noteLT": "Stiprus kandidatas, lyderystė ir kūryba",          "noteEN": "Strong candidate, leadership and creativity" }
     ]
   },
   "goldenGlove": {
@@ -36,10 +35,11 @@
     "noteLT": "Švarūs tinklai · Išgelbėjimai",
     "noteEN": "Clean sheets · Saves",
     "candidates": [
-      { "name": "Mike Maignan",    "team": "Prancūzija", "teamEN": "France",    "flag": "🇫🇷", "cleanSheets": 3, "saves": 14, "noteLT": "3 švarūs tinklai, stabili gynyba",        "noteEN": "3 clean sheets, solid defence" },
-      { "name": "Yassine Bounou",  "team": "Marokas",    "teamEN": "Morocco",   "flag": "🇲🇦", "cleanSheets": 2, "saves": 21, "noteLT": "Lemiamas baudinio atreipimas vs NED",    "noteEN": "Key penalty save vs Netherlands" },
-      { "name": "Orlando Gill",    "team": "Paragvajus", "teamEN": "Paraguay",  "flag": "🇵🇾", "cleanSheets": 2, "saves": 18, "noteLT": "2 baudiniai per seriją vs Vokietija",   "noteEN": "2 saves in shootout vs Germany" },
-      { "name": "Jordan Pickford", "team": "Anglija",    "teamEN": "England",   "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "cleanSheets": 2, "saves": 16, "noteLT": "Stabili žaidyba, patikimas komandai", "noteEN": "Steady, reliable for England" }
+      { "name": "Mike Maignan",      "team": "Prancūzija", "teamEN": "France",     "flag": "🇫🇷", "cleanSheets": 3, "saves": 14, "noteLT": "Favoritas, stabili gynyba",          "noteEN": "Favourite, solid defence" },
+      { "name": "Emiliano Martínez", "team": "Argentina",  "teamEN": "Argentina",  "flag": "🇦🇷", "cleanSheets": 2, "saves": 17, "noteLT": "2022 m. laimėtojas, patikimas",     "noteEN": "2022 winner, reliable" },
+      { "name": "Unai Simón",        "team": "Ispanija",   "teamEN": "Spain",      "flag": "🇪🇸", "cleanSheets": 3, "saves": 12, "noteLT": "0 praleistų – geriausias rodiklis",  "noteEN": "0 conceded — best record" },
+      { "name": "Alisson Becker",    "team": "Brazilija",  "teamEN": "Brazil",     "flag": "🇧🇷", "cleanSheets": 2, "saves": 15, "noteLT": "Patikimas, stabilus žaidimas",      "noteEN": "Reliable, consistent" },
+      { "name": "Rangel",            "team": "Meksika",    "teamEN": "Mexico",     "flag": "🇲🇽", "cleanSheets": 4, "saves": 18, "noteLT": "4 švarūs tinklai turnyre",          "noteEN": "4 clean sheets in tournament" }
     ]
   },
   "bestYoung": {
@@ -49,10 +49,10 @@
     "noteLT": "Pretendentai iki 21 m. amžiaus",
     "noteEN": "Candidates aged 21 and under",
     "candidates": [
-      { "name": "Antoine Nusa",       "team": "Norvegija", "teamEN": "Norway",    "flag": "🇳🇴", "age": 20, "noteLT": "Greitumas, atidarė rezultatą vs DKK",     "noteEN": "Pace, opened scoring vs Ivory Coast" },
-      { "name": "Alejandro Garnacho", "team": "Argentina", "teamEN": "Argentina", "flag": "🇦🇷", "age": 20, "noteLT": "Kūrybingas, spaudimas su Messi",          "noteEN": "Creative, pressing alongside Messi" },
-      { "name": "Malo Gusto",         "team": "Prancūzija","teamEN": "France",    "flag": "🇫🇷", "age": 21, "noteLT": "Aktyvus dešinysis gynėjas, 3 asistai",    "noteEN": "Active right back, 3 assists" },
-      { "name": "Lamine Yamal",       "team": "Ispanija",  "teamEN": "Spain",     "flag": "🇪🇸", "age": 18, "noteLT": "Jauniausias startinis žaidėjas turnyre",  "noteEN": "Youngest starter in tournament" }
+      { "name": "Lamine Yamal",   "team": "Ispanija",   "teamEN": "Spain",        "flag": "🇪🇸", "age": 18, "noteLT": "Favoritas, jauniausias startinis žaidėjas turnyre",   "noteEN": "Favourite, youngest starter in tournament" },
+      { "name": "Désiré Doué",    "team": "Prancūzija", "teamEN": "France",       "flag": "🇫🇷", "age": 21, "noteLT": "Artimiausias, kūrybingas puolimas",                  "noteEN": "Closest rival, creative attack" },
+      { "name": "Yan Diomande",   "team": "Dramblio K.","teamEN": "Ivory Coast",  "flag": "🇨🇮", "age": 20, "noteLT": "Kandidatas, stiprus pasirodymas",                     "noteEN": "Candidate, strong performance" },
+      { "name": "Johan Manzambi", "team": "Šveicarija", "teamEN": "Switzerland",  "flag": "🇨🇭", "age": 20, "noteLT": "3 įv. + 1 rez. per., žaidžia šiandien",             "noteEN": "3G + 1A, plays today" }
     ]
   }
 }
