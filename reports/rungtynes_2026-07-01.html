@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup 2026 — Šiandienos Rungtynės 2026-07-01</title>
+<style>
+  :root{
+    --dark:#0d1b2a; --gold:#c9a227; --mid:#1e3a5f; --light:#f0f4f8;
+    --red:#c0392b; --blue:#2980b9; --purple:#7d5ba6; --green:#2e8b57; --orange:#d9822b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:linear-gradient(180deg,var(--dark) 0%,#08131e 100%);
+    color:var(--light); font-family:'Segoe UI',Arial,sans-serif;
+  }
+  header{ text-align:center; padding:36px 20px 20px; border-bottom:2px solid var(--gold); }
+  header h1{ color:var(--gold); font-size:1.9em; margin:0 0 8px; }
+  header p{ color:#c7d2dc; margin:0; }
+  .wrap{ max-width:980px; margin:0 auto; padding:30px 20px 60px; }
+
+  .night-divider{
+    display:flex; align-items:center; gap:14px;
+    margin:36px 0 20px;
+    color:var(--purple); font-weight:800; font-size:1.05em;
+    text-transform:uppercase; letter-spacing:1px;
+  }
+  .night-divider::before, .night-divider::after{
+    content:""; flex:1; height:2px; background:var(--purple);
+  }
+
+  .match-card{
+    background:var(--mid); border-radius:14px; border-left:6px solid var(--gold);
+    margin-bottom:30px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,0.35);
+  }
+  .match-header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 22px; background:rgba(0,0,0,0.2); font-size:0.9em; color:#c7d2dc;
+    flex-wrap:wrap; gap:8px;
+  }
+  .time-chip{
+    background:var(--gold); color:#2b2205; font-weight:800;
+    padding:4px 14px; border-radius:14px; font-size:0.95em;
+  }
+  .time-chip.night{ background:var(--purple); color:#fff; }
+  .group-chip{
+    background:rgba(255,255,255,0.1); padding:3px 12px; border-radius:12px; font-size:0.85em;
+  }
+  .matchup-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:24px 26px 14px; gap:14px; flex-wrap:wrap;
+  }
+  .team{ flex:1; min-width:170px; text-align:center; }
+  .team-name{ font-size:1.25em; font-weight:700; }
+  .team-sub{ font-size:0.8em; color:#a9bccf; margin-top:4px; }
+  .vs{ font-size:1.1em; font-weight:800; color:var(--gold); padding:0 16px; }
+
+  .prob-section{ padding:6px 26px 20px; }
+  .prob-row{ display:flex; align-items:center; gap:10px; margin-bottom:8px; font-size:0.85em; }
+  .prob-label{ width:110px; color:#c7d2dc; flex-shrink:0; }
+  .prob-bar-bg{ flex:1; background:rgba(255,255,255,0.08); border-radius:8px; height:14px; overflow:hidden; }
+  .prob-bar{ height:100%; border-radius:8px; }
+  .prob-bar.home{ background:var(--green); }
+  .prob-bar.draw{ background:var(--orange); }
+  .prob-bar.away{ background:var(--blue); }
+  .prob-pct{ width:42px; text-align:right; font-weight:700; }
+
+  .context-note{
+    margin:0 26px 18px; padding:12px 16px; background:rgba(0,0,0,0.2);
+    border-radius:8px; font-size:0.88em; color:#d3dde5; line-height:1.5;
+  }
+
+  .players-section{ padding:0 26px 20px; }
+  .players-section h4{ color:var(--gold); font-size:0.95em; margin:0 0 10px; }
+  .player-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:600px){ .player-grid{ grid-template-columns:1fr; } .matchup-row{ flex-direction:column; } }
+  .player-card{
+    background:rgba(0,0,0,0.18); border-radius:8px; padding:10px 12px; font-size:0.85em;
+  }
+  .player-card b{ display:block; color:var(--light); margin-bottom:3px; }
+  .player-card span{ color:#a9bccf; }
+
+  .broadcast{
+    padding:14px 26px 22px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    border-top:1px solid rgba(255,255,255,0.08);
+  }
+  .broadcast .lbl{ font-size:0.85em; color:var(--gold); font-weight:700; margin-right:6px; }
+  .channel-badge{
+    background:rgba(255,255,255,0.1); padding:4px 12px; border-radius:12px; font-size:0.8em;
+  }
+  footer{ text-align:center; padding:30px; color:#6f8194; font-size:0.85em; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📅 FIFA World Cup 2026 — Šiandienos Rungtynės</h1>
+  <p>2026 m. liepos 1 d. — Aštuntfinalis (Round of 32) · Laikas nurodytas Lietuvos vasaros laiku (EEST, GMT+3)</p>
+</header>
+
+<div class="wrap">
+
+  <!-- MATCH 1: England vs DR Congo -->
+  <div class="match-card">
+    <div class="match-header">
+      <span class="time-chip">19:00 EEST</span>
+      <span class="group-chip">Aštuntfinalis · Round of 32</span>
+      <span>Mercedes-Benz Stadium, Atlanta (JAV)</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team">
+        <div class="team-name">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Anglija</div>
+        <div class="team-sub">L grupės nugalėtoja · 7 tšk (+4)</div>
+      </div>
+      <div class="vs">vs</div>
+      <div class="team">
+        <div class="team-name">🇨🇩 Kongo DR</div>
+        <div class="team-sub">K grupės 3-ia vieta · pateko kaip viena geriausių trečiųjų komandų</div>
+      </div>
+    </div>
+    <div class="prob-section">
+      <div class="prob-row"><div class="prob-label">Anglijos pergalė</div><div class="prob-bar-bg"><div class="prob-bar home" style="width:72%"></div></div><div class="prob-pct">72%</div></div>
+      <div class="prob-row"><div class="prob-label">Lygiosios</div><div class="prob-bar-bg"><div class="prob-bar draw" style="width:18%"></div></div><div class="prob-pct">18%</div></div>
+      <div class="prob-row"><div class="prob-label">Kongo DR pergalė</div><div class="prob-bar-bg"><div class="prob-bar away" style="width:10%"></div></div><div class="prob-pct">10%</div></div>
+    </div>
+    <div class="context-note">Anglija, kurią spauda vadina favorite tapti čempione, siekia užtikrintai patekti į aštuntfinalį, tačiau turi rūpesčių dėl sąstato — R. James praleis dvejas rungtynes, o D. Rice fizinė būklė vis dar vertinama. Kongo DR pirmą kartą istorijoje žaidžia atkrintamosiose varžybose ir atvyksta įkvėpti Y. Wissa įvarčių grupės etape.</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="player-grid">
+        <div class="player-card"><b>Harry Kane (Anglija)</b><span>Puolėjas, 5 įvarčiai turnyre — kovoja dėl Auksinio batelio</span></div>
+        <div class="player-card"><b>Jude Bellingham (Anglija)</b><span>Vidurio saugas, kūrybinis komandos variklis</span></div>
+        <div class="player-card"><b>Yoane Wissa (Kongo DR)</b><span>Puolėjas, pelnė istorinį pirmąjį šalies įvartį PČ ir dubletą prieš Uzbekistaną</span></div>
+        <div class="player-card"><b>Chancel Mbemba (Kongo DR)</b><span>Kapitonas, gynybos lyderis, „Gynybos ministras", 100+ rungtynių rinktinėje</span></div>
+      </div>
+    </div>
+    <div class="broadcast">
+      <span class="lbl">📺 Per ką žiūrėti:</span>
+      <span class="channel-badge">Viaplay (LT)</span>
+      <span class="channel-badge">FIFA+</span>
+      <span class="channel-badge">Fox / Telemundo (JAV)</span>
+    </div>
+  </div>
+
+  <!-- MATCH 2: Belgium vs Senegal -->
+  <div class="match-card">
+    <div class="match-header">
+      <span class="time-chip">23:00 EEST</span>
+      <span class="group-chip">Aštuntfinalis · Round of 32</span>
+      <span>Lumen Field, Sietlas (JAV)</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team">
+        <div class="team-name">🇧🇪 Belgija</div>
+        <div class="team-sub">G grupės nugalėtoja · 5 tšk (+3)</div>
+      </div>
+      <div class="vs">vs</div>
+      <div class="team">
+        <div class="team-name">🇸🇳 Senegalas</div>
+        <div class="team-sub">I grupės 3-ia vieta · pateko kaip viena geriausių trečiųjų komandų</div>
+      </div>
+    </div>
+    <div class="prob-section">
+      <div class="prob-row"><div class="prob-label">Belgijos pergalė</div><div class="prob-bar-bg"><div class="prob-bar home" style="width:55%"></div></div><div class="prob-pct">55%</div></div>
+      <div class="prob-row"><div class="prob-label">Lygiosios</div><div class="prob-bar-bg"><div class="prob-bar draw" style="width:25%"></div></div><div class="prob-pct">25%</div></div>
+      <div class="prob-row"><div class="prob-label">Senegalo pergalė</div><div class="prob-bar-bg"><div class="prob-bar away" style="width:20%"></div></div><div class="prob-pct">20%</div></div>
+    </div>
+    <div class="context-note">Tai pirmosios šių rinktinių rungtynės per visą istoriją. Belgija grupės etape sužaidė įspūdingai ir be pralaimėjimų iškovojo pirmą vietą, o Senegalas po dviejų pralaimėjimų prieš Prancūziją ir Norvegiją sensacingai sutriuškino Iraką 5:0 ir prasibrovė į atkrintamąsias varžybas.</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="player-grid">
+        <div class="player-card"><b>Romelu Lukaku (Belgija)</b><span>Puolėjas iš atsarginių, 91 įvartis rinktinei per karjerą</span></div>
+        <div class="player-card"><b>Leandro Trossard (Belgija)</b><span>Puolėjas, šio sezono Arsenalo čempiono narys, puikioje formoje</span></div>
+        <div class="player-card"><b>Sadio Mané (Senegalas)</b><span>Šalies istorijos rezultatyviausias žaidėjas — 54 įvarčiai</span></div>
+        <div class="player-card"><b>Ismaïla Sarr (Senegalas)</b><span>Puolėjas, jau pelnė 3 įvarčius šiame turnyre</span></div>
+      </div>
+    </div>
+    <div class="broadcast">
+      <span class="lbl">📺 Per ką žiūrėti:</span>
+      <span class="channel-badge">Viaplay (LT)</span>
+      <span class="channel-badge">FIFA+</span>
+      <span class="channel-badge">Fox (JAV)</span>
+    </div>
+  </div>
+
+  <div class="night-divider">🌙 Nakties rungtynės</div>
+
+  <!-- MATCH 3: USA vs Bosnia -->
+  <div class="match-card">
+    <div class="match-header">
+      <span class="time-chip night">03:00 EEST (liepos 2 d.)</span>
+      <span class="group-chip">Aštuntfinalis · Round of 32</span>
+      <span>Levi's Stadium, Santa Klara (JAV)</span>
+    </div>
+    <div class="matchup-row">
+      <div class="team">
+        <div class="team-name">🇺🇸 JAV</div>
+        <div class="team-sub">D grupės nugalėtoja · 6 tšk (+4)</div>
+      </div>
+      <div class="vs">vs</div>
+      <div class="team">
+        <div class="team-name">🇧🇦 Bosnija ir Hercegovina</div>
+        <div class="team-sub">B grupės 3-ia vieta · pateko kaip viena geriausių trečiųjų komandų</div>
+      </div>
+    </div>
+    <div class="prob-section">
+      <div class="prob-row"><div class="prob-label">JAV pergalė</div><div class="prob-bar-bg"><div class="prob-bar home" style="width:50%"></div></div><div class="prob-pct">50%</div></div>
+      <div class="prob-row"><div class="prob-label">Lygiosios</div><div class="prob-bar-bg"><div class="prob-bar draw" style="width:25%"></div></div><div class="prob-pct">25%</div></div>
+      <div class="prob-row"><div class="prob-label">Bosnijos pergalė</div><div class="prob-bar-bg"><div class="prob-bar away" style="width:25%"></div></div><div class="prob-pct">25%</div></div>
+    </div>
+    <div class="context-note">Šeimininkė JAV, pirmavusi savo grupėje, žengia į aštuntfinalį kupina pasitikėjimo prieš namų sirgalius, tačiau istorija nepalanki — rinktinė dar niekada nėra nugalėjusi Europos komandos pasaulio čempionato atkrintamosiose varžybose. Bosnijos gynyba pasižymi ypač pavojingais standartinėmis situacijomis, o tai turėtų kelti nerimą JAV gynybai.</div>
+    <div class="players-section">
+      <h4>⭐ Žaidėjai stebėjimui</h4>
+      <div class="player-grid">
+        <div class="player-card"><b>Christian Pulisic (JAV)</b><span>Kapitonas, patvirtino, kad yra visiškai pasiruošęs žaisti</span></div>
+        <div class="player-card"><b>Malik Tillman (JAV)</b><span>Puolėjas, viena didžiausių šio turnyro atradimų JAV rinktinėje</span></div>
+        <div class="player-card"><b>Edin Džeko (Bosnija)</b><span>40 metų kapitonas, šalies istorijos rezultatyviausias žaidėjas (73 įvarčiai)</span></div>
+        <div class="player-card"><b>Ermedin Demirović (Bosnija)</b><span>Patyręs puolėjas, komandos atakos ašis</span></div>
+      </div>
+    </div>
+    <div class="broadcast">
+      <span class="lbl">📺 Per ką žiūrėti:</span>
+      <span class="channel-badge">Viaplay (LT)</span>
+      <span class="channel-badge">FIFA+</span>
+      <span class="channel-badge">Fox / Telemundo (JAV)</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  FIFA World Cup 2026 · Dienos ataskaita parengta automatiškai · Šaltiniai: ESPN, Sky Sports, Opta Analyst, FIFA.com
+</footer>
+
+</body>
+</html>

@@ -42,20 +42,20 @@
         },
         {
           "id": "R32-5", "bracket": "left",
-          "team1": {"name": "JAV",    "nameEN": "USA",     "flag": "🇺🇸", "from": "D1"},
-          "team2": {"name": "Urugvajus","nameEN": "Uruguay","flag": "🇺🇾", "from": "H2"},
+          "team1": {"name": "JAV",              "nameEN": "USA",                   "flag": "🇺🇸", "from": "D1"},
+          "team2": {"name": "Bosnija ir H.",    "nameEN": "Bosnia & Herzegovina",  "flag": "🇧🇦", "from": "B3"},
           "score1": null, "score2": null, "winner": null,
-          "date": "2026-06-30", "time": "02:00 EEST", "venue": "SoFi Stadium, Los Angeles, CA",
+          "date": "2026-07-02", "time": "03:00 EEST", "venue": "Levi's Stadium, Santa Klara, CA",
           "status": "scheduled",
-          "prediction": {"winner": "JAV", "team1pct": 55, "team2pct": 45}
+          "prediction": {"winner": "JAV", "team1pct": 67, "team2pct": 33}
         },
         {
           "id": "R32-6", "bracket": "left",
           "team1": {"name": "Meksika",   "nameEN": "Mexico",    "flag": "🇲🇽", "from": "A1"},
           "team2": {"name": "Ekvadoras", "nameEN": "Ecuador",   "flag": "🇪🇨", "from": "E3"},
-          "score1": null, "score2": null, "winner": null,
+          "score1": 2, "score2": 0, "winner": "Meksika",
           "date": "2026-06-30", "time": "23:00 EEST", "venue": "Estadio Azteca, Mexico City",
-          "status": "scheduled",
+          "status": "finished",
           "prediction": {"winner": "Meksika", "team1pct": 61, "team2pct": 39}
         },
         {
@@ -69,12 +69,12 @@
         },
         {
           "id": "R32-8", "bracket": "left",
-          "team1": {"name": "Dr. Kaulo Kr.","nameEN": "Ivory Coast","flag": "🇨🇮", "from": "G1"},
-          "team2": {"name": "Senegalas",    "nameEN": "Senegal",    "flag": "🇸🇳", "from": "I3"},
+          "team1": {"name": "Belgija",   "nameEN": "Belgium", "flag": "🇧🇪", "from": "G1"},
+          "team2": {"name": "Senegalas", "nameEN": "Senegal", "flag": "🇸🇳", "from": "I3"},
           "score1": null, "score2": null, "winner": null,
-          "date": "2026-07-01", "time": "23:00 EEST", "venue": "Empower Field at Mile High, Denver",
+          "date": "2026-07-01", "time": "23:00 EEST", "venue": "Lumen Field, Sietlas, WA",
           "status": "scheduled",
-          "prediction": {"winner": "Dr. Kaulo Kr.", "team1pct": 60, "team2pct": 40}
+          "prediction": {"winner": "Belgija", "team1pct": 73, "team2pct": 27}
         },
         {
           "id": "R32-9", "bracket": "right",
@@ -87,12 +87,12 @@
         },
         {
           "id": "R32-10", "bracket": "right",
-          "team1": {"name": "Anglija",        "nameEN": "England",   "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "from": "L1"},
-          "team2": {"name": "Žaliasis Kyšulys","nameEN": "Cabo Verde","flag": "🇨🇻", "from": "H3"},
+          "team1": {"name": "Anglija",   "nameEN": "England",  "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "from": "L1"},
+          "team2": {"name": "DR Kongas", "nameEN": "DR Congo", "flag": "🇨🇩", "from": "K3"},
           "score1": null, "score2": null, "winner": null,
-          "date": "2026-07-01", "time": "02:00 EEST", "venue": "Mercedes-Benz Stadium, Atlanta",
+          "date": "2026-07-01", "time": "19:00 EEST", "venue": "Mercedes-Benz Stadium, Atlanta, GA",
           "status": "scheduled",
-          "prediction": {"winner": "Anglija", "team1pct": 82, "team2pct": 18}
+          "prediction": {"winner": "Anglija", "team1pct": 88, "team2pct": 12}
         },
         {
           "id": "R32-11", "bracket": "right",
@@ -105,11 +105,11 @@
         },
         {
           "id": "R32-12", "bracket": "right",
-          "team1": {"name": "Prancūzija","nameEN": "France",   "flag": "🇫🇷", "from": "I1"},
-          "team2": {"name": "DR Kongas", "nameEN": "DR Congo", "flag": "🇨🇩", "from": "K3"},
-          "score1": null, "score2": null, "winner": null,
-          "date": "2026-06-29", "time": "23:00 EEST", "venue": "Levi's Stadium, San José, CA",
-          "status": "scheduled",
+          "team1": {"name": "Prancūzija","nameEN": "France",  "flag": "🇫🇷", "from": "I1"},
+          "team2": {"name": "Švedija",   "nameEN": "Sweden",  "flag": "🇸🇪", "from": "F3"},
+          "score1": 3, "score2": 0, "winner": "Prancūzija",
+          "date": "2026-06-30", "time": "00:00 EEST", "venue": "MetLife Stadium, East Rutherford, NJ",
+          "status": "finished",
           "prediction": {"winner": "Prancūzija", "team1pct": 78, "team2pct": 22}
         },
         {
@@ -141,11 +141,11 @@
         },
         {
           "id": "R32-16", "bracket": "right",
-          "team1": {"name": "Norvegija","nameEN": "Norway","flag": "🇳🇴", "from": "I2"},
-          "team2": {"name": "Gana",     "nameEN": "Ghana", "flag": "🇬🇭", "from": "L3"},
-          "score1": null, "score2": null, "winner": null,
-          "date": "2026-07-01", "time": "22:00 EEST", "venue": "Lincoln Financial Field, Philadelphia",
-          "status": "scheduled",
+          "team1": {"name": "Norvegija",      "nameEN": "Norway",      "flag": "🇳🇴", "from": "I2"},
+          "team2": {"name": "Dr. Kaulo Kr.", "nameEN": "Ivory Coast", "flag": "🇨🇮", "from": "E2"},
+          "score1": 2, "score2": 1, "winner": "Norvegija",
+          "date": "2026-06-30", "time": "20:00 EEST", "venue": "AT&T Stadium, Arlingtonas, TX",
+          "status": "finished",
           "prediction": {"winner": "Norvegija", "team1pct": 55, "team2pct": 45}
         }
       ]
@@ -167,7 +167,7 @@
         },
         {
           "id": "R16-3", "bracket": "left", "feedsFrom": ["R32-5", "R32-6"],
-          "team1": null, "team2": null, "score1": null, "score2": null, "winner": null,
+          "team1": null, "team2": {"name": "Meksika","nameEN": "Mexico","flag": "🇲🇽"}, "score1": null, "score2": null, "winner": null,
           "date": "2026-07-05", "time": null, "venue": null, "status": "pending", "prediction": null
         },
         {
@@ -182,7 +182,7 @@
         },
         {
           "id": "R16-6", "bracket": "right", "feedsFrom": ["R32-11", "R32-12"],
-          "team1": null, "team2": null, "score1": null, "score2": null, "winner": null,
+          "team1": null, "team2": {"name": "Prancūzija","nameEN": "France","flag": "🇫🇷"}, "score1": null, "score2": null, "winner": null,
           "date": "2026-07-06", "time": null, "venue": null, "status": "pending", "prediction": null
         },
         {
@@ -192,7 +192,7 @@
         },
         {
           "id": "R16-8", "bracket": "right", "feedsFrom": ["R32-15", "R32-16"],
-          "team1": null, "team2": null, "score1": null, "score2": null, "winner": null,
+          "team1": null, "team2": {"name": "Norvegija","nameEN": "Norway","flag": "🇳🇴"}, "score1": null, "score2": null, "winner": null,
           "date": "2026-07-07", "time": null, "venue": null, "status": "pending", "prediction": null
         }
       ]
